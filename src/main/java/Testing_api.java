@@ -29,7 +29,18 @@ public class Testing_api {
 
             // Getting the response
             Response response = client.newCall(request).execute();
+            JSONObject responseBody = new JSONObject(response.body().string());
 
+            // Process JSON File response
+            if (response.isSuccessful()) {
+                System.out.println("API connection successful");
+                System.out.println("Calories in 1 cup of uncooked rice: " + responseBody.get("calories"));
+
+                JSONArray dietLabels = responseBody.getJSONArray("dietLabels");
+                System.out.println("Diet labels: " + dietLabels.toString());
+            } else {
+                System.err.println("Request failed with code: " + response.code());
+            }
 
         } catch (IOException e) {
             throw new RuntimeException(e);
