@@ -65,7 +65,3 @@ public class Testing_api {
 ### Results
 ![image](https://github.com/alessiacodes/207-group-project/assets/128920588/82c93feb-4141-458a-a83d-1fc5ecceaaac)
 
-
-
-
-API link: https://developer.edamam.com/edamam-docs-nutrition-api
