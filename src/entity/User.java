@@ -1,12 +1,8 @@
 package entity;
 
+import java.util.ArrayList;
+
 public interface User {
-
-    User getUser();
-
-    void setUser();
-
-    void addFavourite();
 
     void setName();
 
@@ -20,5 +16,20 @@ public interface User {
 
     void setWeight();
 
+    User getUser();
+
+    ArrayList<String> getFavourites();
+
+    String getName();
+
+    String getGender();
+
+    int getAge();
+
+    Double getHeight();
+
+    ArrayList<String> getRestrictions();
+
+    Double getWeight();
 
 }
