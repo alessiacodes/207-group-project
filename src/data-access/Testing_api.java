@@ -1,19 +1,6 @@
-# 207-group-project
-## Project domain: fitness and lifestyle
-## Short description:
-We aim to create a program that tracks macro and micro nutrients of the user throughout the day. Additionally, users can find the nutritional value of the recipe of their choice or get reccomended meals based on their dietary restrictions and/or fitness goals.
-## API Information
-Edamam is an API with lots of food-related functionalities. For testing purposes, we are using their nutritional data API.  
-Documentation: https://developer.edamam.com/edamam-docs-nutrition-api
-
-## Hoppscotch Output
-![image](https://github.com/alessiacodes/207-group-project/assets/128920588/13a42df6-4c56-4403-8b3c-b0592efb3193)
-
-## Java API Calls (Code and Results)
-### Code
-```java
 import okhttp3.*;
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
@@ -59,9 +46,5 @@ public class Testing_api {
             throw new RuntimeException(e);
         }
     }
+
 }
-```
-
-### Results
-![image](https://github.com/alessiacodes/207-group-project/assets/128920588/82c93feb-4141-458a-a83d-1fc5ecceaaac)
-
