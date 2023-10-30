@@ -1,7 +1,7 @@
 package entity;
 import java.util.ArrayList;
 
-public class basicUser implements User{
+public class BasicUser implements User{
 
     private String name;
 
@@ -17,7 +17,7 @@ public class basicUser implements User{
 
 
 
-    public basicUser(String name, String gender, Double weight, int age,
+    public BasicUser(String name, String gender, Double weight, int age,
                      Double height, ArrayList<String> dietaryRestrictions){
 
         this.name = name;
