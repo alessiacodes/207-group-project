@@ -4,21 +4,19 @@ import java.util.ArrayList;
 
 public interface User {
 
-    void setName();
+    void setName(String name);
 
-    void setGender();
+    void setGender(String gender);
 
-    void setAge();
+    void setAge(int age);
 
-    void setHeight();
+    void setHeight(Double height);
 
-    void setRestrictions();
+    void setRestrictions(ArrayList<String> dietaryRestrictions);
 
-    void setWeight();
+    void setWeight(Double weight);
 
     User getUser();
-
-    ArrayList<String> getFavourites();
 
     String getName();
 
