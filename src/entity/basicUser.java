@@ -1,5 +1,4 @@
 package entity;
-
 import java.util.ArrayList;
 
 public class basicUser implements User{
