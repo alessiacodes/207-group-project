@@ -1,3 +1,7 @@
+package use_case.login;
+
+import java.util.ArrayList;
+
 public class LoginInputData {
 
     private String name;
