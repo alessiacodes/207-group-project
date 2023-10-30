@@ -1,13 +1,45 @@
 public class LoginInputData {
 
-    private String username;
-    private String password;
+    private String name;
+    private String gender;
+    private int age;
+    private Double height;
+    private ArrayList<String> dietaryRestrictions;
+    private Double weight; 
 
-    public LoginInputData(String username, String password) {
-        this.username = username;
-        this.password = password;
+    public LoginInputData(String name,
+                        String gender,
+                        int age,
+                        Double height,
+                        ArrayList<String> dietaryRestrictions,
+                        Double weight) {
+        this.name = name;
+        this.gender = gender;
+        this.age = age;
+        this.height = height;
+        this.dietaryRestrictions = dietaryRestrictions;
+        this.weight = weight;
     }
 
-    public String getUsername() { return username; }
-    public String getPassword() { return password; }
+    public String getName() { return name; }
+
+    public String getGender() {
+        return gender;
+    }
+    
+    public int getAge() {
+        return age;
+    }
+    
+    public Double getHeight() {
+        return height;
+    }
+
+    public ArrayList<String> getDietaryRestrictions() {
+        return dietaryRestrictions;
+    }
+
+    public Double weight() {
+        return weight;
+    }
 }
