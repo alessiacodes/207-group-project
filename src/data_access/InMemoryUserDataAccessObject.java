@@ -26,4 +26,3 @@ public class InMemoryUserDataAccessObject implements SignupDataAccessInterface {
         users.put(user.getName(), user);
     }
 }
-
