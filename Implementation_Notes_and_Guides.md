@@ -1,3 +1,5 @@
+>>Link to my 207 notes that you may find helpful: https://dramatic-sundae-d10.notion.site/CS-ARCHIVE-814540e347e349dc9e079fd8f753c003?pvs=4
+
 ## SignUp Use Case Implementation Example 
 Here's the workflow of my implementation:
 ### Basic: workflow for everything but UI stuff (view model, view, presenter)
