@@ -4,7 +4,8 @@ import java.util.ArrayList;
 
 public class SignupInputData {
     public static class SignUpInputData {
-
+        private String username;
+        private String password;
         private String name;
         private String gender;
         private int age;
@@ -12,12 +13,16 @@ public class SignupInputData {
         private ArrayList<String> dietaryRestrictions;
         private Double weight;
 
-        public SignUpInputData(String name,
+        public SignUpInputData(String username,
+                               String password,
+                               String name,
                                String gender,
                                int age,
                                Double height,
                                ArrayList<String> dietaryRestrictions,
                                Double weight) {
+            this.username = username;
+            this.password = password;
             this.name = name;
             this.gender = gender;
             this.age = age;
@@ -44,7 +49,15 @@ public class SignupInputData {
             return dietaryRestrictions;
         }
 
-        public Double weight() {
+        public String getUsername() {
+            return username;
+        }
+
+        public String getPassword() {
+            return password;
+        }
+
+        public Double getWeight() {
             return weight;
         }
     }
