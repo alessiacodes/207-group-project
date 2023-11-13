@@ -3,62 +3,62 @@ package use_case.signup;
 import java.util.ArrayList;
 
 public class SignupInputData {
-    public static class SignUpInputData {
-        private String username;
-        private String password;
-        private String name;
-        private String gender;
-        private int age;
-        private Double height;
-        private ArrayList<String> dietaryRestrictions;
-        private Double weight;
 
-        public SignUpInputData(String username,
-                               String password,
-                               String name,
-                               String gender,
-                               int age,
-                               Double height,
-                               ArrayList<String> dietaryRestrictions,
-                               Double weight) {
-            this.username = username;
-            this.password = password;
-            this.name = name;
-            this.gender = gender;
-            this.age = age;
-            this.height = height;
-            this.dietaryRestrictions = dietaryRestrictions;
-            this.weight = weight;
-        }
+    final private String username;
+    final private String password;
+    final private String name;
+    final private String gender;
+    final private int age;
+    final private Double height;
+    final private ArrayList<String> dietaryRestrictions;
+    final private Double weight;
 
-        public String getName() { return name; }
 
-        public String getGender() {
-            return gender;
-        }
+    public SignupInputData(String username,
+                           String password,
+                           String name,
+                           String gender,
+                           int age,
+                           Double height,
+                           ArrayList<String> dietaryRestrictions,
+                           Double weight) {
+        this.username = username;
+        this.password = password;
+        this.name = name;
+        this.gender = gender;
+        this.age = age;
+        this.height = height;
+        this.dietaryRestrictions = dietaryRestrictions;
+        this.weight = weight;
+    }
 
-        public int getAge() {
-            return age;
-        }
+    public String getName() { return name; }
 
-        public Double getHeight() {
-            return height;
-        }
+    public String getGender() {
+        return gender;
+    }
 
-        public ArrayList<String> getDietaryRestrictions() {
-            return dietaryRestrictions;
-        }
+    public int getAge() {
+        return age;
+    }
 
-        public String getUsername() {
-            return username;
-        }
+    public Double getHeight() {
+        return height;
+    }
 
-        public String getPassword() {
-            return password;
-        }
+    public ArrayList<String> getDietaryRestrictions() {
+        return dietaryRestrictions;
+    }
 
-        public Double getWeight() {
-            return weight;
-        }
+    public String getUsername() {
+        return username;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public Double getWeight() {
+        return weight;
     }
 }
