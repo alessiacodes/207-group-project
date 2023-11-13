@@ -8,5 +8,5 @@ public interface SignupDataAccessInterface {
     boolean existsByName(String identifier);
 
     // Records the user information into the system. To be implemented in a Data Access Object
-    void save(User user);
+    void saveNewUser(User user);
 }
