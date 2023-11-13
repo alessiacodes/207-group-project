@@ -1,49 +1,21 @@
 package use_case.login;
 
-import java.util.ArrayList;
-
 public class LoginInputData {
 
-    private String name;
-    private String gender;
-    private int age;
-    private Double height;
-    private ArrayList<String> dietaryRestrictions;
-    private Double weight; 
+    final private String username;
+    final private String password;
 
-    public LoginInputData(String name,
-                        String gender,
-                        int age,
-                        Double height,
-                        ArrayList<String> dietaryRestrictions,
-                        Double weight) {
-        this.name = name;
-        this.gender = gender;
-        this.age = age;
-        this.height = height;
-        this.dietaryRestrictions = dietaryRestrictions;
-        this.weight = weight;
+    public LoginInputData(String username, String password) {
+        this.username = username;
+        this.password = password;
     }
 
-    public String getName() { return name; }
-
-    public String getGender() {
-        return gender;
-    }
-    
-    public int getAge() {
-        return age;
-    }
-    
-    public Double getHeight() {
-        return height;
+    String getUsername() {
+        return username;
     }
 
-    public ArrayList<String> getDietaryRestrictions() {
-        return dietaryRestrictions;
+    String getPassword() {
+        return password;
     }
 
-    public Double weight() {
-        return weight;
-    }
 }

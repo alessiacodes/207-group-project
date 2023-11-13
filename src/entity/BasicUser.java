@@ -2,7 +2,8 @@ package entity;
 import java.util.ArrayList;
 
 public class BasicUser implements User{
-
+    private String username;
+    private String password;
     private String name;
 
     private String gender;
@@ -17,9 +18,10 @@ public class BasicUser implements User{
 
 
 
-    public BasicUser(String name, String gender, Double weight, int age,
+    public BasicUser(String username, String password, String name, String gender, Double weight, int age,
                      Double height, ArrayList<String> dietaryRestrictions){
-
+        this.username = username;
+        this.password = password;
         this.name = name;
         this.gender = gender;
         this.weight = weight;
@@ -29,6 +31,17 @@ public class BasicUser implements User{
 
     }
 
+    public String getUsername() {
+        return username;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public ArrayList<String> getDietaryRestrictions() {
+        return dietaryRestrictions;
+    }
 
     public User getUser(){
         return this;

@@ -15,6 +15,9 @@ public class FoodTracker {
         return totalCals;
     }
 
+    /* Returns the total nutrition of the whole diary based on a single nutritional value (i.e. returns all the protein
+    from the whole diary.
+    * */
     public double getTotalNutrition(String nutrient){
         int totalNutrients = 0;
         for (Food food: foodDiary){
