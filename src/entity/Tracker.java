@@ -2,7 +2,7 @@ package entity;
 
 import java.util.List;
 
-public class FoodTracker {
+public class Tracker {
     private List<Food> foodDiary;
     private List<Double> waterDiary;
 
