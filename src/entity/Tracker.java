@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Tracker {
-    private List<Food> foodDiary;
-    private List<Double> waterDiary;
+    private final List<Food> foodDiary;
+    private final List<Double> waterDiary;
 
     Tracker(){
         this.foodDiary = new ArrayList<Food>();

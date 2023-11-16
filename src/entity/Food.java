@@ -9,6 +9,10 @@ public class Food {
     private int kcal;
     private LinkedHashMap<String, Double> nutritionalValues;
 
+    private float protein;
+    private float fat;
+    private float carbs;
+
 
     // TODO add API call for Edamam -> specify output of API data
     public Food(String name, float quantity){
@@ -20,8 +24,23 @@ public class Food {
         return kcal;
     }
 
+    public void updateQuantity(float amount){
+        this.quantity = amount;
+    }
+
     public LinkedHashMap<String, Double> getNutritionalValues() {
         return nutritionalValues;
     }
 
+    public Float getProtein() {
+        return this.protein;
+    }
+
+    public Float getFat() {
+        return this.fat;
+    }
+
+    public Float getCarbs() {
+        return this.carbs;
+    }
 }
