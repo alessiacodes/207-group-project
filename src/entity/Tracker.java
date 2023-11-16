@@ -1,10 +1,16 @@
 package entity;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Tracker {
     private List<Food> foodDiary;
     private List<Double> waterDiary;
+
+    Tracker(){
+        this.foodDiary = new ArrayList<Food>();
+        this.waterDiary = new ArrayList<Double>();
+    }
 
     public double getTotalCalories(){
         int totalCals = 0;
