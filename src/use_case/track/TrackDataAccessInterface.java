@@ -3,6 +3,7 @@ package use_case.track;
 import entity.Food;
 
 import java.util.List;
+import java.util.Map;
 
 public interface TrackDataAccessInterface {
 
@@ -16,5 +17,10 @@ public interface TrackDataAccessInterface {
     void updateFoodEntry(Food updatedFoodEntry, float newAmount);
 
     // Remove an entry from the food diary
-    void deleteLastFoodEntry(Food foodEntry);
+    void removeFood(Food foodEntry);
+
+    // Gets complete nutrition of food diary
+    Map<String, Float> getTotalNutrition();
+
+
 }
