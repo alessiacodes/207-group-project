@@ -1,4 +1,6 @@
 package use_case.food;
 
-public class FoodInputBoundary {
+public interface FoodInputBoundary {
+    void execute();
+    // will come back
 }
