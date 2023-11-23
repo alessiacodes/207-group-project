@@ -2,6 +2,7 @@ package entity;
 
 import java.util.HashMap;
 import java.util.LinkedHashMap;
+import java.util.HashMap;
 import java.util.Set;
 
 public class Recipe implements Recipes {
@@ -11,9 +12,9 @@ public class Recipe implements Recipes {
 
     private final Integer kCal;
 
-    private final LinkedHashMap<String, Double> totalNutrients;
+    private final HashMap<String, Double> totalNutrients;
 
-    Recipe(String recipeName, LinkedHashMap<Food, Integer> ingredients, Integer kCal, LinkedHashMap<String, Double>
+    Recipe(String recipeName, LinkedHashMap<Food, Integer> ingredients, Integer kCal, HashMap<String, Double>
            totalNutrients) {
         this.recipeName = recipeName;
         this.ingredients = ingredients;
@@ -31,7 +32,7 @@ public class Recipe implements Recipes {
     public Integer getkCal() {return kCal;}
 
     @Override
-    public LinkedHashMap<String, Double> getTotalNutrients() {return totalNutrients;}
+    public HashMap<String, Double> getTotalNutrients() {return totalNutrients;}
 
     /*
     public double getTotalCalories() {

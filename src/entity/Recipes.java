@@ -1,7 +1,7 @@
 package entity;
 
-import java.time.LocalDateTime;
 import java.util.LinkedHashMap;
+import java.util.HashMap;
 
 public interface Recipes {
     String getRecipeName();
@@ -10,5 +10,5 @@ public interface Recipes {
 
     Integer getkCal();
 
-    LinkedHashMap<String, Double> getTotalNutrients();
+    HashMap<String, Double> getTotalNutrients();
 }
