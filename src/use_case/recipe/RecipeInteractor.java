@@ -3,6 +3,7 @@ import entity.Recipe;
 import entity.Food;
 
 import java.util.LinkedHashMap;
+import java.util.HashMap;
 import java.util.Set;
 
 public class RecipeInteractor implements RecipeInputBoundary {
@@ -23,9 +24,9 @@ public class RecipeInteractor implements RecipeInputBoundary {
             calories += ingredients.get(food) * recipeDataAccessObject.getCalories(food);
         }
 
-        LinkedHashMap<String, Double> totalNutrients = new LinkedHashMap<String, Double>();
+        HashMap<String, Double> totalNutrients = new LinkedHashMap<String, Double>();
         for (Food food: ingre) {
-            LinkedHashMap<String, Double> hashNutrients = recipeDataAccessObject.getTotalNutrients(food);
+            HashMap<String, Double> hashNutrients = recipeDataAccessObject.getTotalNutrients(food);
             Set<String> nutrients = hashNutrients.keySet();
             for (String nutrient : nutrients) {
                 if (totalNutrients.containsKey(nutrient)) {
