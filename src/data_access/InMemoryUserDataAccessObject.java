@@ -18,10 +18,15 @@ public class InMemoryUserDataAccessObject implements SignupDataAccessInterface {
         return users.containsKey(identifier);
     }
 
+    @Override
+    public void saveNewUser(User user) {
+
+    }
+
     /**
      * @param user the data to save
      */
-    @Override
+
     public void save(User user) {
         users.put(user.getName(), user);
     }
