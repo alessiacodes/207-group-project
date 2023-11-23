@@ -4,6 +4,7 @@ import entity.Food;
 import entity.Recipe;
 
 import java.util.LinkedHashMap;
+import java.util.HashMap;
 
 public class RecipeOutputData {
     private final String recipeName;
@@ -12,10 +13,10 @@ public class RecipeOutputData {
 
     private final Integer kCal;
 
-    private final LinkedHashMap<String, Double> totalNutrients;
+    private final HashMap<String, Double> totalNutrients;
 
     public RecipeOutputData(String recipeName, LinkedHashMap<Food, Integer> ingredients, Integer kCal,
-                            LinkedHashMap<String, Double> totalNutrients) {
+                            HashMap<String, Double> totalNutrients) {
         this.recipeName = recipeName;
         this.ingredients = ingredients;
         this.kCal = kCal;
@@ -25,6 +26,6 @@ public class RecipeOutputData {
     public String getRecipeName() {return this.recipeName;}
     public LinkedHashMap<Food, Integer> getIngredients() {return this.ingredients;}
     public Integer getkCal() {return this.kCal;}
-    public LinkedHashMap<String, Double> getTotalNutrients() {return this.totalNutrients;}
+    public HashMap<String, Double> getTotalNutrients() {return this.totalNutrients;}
 
 }

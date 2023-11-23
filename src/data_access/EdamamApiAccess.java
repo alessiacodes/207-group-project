@@ -5,7 +5,9 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import java.io.IOException;
-import java.util.LinkedHashMap;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Set;
 
 import entity.Food;
 
@@ -50,8 +52,15 @@ class EdamamApiAccess {
         return (Integer) responseBody.get("calories");
     }
 
-    public static LinkedHashMap<String, Double> getTotalNutrients(JSONObject responseBody) {
-        JSONObject totalNutrients = responseBody.getJSONObject("totalNutrients");
+    public static HashMap<String, Double> getTotalNutrients(JSONObject responseBody) {
+        Map<String, Object> totalNutrients = responseBody.getJSONObject("totalNutrients").toMap();
+        HashMap<String, Double> nutrients = new HashMap<String, Double>();
+
+        Set<String> nutrientNames = totalNutrients.keySet();
+        for (String nutrient : nutrientNames) {
+            Double doubleNutrient = (Double) totalNutrients.get(nutrient);
+            nutrients.put(nutrient, doubleNutrient);
+        }
         return nutrients;
 
     }
