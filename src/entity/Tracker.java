@@ -6,10 +6,10 @@ import java.util.List;
 import java.util.Map;
 
 public class Tracker {
-    private List<Food> foodDiary;
-    private List<Double> waterDiary;
+    public List<Food> foodDiary;
+    public List<Double> waterDiary;
 
-    private HashMap<String, Float> nutritionalValues;
+    public HashMap<String, Float> nutritionalValues;
 
     public Tracker(){
         this.foodDiary = new ArrayList<Food>();
@@ -38,9 +38,10 @@ public class Tracker {
         return this.foodDiary;
     }
 
-    public void updateFoodEntry(Food updatedFoodEntry, Float newAmount){
-        if (this.foodDiary.contains(updatedFoodEntry)){
-            int i = foodDiary.indexOf(updatedFoodEntry);
+    public void updateFoodEntry(String updatedFoodEntry, Float newAmount){
+        Food food = new Food(updatedFoodEntry, newAmount);
+        if (this.foodDiary.contains(food)){
+            int i = foodDiary.indexOf(food);
             foodDiary.get(i).updateQuantity(newAmount);
         }
     }

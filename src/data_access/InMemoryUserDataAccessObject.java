@@ -34,11 +34,13 @@ public class InMemoryUserDataAccessObject implements TrackDataAccessInterface {
         this.tracker.addFood(foodEntry);
     }
 
+
     /**
      * Updates a food entry with a new amount
      **/
     @Override
-    public void updateFoodEntry(Food updatedFoodEntry, float newAmount) {
+    public void updateFoodEntry(String updatedFoodEntry, float newAmount) {
+        Food food = new Food(updatedFoodEntry, newAmount);
         this.tracker.updateFoodEntry(updatedFoodEntry, newAmount);
     }
 

@@ -14,7 +14,7 @@ public interface TrackDataAccessInterface {
     void addFoodEntry(Food foodEntry);
 
     // Update an existing entry in the food diary
-    void updateFoodEntry(Food updatedFoodEntry, float newAmount);
+    void updateFoodEntry(String updatedFoodEntry, float newAmount);
 
     // Remove an entry from the food diary
     void removeFood(Food foodEntry);
