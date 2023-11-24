@@ -2,21 +2,39 @@ package entity;
 
 import java.util.HashMap;
 import java.util.LinkedHashMap;
+import java.util.HashMap;
 import java.util.Set;
 
-public class Recipe {
+public class Recipe implements Recipes {
     private final String recipeName;
-
-    private final Integer kCal;
 
     private final LinkedHashMap<Food, Integer> ingredients;
 
-    Recipe(String recipeName, Integer kCal, LinkedHashMap<Food, Integer> ingredients) {
+    private final Integer kCal;
+
+    private final HashMap<String, Double> totalNutrients;
+
+    Recipe(String recipeName, LinkedHashMap<Food, Integer> ingredients, Integer kCal, HashMap<String, Double>
+           totalNutrients) {
         this.recipeName = recipeName;
-        this.kCal = kCal;
         this.ingredients = ingredients;
+        this.kCal = kCal;
+        this.totalNutrients = totalNutrients;
     }
 
+    @Override
+    public String getRecipeName() {return recipeName;}
+
+    @Override
+    public LinkedHashMap<Food, Integer> getIngredients() {return ingredients;}
+
+    @Override
+    public Integer getkCal() {return kCal;}
+
+    @Override
+    public HashMap<String, Double> getTotalNutrients() {return totalNutrients;}
+
+    /*
     public double getTotalCalories() {
         double calories = 0;
         Set<Food> ingre = ingredients.keySet();
@@ -49,16 +67,6 @@ public class Recipe {
     public void addFood(Food food, Integer amount) {
         ingredients.put(food, amount);
     }
-
-    /*
-    @Override
-    public String getRecipeName() {return recipeName;}
-
-    @Override
-    public Integer getkCal() {return kCal;}
-
-    @Override
-    public LinkedHashMap<Food, Integer> getIngredients() {return ingredients;}
     */
 
 }

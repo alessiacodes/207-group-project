@@ -19,7 +19,6 @@ public class FileUserDataAccessObject implements SignupDataAccessInterface {
     public void saveNewUser(User user) {
 
     }
-
     public void save(User user) {
         accounts.put(user.getName(), user);
     }

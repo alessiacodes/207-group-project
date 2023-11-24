@@ -33,6 +33,8 @@ public class Food {
         this.nutritionalValues.put("Carbs", this.carbs);
     }
 
+    public String getName() {return name;}
+
     public int getCalories(){
         return kcal;
     }
