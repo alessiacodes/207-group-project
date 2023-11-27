@@ -20,7 +20,7 @@ class EdamamApiAccess implements RecipeDataAccessInterface {
     //Application ID: cd905d5f
     //Key: 19dbdd026906aa90c7a5ca301942a30d
 
-    public static JSONObject apiHelper(Food identifier) {
+    /*public static JSONObject apiHelper(Food identifier) {
         String foodName = identifier.getName();
         OkHttpClient client = new OkHttpClient();
 
@@ -47,7 +47,7 @@ class EdamamApiAccess implements RecipeDataAccessInterface {
         catch (IOException e) {
             throw new RuntimeException(e);
         }
-    }
+    }*/
 
     public Integer getCalories(Food identifier) {
         String foodName = identifier.getName();
