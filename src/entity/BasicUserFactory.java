@@ -6,7 +6,7 @@ public class BasicUserFactory {
 
     public User create(String username, String password, String name, String gender, Double weight, int age,
                        Double height, ArrayList<String> dietaryRestrictions){
-        return new BasicUser(username, password,name,  gender, weight, age, height, dietaryRestrictions);
+        return new BasicUser(username, password, name, gender, weight, age, height, dietaryRestrictions);
     }
 
 }
