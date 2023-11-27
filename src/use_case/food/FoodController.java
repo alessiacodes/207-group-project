@@ -10,8 +10,9 @@ public class FoodController {
     }
 
 
-    public void execute() {
-
+    public void execute(String foodName, float quantity) {
+        FoodInputData foodInputData = new FoodInputData(foodName, quantity);
+        foodUseCaseInteractor.execute(foodInputData);
     }
 
 }

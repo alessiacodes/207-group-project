@@ -1,5 +1,6 @@
 package use_case.food;
 
+import java.util.HashMap;
 import java.util.LinkedHashMap;
 
 public class FoodInputData {
@@ -9,14 +10,13 @@ public class FoodInputData {
     final private Integer kcal = null;
     final private LinkedHashMap<String, Double> nutritionalValues = null;
 
-    public FoodInputData(String name, float quantity, int kcal, LinkedHashMap<String, Double> nutritionalValues) {
+    public FoodInputData(String name, float quantity) {
         this.name = name;
         this.quantity = quantity;
     }
 
     String getFoodName() {return name;};
     float getFoodQuantity() {return quantity;};
-    int getFoodKcal() {return kcal;};
-    LinkedHashMap<String, Double > getFoodNutritionalValues() {return nutritionalValues;};
+    HashMap<String, Double > getFoodNutritionalValues() {return nutritionalValues;};
 
 }

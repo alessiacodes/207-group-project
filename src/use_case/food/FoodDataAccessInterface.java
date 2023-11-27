@@ -1,4 +1,8 @@
 package use_case.food;
 
-public class FoodDataAccessInterface {
+import java.util.HashMap;
+
+public interface FoodDataAccessInterface {
+
+    HashMap<String, Double> getFoodNutritionalValues(String foodName, Float Quantity);
 }
