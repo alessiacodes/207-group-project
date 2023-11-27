@@ -16,9 +16,9 @@ class EdamamApiAccess implements RecipeDataAccessInterface {
     private static final String APP_ID = "64984032"; //this is for food lookup
     private static final String APP_KEY = "47ecdbab5b1aa48bcbd2c622f83c8006"; //this is for food lookup
 
-    //IMPORTANT: THESE API KEYS ARE FOR RECIPE API
-    //Application ID: cd905d5f
-    //Key: 19dbdd026906aa90c7a5ca301942a30d
+    private static final String APP_ID_REC = "cd905d5f"; //for recommending recipes
+    private static final String APP_KEY_REC = "19dbdd026906aa90c7a5ca301942a30d"; //for recommending recipes
+
 
     /*public static JSONObject apiHelper(Food identifier) {
         String foodName = identifier.getName();
