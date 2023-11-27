@@ -1,5 +1,6 @@
 package entity;
 
+import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.HashMap;
 import java.util.Set;
@@ -48,7 +49,7 @@ public class Recipe implements Recipes {
         LinkedHashMap<String, Double> total = new LinkedHashMap<String, Double>();
 
         for (Food food : ingre) {
-            LinkedHashMap<String, Double> hashNutrients = food.getNutritionalValues();
+            HashMap<String, Float> hashNutrients = food.getNutritionalValues();
             Set<String> nutrients = hashNutrients.keySet();
             for (String nutrient : nutrients) {
                 if (total.containsKey(nutrient)) {

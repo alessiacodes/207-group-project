@@ -1,5 +1,6 @@
 package entity;
 import java.util.ArrayList;
+import entity.Tracker;
 
 public class BasicUser implements User{
     private String username;
@@ -16,6 +17,8 @@ public class BasicUser implements User{
 
     private ArrayList<String> dietaryRestrictions;
 
+    private Tracker tracker;
+
 
 
     public BasicUser(String username, String password, String name, String gender, Double weight, int age,
@@ -28,6 +31,7 @@ public class BasicUser implements User{
         this.age = age;
         this.height = height;
         this.dietaryRestrictions = dietaryRestrictions;
+        this.tracker = new Tracker();
 
     }
 
@@ -95,5 +99,6 @@ public class BasicUser implements User{
         this.weight = weight;
     }
 
+    public Tracker getTracker(){return this.tracker;};
 
 }
