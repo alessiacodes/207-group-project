@@ -4,17 +4,16 @@ import java.util.ArrayList;
 
 public class RecommendOutputData {
 
-    private final ArrayList<String> diet;
-
-    private final ArrayList<String> health;
-
-    private final String mealType;
+    private final ArrayList<String> recommendations; //not sure if this would be strings
 
 
-    public RecommendOutputData(ArrayList<String> diet, ArrayList<String> health, String mealType){
-        this.diet = diet;
-        this.health = health;
-        this.mealType = mealType;
+    public RecommendOutputData(ArrayList<String> recommendations){
+        this.recommendations = recommendations;
+    }
+
+
+    public ArrayList<String> getRecommendations(){
+        return recommendations;
     }
 
 }

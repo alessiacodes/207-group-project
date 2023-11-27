@@ -17,5 +17,18 @@ public class RecommendInputData {
 
     }
 
+    public ArrayList<String> getDiet(){
+        return diet;
+    }
+
+    public ArrayList<String> getHealth(){
+        return health;
+    }
+
+    public String getMealType(){
+        return mealType;
+    }
+
+
 
 }
