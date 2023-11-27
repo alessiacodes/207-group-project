@@ -1,14 +1,63 @@
 package data_access;
 
+import entity.BasicUserFactory;
 import entity.User;
+import entity.UserFactory;
 import use_case.signup.SignupDataAccessInterface;
+import use_case.login.LoginUserDataInterface;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.io.*;
+import java.time.LocalDateTime;
+import java.util.*;
 
-public class FileUserDataAccessObject implements SignupDataAccessInterface {
+public class FileUserDataAccessObject implements SignupDataAccessInterface, LoginUserDataInterface {
 
+    private final File csvFile;
+    private final Map<String, Integer> headers = new LinkedHashMap<>();
     private final Map<String, User> accounts = new HashMap<>();
+    private final BasicUserFactory userFactory;
+
+    public FileUserDataAccessObject(String csvPath, BasicUserFactory userFactory) throws IOException {
+        this.userFactory = userFactory;
+        csvFile = new File(csvPath);
+        headers.put("username", 0);
+        headers.put("password", 1);
+        headers.put("name", 2);
+        headers.put("gender", 3);
+        headers.put("weight", 4);
+        headers.put("age", 5);
+        headers.put("height", 6);
+        headers.put("dietary restrictions", 7);
+        if (csvFile.length() == 0) {
+            save();
+        } else {
+
+            try (BufferedReader reader = new BufferedReader(new FileReader(csvFile))) {
+                String header = reader.readLine();
+
+                // For later: clean this up by creating a new Exception subclass and handling it in the UI.
+                assert header.equals("username,password,name,gender,weight,age,height,dietary restrictions");
+
+                String row;
+                while ((row = reader.readLine()) != null) {
+                    String[] col = row.split(",");
+                    String username = String.valueOf(col[headers.get("username")]);
+                    String password = String.valueOf(col[headers.get("password")]);
+                    String name = String.valueOf(col[headers.get("name")]);
+                    String gender = String.valueOf(col[headers.get("gender")]);
+                    Double weight = Double.valueOf(col[headers.get("weight")]);
+                    int age = Integer.parseInt(col[headers.get("age")]);
+                    Double height = Double.valueOf(col[headers.get("height")]);
+                    String dietaryRestriction = (col[headers.get("dietary restrictions")]);
+                    ArrayList<String> dietaryRestrictions = new ArrayList<>(Arrays.asList(dietaryRestriction.split
+                            ("\\s*,\\s*")));
+                    User user = userFactory.create(username, password, name, gender, weight, age, height,
+                            dietaryRestrictions);
+                    accounts.put(username, user);
+                }
+            }
+        }
+    }
 
     @Override
     public boolean existsByName(String identifier) {
@@ -17,9 +66,27 @@ public class FileUserDataAccessObject implements SignupDataAccessInterface {
 
     @Override
     public void saveNewUser(User user) {
-
-    }
-    public void save(User user) {
         accounts.put(user.getName(), user);
+        this.save();
+    }
+    public void save() {
+        BufferedWriter writer;
+        try {
+            writer = new BufferedWriter(new FileWriter(csvFile));
+            writer.write(String.join(",", headers.keySet()));
+            writer.newLine();
+
+            for (User user : accounts.values()) {
+                String line = String.format("%s,%s,%s",
+                        user.getName(), user.getPassword();
+                writer.write(line);
+                writer.newLine();
+            }
+
+            writer.close();
+
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 }
