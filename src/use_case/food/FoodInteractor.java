@@ -24,5 +24,7 @@ public class FoodInteractor {
         nutritionalValues = foodDataAccessObject.getFoodNutritionalValues(name, quantity);
 
         FoodOutputData foodOutputData = new FoodOutputData(name, nutritionalValues);
+
+        foodPresenter.prepareSuccessView(foodOutputData);
     }
 }

@@ -12,7 +12,7 @@ public class FoodOutputData {
     private final HashMap<String, Double> nutritionalValues;
 
     public FoodOutputData(String foodName,
-                            LinkedHashMap<String, Double> nutritionalValues) {
+                            HashMap<String, Double> nutritionalValues) {
         this.foodName = foodName;
         this.nutritionalValues = nutritionalValues;
     }
