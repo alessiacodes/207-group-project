@@ -2,15 +2,12 @@ package data_access;
 
 import entity.BasicUserFactory;
 import entity.User;
-import entity.UserFactory;
 import use_case.signup.SignupDataAccessInterface;
-import use_case.login.LoginUserDataInterface;
 
 import java.io.*;
-import java.time.LocalDateTime;
 import java.util.*;
 
-public class FileUserDataAccessObject implements SignupDataAccessInterface, LoginUserDataInterface {
+public class FileUserDataAccessObject implements SignupDataAccessInterface {
 
     private final File csvFile;
     private final Map<String, Integer> headers = new LinkedHashMap<>();
