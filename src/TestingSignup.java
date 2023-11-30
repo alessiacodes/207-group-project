@@ -1,10 +1,16 @@
 import entity.User;
 import use_case.signup.*;
+import view.MainView;
 
 import java.util.ArrayList;
 
 public class TestingSignup {
     public static void main(String[] args) {
+        testWithUI();
+
+    }
+
+    public void testWithoutUI(){
         FakeDAO fakeDAO = new FakeDAO();
         FakePresenter fakePresenter = new FakePresenter();
         FakeUserFactory fakeUserFactory = new FakeUserFactory();
@@ -13,7 +19,15 @@ public class TestingSignup {
         controller.execute("alessia", "alessia", "alessia", "woman", 19, 160.0, null, 125.0);
     }
 
-
+    public static void testWithUI(){
+        SignupViewModel signupViewModel = new SignupViewModel();
+        FakeDAO fakeDAO = new FakeDAO();
+        SignupPresenter signupPresenter = new SignupPresenter(signupViewModel);
+        FakeUserFactory fakeUserFactory = new FakeUserFactory();
+        SignupInteractor signupInteractor = new SignupInteractor(fakeDAO, signupPresenter, fakeUserFactory);
+        SignupController signupController = new SignupController(signupInteractor);
+        MainView mainView = new MainView(signupViewModel, signupController);
+    }
 }
 class FakePresenter implements SignupOutputBoundary {
 
