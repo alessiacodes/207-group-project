@@ -46,7 +46,7 @@ public class InMemoryUserDataAccessObject implements TrackDataAccessInterface {
 
     public void save(User user) {
         users.put(user.getName(), user);
-=======
+    }
 
     /**
      * Updates a food entry with a new amount
