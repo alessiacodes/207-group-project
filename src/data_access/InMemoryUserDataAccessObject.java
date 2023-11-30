@@ -2,6 +2,7 @@ package data_access;
 
 import entity.Food;
 import entity.Tracker;
+import entity.User;
 
 import java.util.List;
 import java.util.Map;

@@ -9,7 +9,7 @@ public class Tracker {
     public List<Food> foodDiary;
     public List<Double> waterDiary;
 
-    public HashMap<String, Float> nutritionalValues;
+    public HashMap<String, Float> nutritionalValues = new HashMap<>();
 
     public Tracker(){
         this.foodDiary = new ArrayList<Food>();

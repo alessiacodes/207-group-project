@@ -1,21 +1,21 @@
-package use_case.recommend;
+package entity;
 
 import java.util.ArrayList;
 
-public class RecommendInputData {
+public class Recommend {
+
     private final ArrayList<String> diet;
 
     private final ArrayList<String> health;
 
     private final String mealType;
 
-
-    public RecommendInputData(ArrayList<String> diet, ArrayList<String> health, String mealType){
+    public Recommend(ArrayList<String> diet, ArrayList<String> health, String mealType){
         this.diet = diet;
         this.health = health;
         this.mealType = mealType;
-
     }
+
 
     public ArrayList<String> getDiet(){
         return diet;
@@ -28,7 +28,5 @@ public class RecommendInputData {
     public String getMealType(){
         return mealType;
     }
-
-
 
 }
