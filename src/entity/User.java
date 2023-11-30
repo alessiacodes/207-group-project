@@ -21,6 +21,8 @@ public interface User {
 
     String getGender();
 
+    String getPassword();
+
     int getAge();
 
     Double getHeight();

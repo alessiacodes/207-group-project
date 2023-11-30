@@ -1,23 +1,21 @@
 package data_access;
 
-import entity.BasicUserFactory;
-import entity.User;
 import entity.UserFactory;
+import entity.User;
 import use_case.signup.SignupDataAccessInterface;
-import use_case.login.LoginUserDataInterface;
+import use_case.login.LoginUserDataAccessInterface;
 
 import java.io.*;
-import java.time.LocalDateTime;
 import java.util.*;
 
-public class FileUserDataAccessObject implements SignupDataAccessInterface, LoginUserDataInterface {
+public class FileUserDataAccessObject implements SignupDataAccessInterface, LoginUserDataAccessInterface {
 
     private final File csvFile;
     private final Map<String, Integer> headers = new LinkedHashMap<>();
     private final Map<String, User> accounts = new HashMap<>();
-    private final BasicUserFactory userFactory;
+    private final UserFactory userFactory; // I changed this to the abstracted version :) - Alessia
 
-    public FileUserDataAccessObject(String csvPath, BasicUserFactory userFactory) throws IOException {
+    public FileUserDataAccessObject(String csvPath, UserFactory userFactory) throws IOException {
         this.userFactory = userFactory;
         csvFile = new File(csvPath);
         headers.put("username", 0);
@@ -78,7 +76,7 @@ public class FileUserDataAccessObject implements SignupDataAccessInterface, Logi
 
             for (User user : accounts.values()) {
                 String line = String.format("%s,%s,%s",
-                        user.getName(), user.getPassword();
+                        user.getName(), user.getPassword());
                 writer.write(line);
                 writer.newLine();
             }
