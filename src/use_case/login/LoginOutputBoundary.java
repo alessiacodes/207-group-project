@@ -1,5 +1,9 @@
 package use_case.login;
 
-public class LoginOutputBoundary {
-    
+public interface LoginOutputBoundary {
+    void prepareSuccessView(LoginOutpuData user);
+
+    void prepareFailView(String error);
+    }
+
 }

@@ -1,5 +1,5 @@
-//package use_case.login;
+package use_case.login;
 //
-//public class LoginInteractor extends LoginInputBoundary {
+public class LoginInteractor extends LoginInputBoundary {
 //
-//}
+}
