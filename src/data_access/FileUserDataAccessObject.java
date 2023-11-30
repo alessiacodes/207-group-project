@@ -2,12 +2,13 @@ package data_access;
 
 import entity.BasicUserFactory;
 import entity.User;
+import use_case.login.LoginUserDataAccessInterface;
 import use_case.signup.SignupDataAccessInterface;
 
 import java.io.*;
 import java.util.*;
 
-public class FileUserDataAccessObject implements SignupDataAccessInterface {
+public class FileUserDataAccessObject implements SignupDataAccessInterface, LoginUserDataAccessInterface {
 
     private final File csvFile;
     private final Map<String, Integer> headers = new LinkedHashMap<>();
@@ -66,6 +67,18 @@ public class FileUserDataAccessObject implements SignupDataAccessInterface {
         accounts.put(user.getName(), user);
         this.save();
     }
+
+    @Override
+    public User get(String username) {
+        return accounts.get(username);
+    }
+
+    @Override
+    public void save(User user){
+        accounts.put(user.getName(), user);
+        this.save();
+    }
+
     public void save() {
         BufferedWriter writer;
         try {
@@ -75,7 +88,7 @@ public class FileUserDataAccessObject implements SignupDataAccessInterface {
 
             for (User user : accounts.values()) {
                 String line = String.format("%s,%s,%s",
-                        user.getName(), user.getPassword();
+                        user.getName(), user.getPassword());
                 writer.write(line);
                 writer.newLine();
             }
