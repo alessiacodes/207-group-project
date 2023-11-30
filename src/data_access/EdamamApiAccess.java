@@ -1,10 +1,12 @@
 package data_access;
 
+import entity.Recommend;
 import okhttp3.*;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
@@ -116,6 +118,55 @@ class EdamamApiAccess implements RecipeDataAccessInterface {
 //    public static tuple getFoodData(String food, String Quantity){
 //
 //    }
+
+
+    public String getRecommendation(Recommend identifier){
+        ArrayList<String> diet = identifier.getDiet();
+        ArrayList<String> health = identifier.getHealth();
+        String mealType = identifier.getMealType();
+        OkHttpClient client = new OkHttpClient();
+
+        try {
+            // Build correct URL with appropriate parameters
+
+            HttpUrl.Builder urlBuilder = HttpUrl.parse("https://api.edamam.com/api/recipes/v2").newBuilder();
+            urlBuilder.addQueryParameter("app_id", APP_ID_REC);
+            urlBuilder.addQueryParameter("app_key", APP_KEY_REC);
+
+            // add all diet tags
+            for (String item : diet) {
+                urlBuilder.addQueryParameter("diet", item); //adds each tag
+            }
+
+            // add all health tags
+            for (String item : health) {
+                urlBuilder.addQueryParameter("health", item); //adds each tag
+            }
+
+            // add mealType tag
+            urlBuilder.addQueryParameter("mealType", mealType);
+            String apiURL = urlBuilder.build().toString();
+
+
+            // Making the actual request
+            Request request = new Request.Builder()
+                    .url(apiURL)
+                    .build();
+
+            // Getting the response
+            Response response = client.newCall(request).execute();
+            JSONObject responseBody = new JSONObject(response.body().string());
+
+            //change to recommend use case
+            String recommendLink = responseBody.getJSONObject("shareAs").toString();
+
+
+            return recommendLink;
+        }
+        catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
 
 
 }
