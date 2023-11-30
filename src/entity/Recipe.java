@@ -56,7 +56,7 @@ public class Recipe implements Recipes {
                     total.put(nutrient, (total.get(nutrient) + hashNutrients.get(nutrient)));
                 }
                 else {
-                    total.put(nutrient, hashNutrients.get(nutrient));
+                    total.put(nutrient, Double.valueOf(hashNutrients.get(nutrient)));
                 }
             }
         }

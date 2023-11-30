@@ -1,31 +1,31 @@
 package use_case.track;
+
 import entity.Food;
-import entity.Tracker;
 
 public class TrackInteractor implements TrackInputBoundary {
 
-    final TrackDataAccessInterface trackDataAccessObject;
-    final TrackOutputBoundary trackPresenter;
+    private final TrackDataAccessInterface dataAccess;
+    private final TrackOutputBoundary outputBoundary;
 
-    public TrackInteractor(TrackDataAccessInterface trackDataAccessObject, TrackOutputBoundary trackPresenter) {
-        this.trackDataAccessObject = trackDataAccessObject;
-        this.trackPresenter = trackPresenter;
+    public TrackInteractor(TrackDataAccessInterface dataAccess, TrackOutputBoundary outputBoundary) {
+        this.dataAccess = dataAccess;
+        this.outputBoundary = outputBoundary;
     }
 
     @Override
     public void execute(TrackInputData trackInputData) {
-        Tracker tracker = trackInputData.getTracker();
         Food food = trackInputData.getFood();
-        tracker.addFood(food);
 
-        TrackOutputData foodOutput = new TrackOutputData(food);
-        TrackPresenter presenter = new TrackPresenter();
+        // Validate input if necessary
+        if (food == null || food.getName().isEmpty()) {
+            outputBoundary.prepareFailView("Invalid food data");
+            return;
+        }
 
-        if (tracker.getDiary().contains(food)) {
-            presenter.prepareSuccessView(foodOutput);
-        }
-        else {
-            presenter.prepareFailView("Food was not added. Please try again.");
-        }
+        // Perform the business logic here
+        dataAccess.addFoodEntry(food);
+
+        // Notify the presenter about the success
+        outputBoundary.prepareSuccessView(new TrackOutputData(food));
     }
 }

@@ -14,6 +14,7 @@ public class Tracker {
     public Tracker(){
         this.foodDiary = new ArrayList<Food>();
         this.waterDiary = new ArrayList<Double>();
+        this.nutritionalValues = new HashMap<String, Float>();
 
         // Create Nutritional Values HashMap
         this.nutritionalValues.put("Calories", 0.0F);
@@ -74,6 +75,8 @@ public class Tracker {
         }
         System.out.println("Food not currently in diary.");
     }
+
+
 
     boolean isEmpty(){
         return this.foodDiary.isEmpty();

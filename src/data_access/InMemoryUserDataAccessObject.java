@@ -2,9 +2,12 @@ package data_access;
 
 import entity.Food;
 import entity.Tracker;
+import entity.User;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
 
 import use_case.track.TrackDataAccessInterface;
 
@@ -15,9 +18,11 @@ import use_case.track.TrackDataAccessInterface;
 public class InMemoryUserDataAccessObject implements TrackDataAccessInterface {
 
     private final Tracker tracker;
+    private final HashMap<String,User> users;
 
-    InMemoryUserDataAccessObject(Tracker tracker){
+    public InMemoryUserDataAccessObject(Tracker tracker, HashMap<String, User> users){
         this.tracker = tracker;
+        this.users = users;
     };
 
     /**
@@ -34,18 +39,12 @@ public class InMemoryUserDataAccessObject implements TrackDataAccessInterface {
         this.tracker.addFood(foodEntry);
     }
 
-    @Override
-    public void saveNewUser(User user) {
-
-    }
-
     /**
      * @param user the data to save
      */
-
-    public void save(User user) {
+    public void saveNewUser(User user) {
         users.put(user.getName(), user);
-=======
+    }
 
     /**
      * Updates a food entry with a new amount
