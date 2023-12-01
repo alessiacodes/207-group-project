@@ -24,11 +24,11 @@ public class TestingSignup {
 
     public static void testWithUI() throws IOException {
         SignupViewModel signupViewModel = new SignupViewModel();
-//        FakeDAO fakeDAO = new FakeDAO();
+        FakeDAO fakeDAO = new FakeDAO();
         SignupPresenter signupPresenter = new SignupPresenter(signupViewModel);
         FakeUserFactory fakeUserFactory = new FakeUserFactory();
         FileUserDataAccessObject realDAO = new FileUserDataAccessObject("users.csv", fakeUserFactory);
-        SignupInteractor signupInteractor = new SignupInteractor(realDAO, signupPresenter, fakeUserFactory);
+        SignupInteractor signupInteractor = new SignupInteractor(fakeDAO, signupPresenter, fakeUserFactory);
         SignupController signupController = new SignupController(signupInteractor);
         MainView mainView = new MainView(signupViewModel, signupController);
     }

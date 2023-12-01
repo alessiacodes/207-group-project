@@ -16,12 +16,27 @@ public class SignupInteractor implements SignupInputBoundary{
         this.userFactory = userFactory;
     }
 
-    // TODO: add fail case checks whether inputs are valid(eg. age is non-negative)
     @Override
     public void execute(SignupInputData inputData) {
+        System.out.println("current age"  + inputData.getAge());
         if (userDataAccessObject.existsByName(inputData.getUsername())) {
             userPresenter.prepareFailView("User already exists");
         }
+
+
+        else if (inputData.getUsername().equals("") || inputData.getName().equals("") || inputData.getPassword().equals("")){
+            System.out.println("in if");
+            userPresenter.prepareFailView("Error: field left blank");
+        }
+
+        else if (0 >= inputData.getAge() || 120 <= inputData.getAge()){
+            userPresenter.prepareFailView("Error: please input an age between 1-120");
+        }
+
+        else if (0 >= inputData.getWeight() || 0 >= inputData.getHeight()){
+            userPresenter.prepareFailView("Error: please input a positive number for height and/or weight");
+        }
+
         else {
             User user = userFactory.create(inputData.getUsername(), inputData.getPassword(), inputData.getName(),
                     inputData.getGender(), inputData.getWeight(), inputData.getAge(), inputData.getHeight(),

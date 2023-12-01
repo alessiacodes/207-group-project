@@ -59,17 +59,22 @@ public class SignupView implements PropertyChangeListener {
 
     }
 
-    public void launchFailView(String successMessage){
+    public void launchFailView(String failMessage){
         JFrame successPopUpWindow = new JFrame();
-        successPopUpWindow.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        successPopUpWindow.setTitle("Success: user created!");
+        successPopUpWindow.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
+        successPopUpWindow.setTitle("Error :(");
         successPopUpWindow.setSize(600,500);
 
         JLabel message = new JLabel();
-        message.setText(successMessage);
+        message.setText(failMessage);
+        message.setHorizontalAlignment(SwingConstants.CENTER);
+        message.setVerticalAlignment(SwingConstants.CENTER);
+        Font font = message.getFont();
+        message.setFont(new Font(font.getName(), Font.PLAIN, 20));
+
+        successPopUpWindow.add(message);
         successPopUpWindow.setLocationRelativeTo(null);
         successPopUpWindow.setVisible(true);
-
     }
 
     private void setUpPanel(){
@@ -104,15 +109,20 @@ public class SignupView implements PropertyChangeListener {
                 System.out.println(heightTextField.getText());
                 System.out.println(weightTextField.getText());
 
+                try {
+                    signupController.execute(usernameTextField2.getText(),
+                            passwordTextField.getText(),
+                            nameTextField.getText(),
+                            genderSelector.getName(),
+                            Integer.parseInt(ageTextField.getText()),
+                            Double.parseDouble(heightTextField.getText()),
+                            dietaryRestrictions,
+                            Double.parseDouble(weightTextField.getText()));
+                }   catch (NumberFormatException error){
+                    launchFailView("Error: Please input an appropriate number in the number fields");
+                }
 
-                signupController.execute(usernameTextField2.getText(),
-                        passwordTextField.getText(),
-                        nameTextField.getText(),
-                        genderSelector.getName(),
-                        Integer.parseInt(ageTextField.getText()),
-                        Double.parseDouble(heightTextField.getText()),
-                        dietaryRestrictions,
-                        Double.parseDouble(weightTextField.getText()));
+
             }
 
         });
@@ -131,9 +141,11 @@ public class SignupView implements PropertyChangeListener {
         SignupState state  = (SignupState) evt.getNewValue();
         if (state.getCurrentErrorMessage() != null){
             launchFailView(state.getCurrentErrorMessage());
+            signupViewModel.getState().setCurrentErrorMessage(null); // reset so there's no error
         }
         else{ // successfully signed up!
             launchSuccessView(state.getCurrentSuccessMessage());
+            mainView.swapCard(mainView.LOGIN_PANEL_NAME);
         }
 
     }
