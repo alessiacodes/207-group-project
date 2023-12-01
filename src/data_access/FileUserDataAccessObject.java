@@ -66,7 +66,6 @@ public class FileUserDataAccessObject implements SignupDataAccessInterface, Logi
         return accounts.containsKey(identifier);
     }
 
-    //TODO: saveNewUser(User user) and save(User user) are the same, so get rid of one and edit usages
     @Override
     public void saveNewUser(User user) {
         accounts.put(user.getName(), user);
@@ -78,11 +77,6 @@ public class FileUserDataAccessObject implements SignupDataAccessInterface, Logi
         return accounts.get(username);
     }
 
-    @Override
-    public void save(User user){
-        accounts.put(user.getName(), user);
-        this.save();
-    }
 
     public void save() {
         BufferedWriter writer;

@@ -35,10 +35,6 @@ public class InMemoryUserDataAccessObject implements TrackDataAccessInterface {
         this.tracker.addFood(foodEntry);
     }
 
-    @Override
-    public void saveNewUser(User user) {
-
-    }
 
     /**
      * @param user the data to save
