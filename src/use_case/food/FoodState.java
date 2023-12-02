@@ -16,6 +16,10 @@ public class FoodState {
         kCal = foodState.kCal;
     }
 
+    public FoodState() {
+//        constructor
+    }
+
     // Getters for the Food State
     public String getFoodName() {
         return foodName;
