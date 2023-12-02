@@ -37,17 +37,6 @@ public class InMemoryUserDataAccessObject implements TrackDataAccessInterface {
     }
 
     /**
-     * @param user the data to save
-     */
-
-
-
-    public void save(User user) {
-        users.put(user.getName(), user);
-    }
-
-
-    /**
      * Updates a food entry with a new amount
      **/
     @Override

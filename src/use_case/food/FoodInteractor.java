@@ -26,7 +26,7 @@ public class FoodInteractor implements FoodInputBoundary{
 
         kCal = foodDataAccessObject.getFoodCalories(name, quantity);
 
-        FoodOutputData foodOutputData = new FoodOutputData(name, nutritionalValues, kCal);
+        FoodOutputData foodOutputData = new FoodOutputData(name, quantity, nutritionalValues, kCal);
 
         foodPresenter.prepareSuccessView(foodOutputData);
     }
