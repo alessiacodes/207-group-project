@@ -123,6 +123,8 @@ class EdamamApiAccess implements RecipeDataAccessInterface, RecommendDataAccessI
 
 
     public String getRecommendLink(Recommend identifier){
+        //api call to get the link to a recipe based off of the user's input
+
         ArrayList<String> diet = identifier.getDiet();
         ArrayList<String> health = identifier.getHealth();
         String mealType = identifier.getMealType();
@@ -160,7 +162,7 @@ class EdamamApiAccess implements RecipeDataAccessInterface, RecommendDataAccessI
             JSONObject responseBody = new JSONObject(response.body().string());
 
             //change to recommend use case
-            String recommendLink = responseBody.getJSONObject("shareAs").toString();
+            String recommendLink = responseBody.getJSONObject("hits").getJSONObject("recipe").getJSONObject("shareAs").toString();
 
             return recommendLink;
         }
