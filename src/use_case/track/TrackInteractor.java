@@ -19,13 +19,13 @@ public class TrackInteractor implements TrackInputBoundary {
         tracker.addFood(food);
 
         TrackOutputData foodOutput = new TrackOutputData(food);
-        TrackPresenter presenter = new TrackPresenter();
+
 
         if (tracker.getDiary().contains(food)) {
-            presenter.prepareSuccessView(foodOutput);
+            trackPresenter.prepareSuccessView(foodOutput);
         }
         else {
-            presenter.prepareFailView("Food was not added. Please try again.");
+            trackPresenter.prepareFailView("Food was not added. Please try again.");
         }
     }
 }
