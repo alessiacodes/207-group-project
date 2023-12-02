@@ -13,8 +13,9 @@ import java.util.Set;
 
 import entity.Food;
 import use_case.recipe.RecipeDataAccessInterface;
+import use_case.recommend.RecommendDataAccessInterface;
 
-class EdamamApiAccess implements RecipeDataAccessInterface {
+class EdamamApiAccess implements RecipeDataAccessInterface, RecommendDataAccessInterface {
     private static final String APP_ID = "64984032"; //this is for food lookup
     private static final String APP_KEY = "47ecdbab5b1aa48bcbd2c622f83c8006"; //this is for food lookup
 
@@ -120,7 +121,7 @@ class EdamamApiAccess implements RecipeDataAccessInterface {
 //    }
 
 
-    public String getRecommendation(Recommend identifier){
+    public String getRecommendLink(Recommend identifier){
         ArrayList<String> diet = identifier.getDiet();
         ArrayList<String> health = identifier.getHealth();
         String mealType = identifier.getMealType();
@@ -159,7 +160,6 @@ class EdamamApiAccess implements RecipeDataAccessInterface {
 
             //change to recommend use case
             String recommendLink = responseBody.getJSONObject("shareAs").toString();
-
 
             return recommendLink;
         }

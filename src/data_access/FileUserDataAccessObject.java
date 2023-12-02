@@ -1,9 +1,11 @@
 package data_access;
 
+
 import entity.UserFactory;
 import entity.User;
 import use_case.signup.SignupDataAccessInterface;
 import use_case.login.LoginUserDataAccessInterface;
+
 
 import java.io.*;
 import java.util.*;
@@ -17,6 +19,7 @@ public class FileUserDataAccessObject implements SignupDataAccessInterface, Logi
 
     public FileUserDataAccessObject(String csvPath, UserFactory userFactory) throws IOException {
         this.userFactory = userFactory;
+
         csvFile = new File(csvPath);
         headers.put("username", 0);
         headers.put("password", 1);
@@ -26,9 +29,12 @@ public class FileUserDataAccessObject implements SignupDataAccessInterface, Logi
         headers.put("age", 5);
         headers.put("height", 6);
         headers.put("dietary restrictions", 7);
+
         if (csvFile.length() == 0) {
             save();
-        } else {
+        }
+
+        else {
 
             try (BufferedReader reader = new BufferedReader(new FileReader(csvFile))) {
                 String header = reader.readLine();
@@ -67,6 +73,13 @@ public class FileUserDataAccessObject implements SignupDataAccessInterface, Logi
         accounts.put(user.getName(), user);
         this.save();
     }
+
+    @Override
+    public User get(String username) {
+        return accounts.get(username);
+    }
+
+
     public void save() {
         BufferedWriter writer;
         try {
@@ -75,8 +88,11 @@ public class FileUserDataAccessObject implements SignupDataAccessInterface, Logi
             writer.newLine();
 
             for (User user : accounts.values()) {
-                String line = String.format("%s,%s,%s",
-                        user.getName(), user.getPassword());
+
+                String line = String.format("%s,%s,%s,%s,%s,%s,%s,%s",
+                        user.getUser(), user.getPassword(), user.getName(), user.getGender(), user.getWeight(),
+                        user.getAge(), user.getHeight(), user.getRestrictions());
+
                 writer.write(line);
                 writer.newLine();
             }

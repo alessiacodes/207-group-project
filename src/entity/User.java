@@ -17,6 +17,8 @@ public interface User {
 
     User getUser();
 
+    String getPassword();
+
     String getName();
 
     String getGender();

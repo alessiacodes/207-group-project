@@ -1,7 +1,10 @@
 package use_case.recommend;
 
-public class RecommendInteractor implements RecommendInputBoundary{
+import entity.Recommend;
 
+import java.util.ArrayList;
+
+public class RecommendInteractor implements RecommendInputBoundary{
 
     final RecommendDataAccessInterface recommendDataAccessObject;
 
@@ -17,6 +20,17 @@ public class RecommendInteractor implements RecommendInputBoundary{
 
     @Override
     public void execute(RecommendInputData inputData) {
-        // TODO
+        ArrayList<String> diet = inputData.getDiet();
+        ArrayList<String> health = inputData.getHealth();
+        String mealType = inputData.getMealType();
+
+        Recommend recommend = new Recommend(diet, health, mealType);
+
+        String recommendLink = recommendDataAccessObject.getRecommendLink(recommend);
+
+        RecommendOutputData recommendOutputData = new RecommendOutputData(recommendLink);
+
+        recommendPresenter.prepareSuccessView(recommendOutputData);
+
     }
 }
