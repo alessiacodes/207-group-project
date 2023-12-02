@@ -1,11 +1,17 @@
 package view;
 
+import use_case.recommend.RecommendController;
+import use_case.recommend.RecommendState;
+import use_case.recommend.RecommendViewModel;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
 
-public class HomeScreenView {
+public class HomeScreenView implements PropertyChangeListener {
     private final MainView mainView;
     private JPanel homeScreenPanel;
     private JLabel logoImageLabel;
@@ -23,13 +29,16 @@ public class HomeScreenView {
     private JButton calculateCaloriesInRecipeButton;
     private JButton recommendARecipeButton;
     private JButton lookUpFoodButton;
+    private final RecommendViewModel recommendViewModel;
+    private final RecommendController recommendController;
 
-    public HomeScreenView(MainView mainView){
+    public HomeScreenView(MainView mainView, RecommendViewModel recommendViewModel,
+                          RecommendController recommendController){
+        this.recommendViewModel = recommendViewModel;
+        this.recommendController = recommendController;
         this.mainView = mainView;
         homeScreenPanel.setSize(1920,1080);
         setUpPanel();
-
-
     }
 
     public JPanel getHomeScreenPanel() {
@@ -78,5 +87,56 @@ public class HomeScreenView {
         newFood.setFont(font);
         newFood.setHorizontalAlignment(SwingConstants.LEFT);
         putFoodHerePanel.add(newFood);
+    }
+
+    public void launchFailView(String failMessage){
+        JFrame successPopUpWindow = new JFrame();
+        successPopUpWindow.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
+        successPopUpWindow.setTitle("Error :(");
+        successPopUpWindow.setSize(600,500);
+
+        JLabel message = new JLabel();
+        message.setText(failMessage);
+        message.setHorizontalAlignment(SwingConstants.CENTER);
+        message.setVerticalAlignment(SwingConstants.CENTER);
+        Font font = message.getFont();
+        message.setFont(new Font(font.getName(), Font.PLAIN, 20));
+
+        successPopUpWindow.add(message);
+        successPopUpWindow.setLocationRelativeTo(null);
+        successPopUpWindow.setVisible(true);
+    }
+
+    public void launchSuccessView(String successMessage){
+        JFrame successPopUpWindow = new JFrame();
+        successPopUpWindow.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
+        successPopUpWindow.setTitle("Success: user created!");
+        successPopUpWindow.setSize(600,500);
+
+        JLabel message = new JLabel();
+        message.setText(successMessage);
+        message.setHorizontalAlignment(SwingConstants.CENTER);
+        message.setVerticalAlignment(SwingConstants.CENTER);
+        Font font = message.getFont();
+        message.setFont(new Font(font.getName(), Font.PLAIN, 20));
+
+        successPopUpWindow.add(message);
+        successPopUpWindow.setLocationRelativeTo(null);
+        successPopUpWindow.setVisible(true);
+
+    }
+
+    @Override
+    public void propertyChange(PropertyChangeEvent evt) {
+        RecommendState state = (RecommendState) evt.getNewValue();
+
+        if (state.getCurrentErrorMessage() != null){
+            launchFailView(state.getCurrentErrorMessage());
+            recommendViewModel.getState().setCurrentErrorMessage(null); // reset so there's no error
+        }
+        else{ // successfully got link
+            launchSuccessView(state.getCurrentSuccessMessage());
+
+        }
     }
 }
