@@ -12,10 +12,11 @@ import java.util.Map;
 import java.util.Set;
 
 import entity.Food;
+import use_case.food.FoodDataAccessInterface;
 import use_case.recipe.RecipeDataAccessInterface;
 import use_case.recommend.RecommendDataAccessInterface;
 
-class EdamamApiAccess implements RecipeDataAccessInterface, RecommendDataAccessInterface {
+class EdamamApiAccess implements RecipeDataAccessInterface, RecommendDataAccessInterface, FoodDataAccessInterface {
     private static final String APP_ID = "64984032"; //this is for food lookup
     private static final String APP_KEY = "47ecdbab5b1aa48bcbd2c622f83c8006"; //this is for food lookup
 
@@ -169,4 +170,77 @@ class EdamamApiAccess implements RecipeDataAccessInterface, RecommendDataAccessI
     }
 
 
+    @Override
+    public HashMap<String, Double> getFoodNutritionalValues(String foodName, Float quantity) {
+        OkHttpClient client = new OkHttpClient();
+
+        String foodParameter;
+
+        foodParameter = String.valueOf(quantity) + foodName;
+
+        try {
+            // Build correct URL with appropriate parameters, in this case I'm using the API to find the nutritional
+            // content of rice.
+            HttpUrl.Builder urlBuilder = HttpUrl.parse("https://api.edamam.com/api/nutrition-data").newBuilder();
+            urlBuilder.addQueryParameter("app_id", APP_ID);
+            urlBuilder.addQueryParameter("app_key", APP_KEY);
+            urlBuilder.addQueryParameter("ingr", foodParameter);
+            String apiURL = urlBuilder.build().toString();
+
+            // Making the actual request
+            Request request = new Request.Builder()
+                    .url(apiURL)
+                    .build();
+
+            // Getting the response
+            Response response = client.newCall(request).execute();
+            JSONObject responseBody = new JSONObject(response.body().string());
+            Map<String, Object> totalNutrients = responseBody.getJSONObject("totalNutrients").toMap();
+            HashMap<String, Double> nutrients = new HashMap<String, Double>();
+
+            Set<String> nutrientNames = totalNutrients.keySet();
+            for (String nutrient : nutrientNames) {
+                Double doubleNutrient = (Double) totalNutrients.get(nutrient);
+                nutrients.put(nutrient, doubleNutrient);
+            }
+            return nutrients;
+        }
+        catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    @Override
+    public Integer getFoodCalories(String foodName, Float quantity) {
+
+        String foodParameter;
+
+        foodParameter = String.valueOf(quantity) + foodName;
+
+        OkHttpClient client = new OkHttpClient();
+
+        try {
+            // Build correct URL with appropriate parameters, in this case I'm using the API to find the nutritional
+            // content of rice.
+            HttpUrl.Builder urlBuilder = HttpUrl.parse("https://api.edamam.com/api/nutrition-data").newBuilder();
+            urlBuilder.addQueryParameter("app_id", APP_ID);
+            urlBuilder.addQueryParameter("app_key", APP_KEY);
+            urlBuilder.addQueryParameter("ingr", foodParameter);
+            String apiURL = urlBuilder.build().toString();
+
+            // Making the actual request
+            Request request = new Request.Builder()
+                    .url(apiURL)
+                    .build();
+
+            // Getting the response
+            Response response = client.newCall(request).execute();
+            JSONObject responseBody = new JSONObject(response.body().string());
+            return (Integer) responseBody.get("calories");
+        }
+
+        catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
 }
