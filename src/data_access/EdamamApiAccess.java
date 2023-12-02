@@ -16,7 +16,7 @@ import use_case.food.FoodDataAccessInterface;
 import use_case.recipe.RecipeDataAccessInterface;
 import use_case.recommend.RecommendDataAccessInterface;
 
-class EdamamApiAccess implements RecipeDataAccessInterface, RecommendDataAccessInterface, FoodDataAccessInterface {
+public class EdamamApiAccess implements RecipeDataAccessInterface, RecommendDataAccessInterface, FoodDataAccessInterface {
     private static final String APP_ID = "64984032"; //this is for food lookup
     private static final String APP_KEY = "47ecdbab5b1aa48bcbd2c622f83c8006"; //this is for food lookup
 
@@ -123,10 +123,13 @@ class EdamamApiAccess implements RecipeDataAccessInterface, RecommendDataAccessI
 
 
     public String getRecommendLink(Recommend identifier){
+        //api call to get the link to a recipe based off of the user's input
+
         ArrayList<String> diet = identifier.getDiet();
         ArrayList<String> health = identifier.getHealth();
         String mealType = identifier.getMealType();
         OkHttpClient client = new OkHttpClient();
+
 
         try {
             // Build correct URL with appropriate parameters
@@ -140,7 +143,7 @@ class EdamamApiAccess implements RecipeDataAccessInterface, RecommendDataAccessI
                 urlBuilder.addQueryParameter("diet", item); //adds each tag
             }
 
-            // add all health tags
+            // add all health tags     TODO can I add an if statement around this to check if null before adding to the URL?
             for (String item : health) {
                 urlBuilder.addQueryParameter("health", item); //adds each tag
             }
@@ -159,8 +162,9 @@ class EdamamApiAccess implements RecipeDataAccessInterface, RecommendDataAccessI
             Response response = client.newCall(request).execute();
             JSONObject responseBody = new JSONObject(response.body().string());
 
+            System.out.println(responseBody);
             //change to recommend use case
-            String recommendLink = responseBody.getJSONObject("shareAs").toString();
+            String recommendLink = responseBody.getJSONObject("hits").getJSONObject("recipe").getJSONObject("shareAs").toString();
 
             return recommendLink;
         }
