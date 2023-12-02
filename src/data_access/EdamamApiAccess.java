@@ -16,7 +16,7 @@ import use_case.food.FoodDataAccessInterface;
 import use_case.recipe.RecipeDataAccessInterface;
 import use_case.recommend.RecommendDataAccessInterface;
 
-class EdamamApiAccess implements RecipeDataAccessInterface, RecommendDataAccessInterface, FoodDataAccessInterface {
+public class EdamamApiAccess implements RecipeDataAccessInterface, RecommendDataAccessInterface, FoodDataAccessInterface {
     private static final String APP_ID = "64984032"; //this is for food lookup
     private static final String APP_KEY = "47ecdbab5b1aa48bcbd2c622f83c8006"; //this is for food lookup
 
@@ -161,12 +161,10 @@ class EdamamApiAccess implements RecipeDataAccessInterface, RecommendDataAccessI
             Response response = client.newCall(request).execute();
             JSONObject responseBody = new JSONObject(response.body().string());
 
-            //sort through JSON object to return only the link for the recipe
-            JSONArray hits = responseBody.getJSONArray("hits");
-            JSONObject recipeObject = hits.getJSONObject(0);
-            JSONObject recipeData = recipeObject.getJSONObject("recipe");
+            //change to recommend use case
+            String recommendLink = responseBody.getJSONObject("hits").getJSONObject("recipe").getJSONObject("shareAs").toString();
 
-            return recipeData.getString("shareAs");
+            return recommendLink;
         }
         catch (IOException e) {
             throw new RuntimeException(e);
