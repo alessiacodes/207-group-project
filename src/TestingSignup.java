@@ -1,5 +1,8 @@
+import data_access.EdamamApiAccess;
 import data_access.FileUserDataAccessObject;
+import entity.Recommend;
 import entity.User;
+import use_case.recommend.*;
 import use_case.signup.*;
 import view.MainView;
 import entity.BasicUser;
@@ -23,14 +26,22 @@ public class TestingSignup {
     }
 
     public static void testWithUI() throws IOException {
-        SignupViewModel signupViewModel = new SignupViewModel();
-        FakeDAO fakeDAO = new FakeDAO();
-        SignupPresenter signupPresenter = new SignupPresenter(signupViewModel);
         FakeUserFactory fakeUserFactory = new FakeUserFactory();
-        FileUserDataAccessObject realDAO = new FileUserDataAccessObject("users.csv", fakeUserFactory);
+        FakeDAO fakeDAO = new FakeDAO();
+        FileUserDataAccessObject fileDAO = new FileUserDataAccessObject("users.csv", fakeUserFactory);
+        EdamamApiAccess apiAccess = new EdamamApiAccess();
+
+        SignupViewModel signupViewModel = new SignupViewModel();
+        SignupPresenter signupPresenter = new SignupPresenter(signupViewModel);
         SignupInteractor signupInteractor = new SignupInteractor(fakeDAO, signupPresenter, fakeUserFactory);
         SignupController signupController = new SignupController(signupInteractor);
-        MainView mainView = new MainView(signupViewModel, signupController);
+
+        RecommendViewModel recommendViewModel = new RecommendViewModel();
+        RecommendPresenter recommendPresenter = new RecommendPresenter(recommendViewModel);
+        RecommendInteractor recommendInteractor = new RecommendInteractor(apiAccess, recommendPresenter);
+        RecommendController recommendController = new RecommendController(recommendInteractor);
+
+        MainView mainView = new MainView(signupViewModel, signupController, recommendViewModel, recommendController);
     }
 }
 class FakePresenter implements SignupOutputBoundary {
@@ -46,7 +57,7 @@ class FakePresenter implements SignupOutputBoundary {
     }
 }
 
-class FakeDAO implements SignupDataAccessInterface {
+class FakeDAO implements SignupDataAccessInterface, RecommendDataAccessInterface {
 
     @Override
     public boolean existsByName(String identifier) {
@@ -56,6 +67,11 @@ class FakeDAO implements SignupDataAccessInterface {
     @Override
     public void saveNewUser(User user) {
         System.out.println("saved :)");
+    }
+
+    @Override
+    public String getRecommendLink(Recommend identifier) {
+        return null;
     }
 }
 
