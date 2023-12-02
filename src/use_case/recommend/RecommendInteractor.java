@@ -6,6 +6,7 @@ import java.util.ArrayList;
 
 public class RecommendInteractor implements RecommendInputBoundary{
 
+    //used to get link to recipe from edamam api
     final RecommendDataAccessInterface recommendDataAccessObject;
 
     final RecommendOutputBoundary recommendPresenter;

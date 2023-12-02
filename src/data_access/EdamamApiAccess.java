@@ -161,10 +161,12 @@ class EdamamApiAccess implements RecipeDataAccessInterface, RecommendDataAccessI
             Response response = client.newCall(request).execute();
             JSONObject responseBody = new JSONObject(response.body().string());
 
-            //change to recommend use case
-            String recommendLink = responseBody.getJSONObject("hits").getJSONObject("recipe").getJSONObject("shareAs").toString();
+            //sort through JSON object to return only the link for the recipe
+            JSONArray hits = responseBody.getJSONArray("hits");
+            JSONObject recipeObject = hits.getJSONObject(0);
+            JSONObject recipeData = recipeObject.getJSONObject("recipe");
 
-            return recommendLink;
+            return recipeData.getString("shareAs");
         }
         catch (IOException e) {
             throw new RuntimeException(e);
