@@ -18,7 +18,7 @@ public class InMemoryUserDataAccessObject implements TrackDataAccessInterface {
 
     private final Tracker tracker;
 
-    InMemoryUserDataAccessObject(Tracker tracker){
+    public InMemoryUserDataAccessObject(Tracker tracker){
         this.tracker = tracker;
     };
 

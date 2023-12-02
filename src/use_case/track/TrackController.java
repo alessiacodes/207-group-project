@@ -11,10 +11,11 @@ public class TrackController {
         this.trackInteractor = trackInteractor;
     }
 
-    public void execute(String foodName, float quantity) {
+    public void execute(String foodName, String quantity) {
+
         // Gather input data
         Tracker tracker = new Tracker();
-        Food food = new Food(foodName, quantity);
+        Food food = new Food(foodName, Float.parseFloat(quantity));
         TrackInputData input = new TrackInputData(food, tracker);
 
         // Execute the use case
