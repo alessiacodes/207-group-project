@@ -84,7 +84,7 @@ public class RecommendView implements PropertyChangeListener {
                     }
                 }
 
-                recommendController.execute(stingListofDietaryRestrictions, stingListofNutritionalNeeds, (String) mealTypeDropDown.getSelectedItem()); //TODO this line will prolly cause issues
+                recommendController.execute(stingListofNutritionalNeeds, stingListofDietaryRestrictions, (String) mealTypeDropDown.getSelectedItem()); //TODO this line will prolly cause issues
             }
         });
 

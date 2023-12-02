@@ -130,6 +130,9 @@ public class EdamamApiAccess implements RecipeDataAccessInterface, RecommendData
         String mealType = identifier.getMealType();
         OkHttpClient client = new OkHttpClient();
 
+        System.out.println(identifier.getDiet());
+        System.out.println(identifier.getHealth());
+        System.out.println(identifier.getMealType());
 
         try {
             // Build correct URL with appropriate parameters
@@ -147,6 +150,9 @@ public class EdamamApiAccess implements RecipeDataAccessInterface, RecommendData
             for (String item : health) {
                 urlBuilder.addQueryParameter("health", item); //adds each tag
             }
+
+            ArrayList<String> mealTypeList = new ArrayList<>();
+            mealTypeList.add(mealType);
 
             // add mealType tag
             urlBuilder.addQueryParameter("mealType", mealType);
@@ -181,6 +187,8 @@ public class EdamamApiAccess implements RecipeDataAccessInterface, RecommendData
         String foodParameter;
 
         foodParameter = String.valueOf(quantity) + foodName;
+
+
 
         try {
             // Build correct URL with appropriate parameters, in this case I'm using the API to find the nutritional
