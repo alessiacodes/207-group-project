@@ -13,6 +13,7 @@ public class MainView extends JFrame {
     public final String LOGIN_PANEL_NAME = "loginPanel";
     public final String SIGNUP_PANEL_NAME = "signupPanel";
     public final String HOME_SCREEN_PANEL_NAME = "homeScreenPanel";
+    public final String RECOMMEND_PANEL_NAME = "recommendPanel";
     private JPanel parentPanel;
     private CardLayout cardLayout;
 
@@ -55,12 +56,14 @@ public class MainView extends JFrame {
         // Instantiate the subviews
         LoginView loginView = new LoginView(this);
         SignupView signupView = new SignupView(this, signupController, signupViewModel);
-        HomeScreenView homeScreenView = new HomeScreenView(this, recommendViewModel, recommendController);
+        HomeScreenView homeScreenView = new HomeScreenView(this);
+        RecommendView recommendView = new RecommendView(this, recommendViewModel, recommendController);
 
         // Add them to the card layout
-        parentPanel.add(loginView.getPanel(), "loginPanel");
-        parentPanel.add(signupView.getSignupPanel(), "signupPanel");
+        parentPanel.add(loginView.getPanel(), LOGIN_PANEL_NAME);
+        parentPanel.add(signupView.getSignupPanel(), SIGNUP_PANEL_NAME);
         parentPanel.add(homeScreenView.getHomeScreenPanel(), HOME_SCREEN_PANEL_NAME);
+        parentPanel.add(recommendView.getRecommendViewPanel(), RECOMMEND_PANEL_NAME);
         cardLayout  = (CardLayout) parentPanel.getLayout();
         swapCard(HOME_SCREEN_PANEL_NAME);
         this.setVisible(true);

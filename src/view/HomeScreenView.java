@@ -29,13 +29,8 @@ public class HomeScreenView implements PropertyChangeListener {
     private JButton calculateCaloriesInRecipeButton;
     private JButton recommendARecipeButton;
     private JButton lookUpFoodButton;
-    private final RecommendViewModel recommendViewModel;
-    private final RecommendController recommendController;
 
-    public HomeScreenView(MainView mainView, RecommendViewModel recommendViewModel,
-                          RecommendController recommendController){
-        this.recommendViewModel = recommendViewModel;
-        this.recommendController = recommendController;
+    public HomeScreenView(MainView mainView){
         this.mainView = mainView;
         homeScreenPanel.setSize(1920,1080);
         setUpPanel();
@@ -70,7 +65,7 @@ public class HomeScreenView implements PropertyChangeListener {
         recommendARecipeButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                mainView.swapCard(mainView.RECOMMEND_PANEL_NAME);
             }
         });
         lookUpFoodButton.addActionListener(new ActionListener() {
@@ -108,35 +103,12 @@ public class HomeScreenView implements PropertyChangeListener {
     }
 
     public void launchSuccessView(String successMessage){
-        JFrame successPopUpWindow = new JFrame();
-        successPopUpWindow.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
-        successPopUpWindow.setTitle("Success: user created!");
-        successPopUpWindow.setSize(600,500);
 
-        JLabel message = new JLabel();
-        message.setText(successMessage);
-        message.setHorizontalAlignment(SwingConstants.CENTER);
-        message.setVerticalAlignment(SwingConstants.CENTER);
-        Font font = message.getFont();
-        message.setFont(new Font(font.getName(), Font.PLAIN, 20));
-
-        successPopUpWindow.add(message);
-        successPopUpWindow.setLocationRelativeTo(null);
-        successPopUpWindow.setVisible(true);
 
     }
 
     @Override
     public void propertyChange(PropertyChangeEvent evt) {
-        RecommendState state = (RecommendState) evt.getNewValue();
 
-        if (state.getCurrentErrorMessage() != null){
-            launchFailView(state.getCurrentErrorMessage());
-            recommendViewModel.getState().setCurrentErrorMessage(null); // reset so there's no error
-        }
-        else{ // successfully got link
-            launchSuccessView(state.getCurrentSuccessMessage());
-
-        }
     }
 }
