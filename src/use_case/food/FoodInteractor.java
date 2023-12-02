@@ -3,7 +3,7 @@ package use_case.food;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 
-public class FoodInteractor {
+public class FoodInteractor implements FoodInputBoundary{
 
     final FoodDataAccessInterface foodDataAccessObject;
 
@@ -14,16 +14,19 @@ public class FoodInteractor {
         this.foodPresenter = foodOutputBoundary;
     }
 
-//    @Override
+    @Override
     public void execute(FoodInputData foodInputData) {
         String name = foodInputData.getFoodName();
         float quantity = foodInputData.getFoodQuantity();
+        Integer kCal;
 
         HashMap<String, Double> nutritionalValues = new HashMap<String, Double>();
 
         nutritionalValues = foodDataAccessObject.getFoodNutritionalValues(name, quantity);
 
-        FoodOutputData foodOutputData = new FoodOutputData(name, nutritionalValues);
+        kCal = foodDataAccessObject.getFoodCalories(name, quantity);
+
+        FoodOutputData foodOutputData = new FoodOutputData(name, nutritionalValues, kCal);
 
         foodPresenter.prepareSuccessView(foodOutputData);
     }
