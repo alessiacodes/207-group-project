@@ -3,7 +3,7 @@ import use_case.ViewModel;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 
-public class RecommendViewModel {
+public class RecommendViewModel implements ViewModel{
     private RecommendState state = new RecommendState();
     private final PropertyChangeSupport support = new PropertyChangeSupport(this);
 
@@ -21,7 +21,7 @@ public class RecommendViewModel {
         return state;
     }
 
-    public void setState(SignupState state) {
+    public void setState(RecommendState state) {
         this.state = state;
     }
 }
