@@ -2,6 +2,8 @@ package view;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class HomeScreenView {
     private final MainView mainView;
@@ -14,11 +16,19 @@ public class HomeScreenView {
     private JPanel putFoodHerePanel;
     private JPanel titleAndButtonsPanel;
     private JButton addFoodToTrackerButton;
+    private JLabel totalCaloriesLabel;
+    private JLabel totalCarbsLabel;
+    private JLabel totalProteinLabel;
+    private JLabel totalFatLabel;
+    private JButton calculateCaloriesInRecipeButton;
+    private JButton recommendARecipeButton;
+    private JButton lookUpFoodButton;
 
     public HomeScreenView(MainView mainView){
         this.mainView = mainView;
         homeScreenPanel.setSize(1920,1080);
         setUpPanel();
+
 
     }
 
@@ -27,11 +37,6 @@ public class HomeScreenView {
     }
 
     private void setUpPanel(){
-//        ImageIcon imageLogo = new ImageIcon("C:\\Users\\allyr\\IdeaProjects\\Labs\\Lab2\\MARVN-Your-Virtual-Fitness-Assistant\\src\\view\\MARVN logo.png");
-//        Image img = imageLogo.getImage();
-//        Image scaledImg = img.getScaledInstance(300,300, Image.SCALE_DEFAULT);
-//        ImageIcon scaledImgIcon = new ImageIcon(scaledImg);
-//        logoImageLabel.setIcon(scaledImgIcon);
 
         ImageIcon icon = new ImageIcon("C:\\Users\\allyr\\IdeaProjects\\Labs\\Lab2\\MARVN-Your-Virtual-Fitness-Assistant\\src\\view\\MARVN logo.png");
         Image img = icon.getImage();
@@ -40,9 +45,31 @@ public class HomeScreenView {
         logoImageLabel.setIcon(scaledIcon);
         putFoodHerePanel.setLayout(new BoxLayout(putFoodHerePanel, BoxLayout.Y_AXIS));
 
-        addFoodToTrackerView("(food + their macros would go here in a list)");
-        addFoodToTrackerView("food1)");
-        addFoodToTrackerView("food2)");
+        // BUTTONS!
+        addFoodToTrackerButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+            }
+        });
+        calculateCaloriesInRecipeButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+            }
+        });
+        recommendARecipeButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+            }
+        });
+        lookUpFoodButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+            }
+        });
     }
 
     private void addFoodToTrackerView(String foodAndMacros){
