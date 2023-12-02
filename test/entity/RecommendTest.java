@@ -1,9 +1,6 @@
 package entity;
 
-import org.junit.After;
-import org.junit.Before;
 import org.junit.Test;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 
 import java.util.ArrayList;
@@ -22,7 +19,7 @@ public class RecommendTest {
     void init(){
         diet.add("vegan");
         health.add("high-proetin");
-        recommend = new Recommend(diet, health, "dinner");
+        recommend = new Recommend(diet, health, "Dinner");
     }
 
     @Test
@@ -32,9 +29,37 @@ public class RecommendTest {
 
     @Test
     public void getHealth() {
+        assertEquals(health, recommend.getHealth());
     }
 
     @Test
     public void getMealType() {
+        assertEquals("Dinner", recommend.getMealType());
     }
+
+
+    @Test
+    public void setDiet() {
+        ArrayList<String> newDiet = new ArrayList<String>();
+        newDiet.add("vegetarian");
+        recommend.setDiet(newDiet);
+        assertEquals(newDiet, recommend.getDiet());
+    }
+
+    @Test
+    public void setHealth() {
+        ArrayList<String> newHealth = new ArrayList<String>();
+        newHealth.add("low-fat");
+        recommend.setDiet(newHealth);
+        assertEquals(newHealth, recommend.getHealth());
+    }
+
+    @Test
+    public void setMealType() {
+        String newMealType = "Lunch";
+        recommend.setMealType(newMealType);
+        assertEquals(newMealType, recommend.getMealType());
+    }
+
+
 }

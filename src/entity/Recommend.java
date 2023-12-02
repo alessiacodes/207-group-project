@@ -4,11 +4,11 @@ import java.util.ArrayList;
 
 public class Recommend {
 
-    private final ArrayList<String> diet;
+    private ArrayList<String> diet;
 
-    private final ArrayList<String> health;
+    private ArrayList<String> health;
 
-    private final String mealType;
+    private String mealType;
 
     public Recommend(ArrayList<String> diet, ArrayList<String> health, String mealType){
         this.diet = diet;
@@ -27,6 +27,20 @@ public class Recommend {
 
     public String getMealType(){
         return mealType;
+    }
+
+    public void setDiet(ArrayList<String> diet){
+        this.diet = diet;
+    }
+
+    public void setHealth(ArrayList<String> health){
+
+        this.health = health;
+    }
+
+    public void setMealType(String mealType){
+
+        this.mealType = mealType;
     }
 
 }
