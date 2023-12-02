@@ -2,29 +2,42 @@ package use_case.food;
 
 import entity.Food;
 
+import java.util.HashMap;
 import java.util.LinkedHashMap;
 
 public class FoodOutputData {
 
     private final String foodName;
 
-    private final LinkedHashMap<Food, Integer> ingredients;
+    private final HashMap<String, Double> nutritionalValues;
+
+    private Float quantity;
 
     private final Integer kCal;
 
-    private final LinkedHashMap<String, Double> totalNutrients;
-
-    public FoodOutputData(String recipeName, LinkedHashMap<Food, Integer> ingredients, Integer kCal,
-                            LinkedHashMap<String, Double> totalNutrients) {
-        this.foodName = recipeName;
-        this.ingredients = ingredients;
+    public FoodOutputData(String foodName,
+                          Float quantity,
+                          HashMap<String, Double> nutritionalValues,
+                          Integer kCal)
+    {
+        this.foodName = foodName;
+        this.quantity = quantity;
+        this.nutritionalValues = nutritionalValues;
         this.kCal = kCal;
-        this.totalNutrients = totalNutrients;
     }
 
-    public String getFoodName() {return this.foodName;}
-    public LinkedHashMap<Food, Integer> getIngredients() {return this.ingredients;}
-    public Integer getkCal() {return this.kCal;}
-    public LinkedHashMap<String, Double> getTotalNutrients() {return this.totalNutrients;}
+    public String getFoodName() {
+        return this.foodName;
+    }
 
+    public Float getQuantity() {
+        return this.quantity;
+    }
+    public HashMap<String, Double> getNutritionalValues() {
+        return this.nutritionalValues;
+    }
+
+    public Integer getKcal() {
+        return this.kCal;
+    };
 }

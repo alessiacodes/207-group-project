@@ -2,6 +2,7 @@ package data_access;
 
 import entity.Food;
 import entity.Tracker;
+import entity.User;
 
 import java.util.List;
 import java.util.Map;
@@ -34,19 +35,6 @@ public class InMemoryUserDataAccessObject implements TrackDataAccessInterface {
     public void addFoodEntry(Food foodEntry) {
         this.tracker.addFood(foodEntry);
     }
-
-//    @Override
-//    public void saveNewUser(User user) {
-//
-//    }
-
-    /**
-     * @param user the data to save
-     */
-
-//    public void save(User user) {
-//        users.put(user.getName(), user);
-//    }
 
     /**
      * Updates a food entry with a new amount
