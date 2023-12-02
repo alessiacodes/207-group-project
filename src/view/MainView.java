@@ -1,30 +1,41 @@
 package view;
 
+import use_case.signup.SignupController;
+import use_case.signup.SignupViewModel;
+
 import javax.swing.*;
 import java.awt.*;
 
 public class MainView extends JFrame {
-
+    // Some class constants,  i.e. the reference names for each panel card
+    public final String LOGIN_PANEL_NAME = "loginPanel";
+    public final String SIGNUP_PANEL_NAME = "signupPanel";
     private JPanel parentPanel;
-    private JPanel loginPanel;
-    private JTextField usernameTextField;
-    private JPasswordField passwordPasswordField;
-    private JButton signUpButton;
-    private JButton loginButton;
-    private JTextField textField1;
-    private JPanel signupPanel;
-    private JTextField textField2;
-    private JTextField textField3;
-    private JComboBox genderSelector;
-    private JComboBox dietaryRestrictionChoices;
-    //private CardLayout cardLayout = (CardLayout)parentPanel.getLayout();
+    private CardLayout cardLayout;
+
+    // view models and controllers
+    private final SignupViewModel signupViewModel;
+    private final SignupController signupController;
 
 
 
-    public static void main(String[] args) {
-        MainView view = new MainView();
+    //TODO remove if this doesn't cause issues, uncomment if it does
+//    private JTextField nameTextField;
+//    private JTextField usernameTextField2;
+//    //private CardLayout cardLayout = (CardLayout)parentPanel.getLayout();
+
+
+
+//    public static void main(String[] args) {
+//        MainView view = new MainView(signupViewModel, signupController);
+//    }
+    public MainView(SignupViewModel signupViewModel, SignupController signupController){
+        this.signupViewModel = signupViewModel;
+        this.signupController = signupController;
+        this.setUpMainView();
     }
-    public MainView(){
+
+    public void setUpMainView(){
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setTitle("MARVN: Your Virtual Fitness Assistant");
         this.setSize(1920,1080);
@@ -32,26 +43,18 @@ public class MainView extends JFrame {
         this.add(parentPanel);
         ImageIcon marvnLogo = new ImageIcon("MARVN logo.png");
         this.setIconImage(marvnLogo.getImage());
-        parentPanel.add(loginPanel, "loginPanel");
-        parentPanel.add(signupPanel, "signupPanel");
-        CardLayout cardLayout  = (CardLayout) parentPanel.getLayout();
-        cardLayout.show(parentPanel,"loginPanel");
 
-        //combobox gender for signup panel editing
-        genderSelector.addItem("Other");
-        genderSelector.addItem("Male");
-        genderSelector.addItem("Female");
+        LoginView loginView = new LoginView(this);
+        SignupView signupView = new SignupView(this, signupController, signupViewModel);
 
-        //combobox for dietary restrictions signup panel editing
-        dietaryRestrictionChoices.addItem("None");
-        dietaryRestrictionChoices.addItem("Vegetarian"); //TODO, make these correspond with edamam notation
-        dietaryRestrictionChoices.addItem("Gluten Free");
-        dietaryRestrictionChoices.addItem("Dairy Free");
-        dietaryRestrictionChoices.addItem("Vegan");
-        dietaryRestrictionChoices.addItem("Kosher");
-
-
+        parentPanel.add(loginView.getPanel(), "loginPanel");
+        parentPanel.add(signupView.getSignupPanel(), "signupPanel");
+        cardLayout  = (CardLayout) parentPanel.getLayout();
+        swapCard("loginPanel");
         this.setVisible(true);
-
+    }
+    public void swapCard(String cardName){
+        cardLayout.show(parentPanel,cardName);
+        System.out.println("swapped to "+ cardName);
     }
 }
