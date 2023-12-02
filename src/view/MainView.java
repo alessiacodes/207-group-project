@@ -1,5 +1,7 @@
 package view;
 
+import use_case.recommend.RecommendController;
+import use_case.recommend.RecommendViewModel;
 import use_case.signup.SignupController;
 import use_case.signup.SignupViewModel;
 
@@ -17,6 +19,8 @@ public class MainView extends JFrame {
     // view models and controllers
     private final SignupViewModel signupViewModel;
     private final SignupController signupController;
+    private final RecommendViewModel recommendViewModel;
+    private final RecommendController recommendController;
 
 
 
@@ -30,9 +34,12 @@ public class MainView extends JFrame {
 //    public static void main(String[] args) {
 //        MainView view = new MainView(signupViewModel, signupController);
 //    }
-    public MainView(SignupViewModel signupViewModel, SignupController signupController){
+    public MainView(SignupViewModel signupViewModel, SignupController signupController, RecommendViewModel recommendViewModel,
+                    RecommendController recommendController){
         this.signupViewModel = signupViewModel;
         this.signupController = signupController;
+        this.recommendController = recommendController;
+        this. recommendViewModel = recommendViewModel;
         this.setUpMainView();
     }
 
@@ -48,7 +55,7 @@ public class MainView extends JFrame {
         // Instantiate the subviews
         LoginView loginView = new LoginView(this);
         SignupView signupView = new SignupView(this, signupController, signupViewModel);
-        HomeScreenView homeScreenView = new HomeScreenView(this);
+        HomeScreenView homeScreenView = new HomeScreenView(this, recommendViewModel, recommendController);
 
         // Add them to the card layout
         parentPanel.add(loginView.getPanel(), "loginPanel");
