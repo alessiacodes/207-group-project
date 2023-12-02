@@ -1,14 +1,16 @@
-package use_case.recipe;
+package use_case.login;
 
 import use_case.ViewModel;
+import use_case.recipe.RecipeState;
 
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 
-public class RecipeViewModel implements ViewModel {
+public class LoginViewModel implements ViewModel {
 
-    //TODO: figure out what labels/constants to put if any
-    private RecipeState state = new RecipeState();
+    public static final String LOGIN_BUTTON_LABEL = "Log in";
+    private LoginState state = new LoginState();
+
     private final PropertyChangeSupport support = new PropertyChangeSupport(this);
 
     @Override
@@ -21,11 +23,11 @@ public class RecipeViewModel implements ViewModel {
         support.addPropertyChangeListener(listener);
     }
 
-    public RecipeState getState() {
+    public LoginState getState() {
         return state;
     }
 
-    public void setState(RecipeState state) {
+    public void setState(LoginState state) {
         this.state = state;
     }
 }
