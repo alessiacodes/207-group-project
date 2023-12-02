@@ -10,6 +10,7 @@ public class MainView extends JFrame {
     // Some class constants,  i.e. the reference names for each panel card
     public final String LOGIN_PANEL_NAME = "loginPanel";
     public final String SIGNUP_PANEL_NAME = "signupPanel";
+    public final String HOME_SCREEN_PANEL_NAME = "homeScreenPanel";
     private JPanel parentPanel;
     private CardLayout cardLayout;
 
@@ -44,13 +45,17 @@ public class MainView extends JFrame {
         ImageIcon marvnLogo = new ImageIcon("MARVN logo.png");
         this.setIconImage(marvnLogo.getImage());
 
+        // Instantiate the subviews
         LoginView loginView = new LoginView(this);
         SignupView signupView = new SignupView(this, signupController, signupViewModel);
+        HomeScreenView homeScreenView = new HomeScreenView(this);
 
+        // Add them to the card layout
         parentPanel.add(loginView.getPanel(), "loginPanel");
         parentPanel.add(signupView.getSignupPanel(), "signupPanel");
+        parentPanel.add(homeScreenView.getHomeScreenPanel(), HOME_SCREEN_PANEL_NAME);
         cardLayout  = (CardLayout) parentPanel.getLayout();
-        swapCard("loginPanel");
+        swapCard(HOME_SCREEN_PANEL_NAME);
         this.setVisible(true);
     }
     public void swapCard(String cardName){
