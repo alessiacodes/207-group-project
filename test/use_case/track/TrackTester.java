@@ -1,7 +1,10 @@
+package use_case.track;
+
 import entity.Food;
 import entity.Tracker;
+import org.junit.Test;
 
-public class TrackTest {
+public class TrackTester {
 
     public Tracker TrackTester() {
 
@@ -20,18 +23,17 @@ public class TrackTest {
         return tracker;
     }
 
-    @org.junit.Test
-    public boolean testWasEntryAdded(){
+    @Test
+    public void testWasEntryAdded(){
         Tracker tracker = TrackTester();
         Food eggs = new Food("Egg", 2F);
-        return tracker.getDiary().contains(eggs);
+        assert tracker.getDiary().contains(eggs);
     }
 
-    @org.junit.Test
-    public boolean testWasFoodEntryUpdated(){
+    @Test
+    public void testWasFoodEntryUpdated(){
         Tracker tracker = TrackTester();
         Food apple = new Food("Apple", 2F);
-        return tracker.getDiary().contains(apple);
+        assert tracker.getDiary().contains(apple);
     }
-
 }
