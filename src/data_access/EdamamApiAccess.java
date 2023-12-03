@@ -146,7 +146,7 @@ public class EdamamApiAccess implements RecipeDataAccessInterface, RecommendData
             }
 
             if (!health.isEmpty()) {
-                // add all health tags     TODO can I add an if statement around this to check if null before adding to the URL?
+                // add all health tags
                 for (String item : health) {
                     urlBuilder.addQueryParameter("health", item); //adds each tag
                 }
@@ -165,7 +165,6 @@ public class EdamamApiAccess implements RecipeDataAccessInterface, RecommendData
             // Getting the response
             Response response = client.newCall(request).execute();
             JSONObject responseBody = new JSONObject(response.body().string());
-
             // determine number of recipes in response
             int count = responseBody.getInt("to");
 

@@ -1,5 +1,6 @@
 package entity;
 
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.jupiter.api.BeforeEach;
 
@@ -11,14 +12,14 @@ public class RecommendTest {
 
     private Recommend recommend;
 
-    ArrayList<String> diet = new ArrayList<String>();
+    private ArrayList<String> diet = new ArrayList<String>();
 
-    ArrayList<String> health = new ArrayList<String>();
+    private ArrayList<String> health = new ArrayList<String>();
 
-    @BeforeEach
-    void init(){
-        diet.add("vegan");
-        health.add("high-proetin");
+    @Before
+    public void init(){
+        diet.add("high_protein");
+        health.add("vegan");
         recommend = new Recommend(diet, health, "Dinner");
     }
 
@@ -41,7 +42,7 @@ public class RecommendTest {
     @Test
     public void setDiet() {
         ArrayList<String> newDiet = new ArrayList<String>();
-        newDiet.add("vegetarian");
+        newDiet.add("low-fat");
         recommend.setDiet(newDiet);
         assertEquals(newDiet, recommend.getDiet());
     }
@@ -49,8 +50,8 @@ public class RecommendTest {
     @Test
     public void setHealth() {
         ArrayList<String> newHealth = new ArrayList<String>();
-        newHealth.add("low-fat");
-        recommend.setDiet(newHealth);
+        newHealth.add("kosher");
+        recommend.setHealth(newHealth);
         assertEquals(newHealth, recommend.getHealth());
     }
 
