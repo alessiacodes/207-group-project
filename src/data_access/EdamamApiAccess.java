@@ -130,6 +130,9 @@ public class EdamamApiAccess implements RecipeDataAccessInterface, RecommendData
         String mealType = identifier.getMealType();
         OkHttpClient client = new OkHttpClient();
 
+        System.out.println(identifier.getDiet());
+        System.out.println(identifier.getHealth());
+        System.out.println(identifier.getMealType());
 
         try {
             // Build correct URL with appropriate parameters
@@ -138,20 +141,24 @@ public class EdamamApiAccess implements RecipeDataAccessInterface, RecommendData
             urlBuilder.addQueryParameter("app_id", APP_ID_REC);
             urlBuilder.addQueryParameter("app_key", APP_KEY_REC);
 
-            // add all diet tags
-            for (String item : diet) {
-                urlBuilder.addQueryParameter("diet", item); //adds each tag
+            if (!diet.isEmpty()) {
+                // add all diet tags
+                for (String item : diet) {
+                    urlBuilder.addQueryParameter("diet", item); //adds each tag
+                }
             }
 
-            // add all health tags     TODO can I add an if statement around this to check if null before adding to the URL?
-            for (String item : health) {
-                urlBuilder.addQueryParameter("health", item); //adds each tag
+            if (!health.isEmpty()) {
+                // add all health tags     TODO can I add an if statement around this to check if null before adding to the URL?
+                for (String item : health) {
+                    urlBuilder.addQueryParameter("health", item); //adds each tag
+                }
             }
 
             // add mealType tag
             urlBuilder.addQueryParameter("mealType", mealType);
+            urlBuilder.addQueryParameter("type", "public");
             String apiURL = urlBuilder.build().toString();
-
 
             // Making the actual request
             Request request = new Request.Builder()
@@ -162,12 +169,10 @@ public class EdamamApiAccess implements RecipeDataAccessInterface, RecommendData
             Response response = client.newCall(request).execute();
             JSONObject responseBody = new JSONObject(response.body().string());
 
-
             //sort through JSON object to return only the link for the recipe
             JSONArray hits = responseBody.getJSONArray("hits");
             JSONObject recipeObject = hits.getJSONObject(0);
             JSONObject recipeData = recipeObject.getJSONObject("recipe");
-
 
             return recipeData.getString("shareAs");
         }
@@ -184,6 +189,8 @@ public class EdamamApiAccess implements RecipeDataAccessInterface, RecommendData
         String foodParameter;
 
         foodParameter = String.valueOf(quantity) + foodName;
+
+
 
         try {
             // Build correct URL with appropriate parameters, in this case I'm using the API to find the nutritional
