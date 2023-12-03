@@ -16,8 +16,8 @@ import use_case.recommend.RecommendDataAccessInterface;
 import use_case.track.TrackDataAccessInterface;
 
 public class EdamamApiAccess implements RecipeDataAccessInterface, RecommendDataAccessInterface, FoodDataAccessInterface, TrackDataAccessInterface {
-    private static final String APP_ID = "e39f0969"; //this is for food lookup
-    private static final String APP_KEY = "79a151f9b62c0a9f14ee3d91f7c2242b"; //this is for food lookup
+    private static final String APP_ID = "64984032"; //this is for food lookup
+    private static final String APP_KEY = "47ecdbab5b1aa48bcbd2c622f83c8006"; //this is for food lookup
 
     private static final String APP_ID_REC = "cd905d5f"; //for recommending recipes
     private static final String APP_KEY_REC = "19dbdd026906aa90c7a5ca301942a30d"; //for recommending recipes
@@ -235,7 +235,12 @@ public class EdamamApiAccess implements RecipeDataAccessInterface, RecommendData
                     }
                 }
             }
-            return nutrients;
+            HashMap<String, Float> nutrientsFRFR = new HashMap<>();
+            nutrientsFRFR.put("Calories", nutrients.get("ENERC_KCAL"));
+            nutrientsFRFR.put("Carbs", nutrients.get("CHOCDF"));
+            nutrientsFRFR.put("Protein", nutrients.get("PROCNT"));
+            nutrientsFRFR.put("Fat", nutrients.get("FAT"));
+            return nutrientsFRFR;
         }
         catch (IOException e) {
             throw new RuntimeException(e);
