@@ -14,11 +14,15 @@ public class TrackState {
 
     private Tracker tracker;
 
+    private Food food;
+
     public TrackState(){}
 
     public void setFoodDiary(List<Food> foodDiary) {
         this.foodDiary = foodDiary;
     }
+
+    public void setFood(Food food){this.food = food;}
 
     public void setNutritionalValues(HashMap<String, Float> nutritionalValues) {
         this.nutritionalValues = nutritionalValues;
@@ -46,5 +50,9 @@ public class TrackState {
 
     public List<Food> getFoodDiary() {
         return foodDiary;
+    }
+
+    public Food getFood() {
+        return food;
     }
 }
