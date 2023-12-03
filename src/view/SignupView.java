@@ -115,9 +115,9 @@ public class SignupView implements PropertyChangeListener {
                             nameTextField.getText(),
                             genderSelector.getName(),
                             Integer.parseInt(ageTextField.getText()),
-                            Double.parseDouble(heightTextField.getText()),
+                            Float.parseFloat(heightTextField.getText()),
                             dietaryRestrictions,
-                            Double.parseDouble(weightTextField.getText()));
+                            Float.parseFloat(weightTextField.getText()));
                 }   catch (NumberFormatException error){
                     launchFailView("Error: Please input an appropriate number in the number fields");
                 }

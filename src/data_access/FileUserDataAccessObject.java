@@ -51,9 +51,9 @@ public class FileUserDataAccessObject implements SignupDataAccessInterface, Logi
                     String password = String.valueOf(col[headers.get("password")]);
                     String name = String.valueOf(col[headers.get("name")]);
                     String gender = String.valueOf(col[headers.get("gender")]);
-                    Double weight = Double.valueOf(col[headers.get("weight")]);
+                    Float weight = Float.valueOf(col[headers.get("weight")]);
                     int age = Integer.parseInt(col[headers.get("age")]);
-                    Double height = Double.valueOf(col[headers.get("height")]);
+                    Float height = Float.valueOf(col[headers.get("height")]);
                     String dietaryRestriction = (col[headers.get("dietary restrictions")]);
                     ArrayList<String> dietaryRestrictions = new ArrayList<>(Arrays.asList(dietaryRestriction.split
                             ("\\s*,\\s*")));

@@ -13,7 +13,7 @@ public class RecipeState {
 
     private Integer kCal = 0;
 
-    private HashMap<String, Double> totalNutrients;
+    private HashMap<String, Float> totalNutrients;
 
     public RecipeState(RecipeState copy) {
         recipeName = copy.recipeName;
@@ -30,7 +30,7 @@ public class RecipeState {
 
     public Integer getkCal() {return kCal;}
 
-    public HashMap<String, Double> getTotalNutrients() {return totalNutrients;}
+    public HashMap<String, Float> getTotalNutrients() {return totalNutrients;}
 
     public void setRecipeName(String recipeName) {this.recipeName = recipeName;}
 
@@ -38,6 +38,6 @@ public class RecipeState {
 
     public void setkCal(Integer kCal) {this.kCal = kCal;}
 
-    public void setTotalNutrients(HashMap<String, Double> totalNutrients) {this.totalNutrients = totalNutrients;}
+    public void setTotalNutrients(HashMap<String, Float> totalNutrients) {this.totalNutrients = totalNutrients;}
 
 }

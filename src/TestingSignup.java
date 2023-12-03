@@ -1,16 +1,18 @@
 import data_access.EdamamApiAccess;
 import data_access.FileUserDataAccessObject;
-import entity.Recommend;
-import entity.User;
+import entity.*;
 import use_case.food.*;
+import use_case.login.*;
 import use_case.recommend.*;
 import use_case.signup.*;
+import use_case.track.*;
 import view.MainView;
-import entity.BasicUser;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class TestingSignup {
     public static void main(String[] args) throws IOException {
@@ -41,7 +43,7 @@ public class TestingSignup {
 
         RecommendViewModel recommendViewModel = new RecommendViewModel();
         RecommendPresenter recommendPresenter = new RecommendPresenter(recommendViewModel);
-        RecommendInteractor recommendInteractor = new RecommendInteractor(apiAccess, recommendPresenter);
+        RecommendInteractor recommendInteractor = new RecommendInteractor(fakeDAO, recommendPresenter);
         RecommendController recommendController = new RecommendController(recommendInteractor);
 
         FoodViewModel foodViewModel = new FoodViewModel();
@@ -49,7 +51,18 @@ public class TestingSignup {
         FoodInteractor foodInteractor = new FoodInteractor(fakeDAO, foodPresenter);
         FoodController foodController = new FoodController(foodInteractor);
 
-        MainView mainView = new MainView(signupViewModel, signupController, recommendViewModel, recommendController, foodViewModel, foodController);
+        TrackState trackState = new TrackState();
+        TrackViewModel trackViewModel = new TrackViewModel(trackState);
+        TrackPresenter trackPresenter = new TrackPresenter(trackViewModel);
+        TrackInteractor trackInteractor = new TrackInteractor(fakeDAO, trackPresenter);
+        TrackController trackController = new TrackController(trackInteractor, new Tracker());
+
+        LoginViewModel loginViewModel = new LoginViewModel();
+        LoginPresenter loginPresenter = new LoginPresenter(loginViewModel);
+        LoginInteractor loginInteractor = new LoginInteractor(fakeDAO, loginPresenter);
+        LoginController loginController = new LoginController(loginInteractor);
+
+        MainView mainView = new MainView(signupViewModel, signupController, recommendViewModel, recommendController, foodViewModel, foodController, trackViewModel, trackController, loginViewModel, loginController);
     }
 }
 class FakePresenter implements SignupOutputBoundary {
@@ -65,11 +78,11 @@ class FakePresenter implements SignupOutputBoundary {
     }
 }
 
-class FakeDAO implements SignupDataAccessInterface, RecommendDataAccessInterface, FoodDataAccessInterface {
+class FakeDAO implements SignupDataAccessInterface, RecommendDataAccessInterface, FoodDataAccessInterface, TrackDataAccessInterface, LoginUserDataAccessInterface {
 
     @Override
     public boolean existsByName(String identifier) {
-        return false;
+        return true;
     }
 
     @Override
@@ -78,15 +91,24 @@ class FakeDAO implements SignupDataAccessInterface, RecommendDataAccessInterface
     }
 
     @Override
+    public User get(String username) {
+        return new BasicUser("alessia", "ruberto", "Alessia Ruberto", null, null, 19, null, null);
+    }
+
+    @Override
     public String getRecommendLink(Recommend identifier) {
         return null;
     }
 
     @Override
-    public HashMap<String, Double> getFoodNutritionalValues(String foodName, Float quantity) {
-        HashMap<String, Double> nutritionalValues = new HashMap<String, Double>();
-        nutritionalValues.put("Carbs", 10.0);
-        nutritionalValues.put("Protein", 5.0);
+    public HashMap<String, Float> getFoodNutritionalValues(String foodName, Float quantity) {
+        System.out.println("entered fake dao");
+        HashMap<String, Float> nutritionalValues = new HashMap<String, Float>();
+        nutritionalValues.put("Carbs", 10.0f);
+        nutritionalValues.put("Protein", 5.0f);
+        nutritionalValues.put("Fat", 7.0f);
+        nutritionalValues.put("Calories", 300.0f);
+        System.out.println(nutritionalValues);
         return nutritionalValues;
     }
 
@@ -94,13 +116,15 @@ class FakeDAO implements SignupDataAccessInterface, RecommendDataAccessInterface
     public Integer getFoodCalories(String foodName, Float quantity) {
         return 300;
     }
+
+
 }
 
 
 class FakeUserFactory implements entity.UserFactory{
 
     @Override
-    public User create(String username, String password, String name, String gender, Double weight, int age, Double height, ArrayList<String> dietaryRestrictions) {
+    public User create(String username, String password, String name, String gender, Float weight, int age, Float height, ArrayList<String> dietaryRestrictions) {
         BasicUser basicUser = new BasicUser(username, password, name, gender, weight, age, height, dietaryRestrictions);
         System.out.println("made user");
         return basicUser;

@@ -1,13 +1,15 @@
 package use_case.track;
 
-import data_access.InMemoryUserDataAccessObject;
+
+import data_access.EdamamApiAccess;
+
 import entity.Food;
 import entity.Tracker;
 import entity.User;
 import org.junit.Test;
 
-import java.util.HashMap;
 
+import java.util.HashMap;
 import static org.junit.Assert.assertEquals;
 
 public class TrackTester {
@@ -40,7 +42,7 @@ public class TrackTester {
     public void testTrackInteractor() {
         // Create a mock data access object
         Tracker tracker = new Tracker();
-        TrackDataAccessInterface dataAccessObject = new InMemoryUserDataAccessObject(tracker);
+        TrackDataAccessInterface dataAccessObject = new EdamamApiAccess();
 
         // Create a mock presenter
         MockTrackPresenter presenter = new MockTrackPresenter();
