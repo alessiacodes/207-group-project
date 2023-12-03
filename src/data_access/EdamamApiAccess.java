@@ -6,10 +6,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 import entity.Food;
 import use_case.food.FoodDataAccessInterface;
@@ -169,9 +166,16 @@ public class EdamamApiAccess implements RecipeDataAccessInterface, RecommendData
             Response response = client.newCall(request).execute();
             JSONObject responseBody = new JSONObject(response.body().string());
 
+            // determine number of recipes in response
+            int count = responseBody.getInt("count");
+            // generate random number to pick recipe out of those recommended (to offer more variety)
+            Random rand = new Random();
+            int randRecipe = rand.nextInt(count - 1);
+
+
             //sort through JSON object to return only the link for the recipe
             JSONArray hits = responseBody.getJSONArray("hits");
-            JSONObject recipeObject = hits.getJSONObject(0);
+            JSONObject recipeObject = hits.getJSONObject(randRecipe);
             JSONObject recipeData = recipeObject.getJSONObject("recipe");
 
             return recipeData.getString("shareAs");
