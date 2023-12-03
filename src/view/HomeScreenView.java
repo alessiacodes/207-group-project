@@ -11,6 +11,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
+import java.util.HashMap;
 
 public class HomeScreenView implements PropertyChangeListener {
     private final MainView mainView;
@@ -22,7 +23,7 @@ public class HomeScreenView implements PropertyChangeListener {
     private JPanel totalMarcosPanel;
     private JPanel putFoodHerePanel;
     private JPanel titleAndButtonsPanel;
-    private JButton addFoodToTrackerButton;
+
     private JLabel totalCaloriesLabel;
     private JLabel totalCarbsLabel;
     private JLabel totalProteinLabel;
@@ -51,12 +52,6 @@ public class HomeScreenView implements PropertyChangeListener {
         putFoodHerePanel.setLayout(new BoxLayout(putFoodHerePanel, BoxLayout.Y_AXIS));
 
         // BUTTONS!
-        addFoodToTrackerButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-
-            }
-        });
         calculateCaloriesInRecipeButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -122,15 +117,34 @@ public class HomeScreenView implements PropertyChangeListener {
 
     }
 
+    private void updateTotalMacros(Double totalCals, float totalCarbs, float totalFat, float totalProtein){
+        totalCaloriesLabel.setText("Total Calories: "+ totalCals);
+        totalCarbsLabel.setText("Total Carbs: "+ totalCarbs);
+        totalFatLabel.setText("Total Fat: "+ totalFat);
+        totalProteinLabel.setText("Total Protein: "+ totalProtein);
+    }
+
     @Override
     public void propertyChange(PropertyChangeEvent evt) {
         mainView.swapCard(mainView.HOME_SCREEN_PANEL_NAME);
 
         TrackState state = (TrackState) evt.getNewValue();
+        HashMap<String, Float> totalNutrition = state.getTracker().getTotalNutrition();
+        updateTotalMacros(state.getTracker().getTotalCalories(),
+                totalNutrition.get("Carbs"),
+                totalNutrition.get("Fat"),
+                totalNutrition.get("Protein")
+                );
+        System.out.println("here!");
+        addFoodToTrackerView(state.getFood().getQuantity() + " "+ state.getFood().getName() + ": " + // TODO fix null pointer exception, doesn't actually cause a crash tho
+                 state.getFood().getCalories() + " KCal / " +
+                 state.getFood().getCarbs() + " Carbs / " +
+                 state.getFood().getFat() +  " Fat / " +
+                 state.getFood().getProtein()+ " Protein ") ;
 
-        // TODO connect here
+        launchSuccessView("Successfully added " + state.getFood().getQuantity() +" "+ state.getFood().getName());
 
-
-
+        state.setFood(null);
+        state.setNutritionalValues(null);
     }
 }
