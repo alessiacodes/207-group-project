@@ -1,5 +1,4 @@
 package use_case.track;
-
 import entity.Food;
 import entity.Tracker;
 

@@ -104,10 +104,10 @@ class FakeDAO implements SignupDataAccessInterface, RecommendDataAccessInterface
     }
 
     @Override
-    public HashMap<String, Double> getFoodNutritionalValues(String foodName, Float quantity) {
-        HashMap<String, Double> nutritionalValues = new HashMap<String, Double>();
-        nutritionalValues.put("Carbs", 10.0);
-        nutritionalValues.put("Protein", 5.0);
+    public HashMap<String, Float> getFoodNutritionalValues(String foodName, Float quantity) {
+        HashMap<String, Float> nutritionalValues = new HashMap<String, Float>();
+        nutritionalValues.put("Carbs", 10.0f);
+        nutritionalValues.put("Protein", 5.0f);
         return nutritionalValues;
     }
 

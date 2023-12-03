@@ -8,7 +8,7 @@ public class FoodState {
     private Float quantity;
     private Integer kCal;
 
-    private HashMap<String, Double> nutritionalValues;
+    private HashMap<String, Float> nutritionalValues;
 
     public FoodState(FoodState foodState) {
         foodName = foodState.foodName;
@@ -35,7 +35,7 @@ public class FoodState {
         return quantity;
     }
 
-    public HashMap<String, Double> getNutritionalValues() {
+    public HashMap<String, Float> getNutritionalValues() {
 
         return nutritionalValues;
     };
@@ -57,7 +57,7 @@ public class FoodState {
         this.quantity = quantity;
     }
 
-    public void setNutritionalValues(HashMap<String, Double> nutritionalValues) {
+    public void setNutritionalValues(HashMap<String, Float> nutritionalValues) {
         this.nutritionalValues = nutritionalValues;
     }
 
