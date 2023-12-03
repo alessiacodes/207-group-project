@@ -31,7 +31,9 @@ public class TrackInteractor implements TrackInputBoundary {
 
         TrackOutputData foodOutput = new TrackOutputData(food, tracker);
 
+
         if (tracker.getDiary().contains(food)) {
+            System.out.println(foodOutput.getTracker() ==  null);
             trackPresenter.prepareSuccessView(foodOutput);
         } else {
             trackPresenter.prepareFailView("Food was not added. Please try again.");
