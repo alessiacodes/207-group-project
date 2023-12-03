@@ -88,5 +88,4 @@ public class Food {
         return result;
     }
 
-
 }
