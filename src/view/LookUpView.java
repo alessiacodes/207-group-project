@@ -60,7 +60,6 @@ public class LookUpView implements PropertyChangeListener {
                     if (unitTextField.getText() == null || foodNameTextField.getText() == null){
                         launchFailView("Error: text field left blank");
                     }
-                    System.out.println("got here 3");
                     String foodName = unitTextField.getText() + " " + foodNameTextField.getText();
                     foodController.execute(foodName, quantity);
                 } catch(NumberFormatException error){
@@ -78,7 +77,6 @@ public class LookUpView implements PropertyChangeListener {
                     if (unitTextField.getText() == null || foodNameTextField.getText() == null){
                         launchFailView("Error: text field left blank");
                     }
-                    System.out.println("got here 3");
                     String foodName = unitTextField.getText() + " " + foodNameTextField.getText();
                     trackController.execute(foodName, quantity.toString());
                 } catch(NumberFormatException error){
