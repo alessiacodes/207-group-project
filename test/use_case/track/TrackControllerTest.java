@@ -1,5 +1,6 @@
 package use_case.track;
 
+
 import data_access.EdamamApiAccess;
 import entity.Food;
 import entity.Tracker;
@@ -25,6 +26,7 @@ public class TrackControllerTest {
 
         // Create a mock interactor
         trackInteractor = new TrackInteractor(new EdamamApiAccess(), presenter);
+
 
         // Initialize the TrackController with the mock interactor and the tracker instance
         trackController = new TrackController(trackInteractor, tracker);

@@ -1,10 +1,15 @@
 package use_case.track;
 
+
 import data_access.EdamamApiAccess;
+
 import entity.Food;
 import entity.Tracker;
+import entity.User;
 import org.junit.Test;
 
+
+import java.util.HashMap;
 import static org.junit.Assert.assertEquals;
 
 public class TrackTester {
