@@ -1,6 +1,7 @@
 package entity;
 
 import java.util.HashMap;
+import java.util.Objects;
 
 public class Food {
 
@@ -19,6 +20,7 @@ public class Food {
     public Food(String name, float quantity){
         this.name = name;
         this.quantity = quantity;
+        this.nutritionalValues = new HashMap<String, Float>();
 
         // TODO update kcal and macro attributes to contain values from API instead of 0
         this.kcal = 0;
@@ -57,5 +59,13 @@ public class Food {
 
     public Float getCarbs() {
         return this.carbs;
+    }
+
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        if (obj == null || getClass() != obj.getClass()) return false;
+        Food food = (Food) obj;
+        return Objects.equals(name, food.name) &&
+                Float.compare(food.kcal, kcal) == 0;
     }
 }
