@@ -152,6 +152,9 @@ public class EdamamApiAccess implements RecipeDataAccessInterface, RecommendData
                 }
             }
 
+            ArrayList<String> mealTypeList = new ArrayList<>();
+            mealTypeList.add(mealType);
+
             // add mealType tag
             urlBuilder.addQueryParameter("mealType", mealType);
             urlBuilder.addQueryParameter("type", "public");

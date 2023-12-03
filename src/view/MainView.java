@@ -1,5 +1,7 @@
 package view;
 
+import use_case.food.FoodController;
+import use_case.food.FoodViewModel;
 import use_case.recommend.RecommendController;
 import use_case.recommend.RecommendViewModel;
 import use_case.signup.SignupController;
@@ -14,6 +16,7 @@ public class MainView extends JFrame {
     public final String SIGNUP_PANEL_NAME = "signupPanel";
     public final String HOME_SCREEN_PANEL_NAME = "homeScreenPanel";
     public final String RECOMMEND_PANEL_NAME = "recommendPanel";
+    public final String LOOKUP_VIEW_PANEL_NAME = "foodLookupPanel";
     private JPanel parentPanel;
     private CardLayout cardLayout;
 
@@ -22,6 +25,8 @@ public class MainView extends JFrame {
     private final SignupController signupController;
     private final RecommendViewModel recommendViewModel;
     private final RecommendController recommendController;
+    private final FoodViewModel foodViewModel;
+    private final FoodController foodController;
 
 
 
@@ -36,11 +41,14 @@ public class MainView extends JFrame {
 //        MainView view = new MainView(signupViewModel, signupController);
 //    }
     public MainView(SignupViewModel signupViewModel, SignupController signupController, RecommendViewModel recommendViewModel,
-                    RecommendController recommendController){
+                    RecommendController recommendController, FoodViewModel foodViewModel, FoodController foodController){
         this.signupViewModel = signupViewModel;
         this.signupController = signupController;
         this.recommendController = recommendController;
         this. recommendViewModel = recommendViewModel;
+        this.foodViewModel = foodViewModel;
+        this.foodController = foodController;
+
         this.setUpMainView();
     }
 
@@ -58,12 +66,14 @@ public class MainView extends JFrame {
         SignupView signupView = new SignupView(this, signupController, signupViewModel);
         HomeScreenView homeScreenView = new HomeScreenView(this);
         RecommendView recommendView = new RecommendView(this, recommendViewModel, recommendController);
+        LookUpView lookUpView = new LookUpView(this, foodViewModel, foodController);
 
         // Add them to the card layout
         parentPanel.add(loginView.getPanel(), LOGIN_PANEL_NAME);
         parentPanel.add(signupView.getSignupPanel(), SIGNUP_PANEL_NAME);
         parentPanel.add(homeScreenView.getHomeScreenPanel(), HOME_SCREEN_PANEL_NAME);
         parentPanel.add(recommendView.getRecommendViewPanel(), RECOMMEND_PANEL_NAME);
+        parentPanel.add(lookUpView.getLookupPanel(), LOOKUP_VIEW_PANEL_NAME);
         cardLayout  = (CardLayout) parentPanel.getLayout();
         swapCard(HOME_SCREEN_PANEL_NAME);
         this.setVisible(true);
