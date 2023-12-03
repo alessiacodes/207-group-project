@@ -68,6 +68,7 @@ public class Tracker {
 
     private void updateNutritionalValues(Food food) {
 
+
         // Updating Calories
         float currentValueCal = nutritionalValues.get("Calories");
         float newValueCal = currentValueCal + food.getCalories();
@@ -84,6 +85,7 @@ public class Tracker {
         float currentValueCarbs = nutritionalValues.get("Carbs");
         float newValueCarb = currentValueCarbs + food.getCarbs();
         nutritionalValues.put("Carbs", newValueCarb);
+
     }
 
     public void removeFood(Food food){
