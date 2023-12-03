@@ -1,15 +1,12 @@
 package use_case.food;
 
-import entity.Food;
-
 import java.util.HashMap;
-import java.util.LinkedHashMap;
 
 public class FoodOutputData {
 
     private final String foodName;
 
-    private final HashMap<String, Double> nutritionalValues;
+    private final HashMap<String, Float> nutritionalValues;
 
     private Float quantity;
 
@@ -17,7 +14,7 @@ public class FoodOutputData {
 
     public FoodOutputData(String foodName,
                           Float quantity,
-                          HashMap<String, Double> nutritionalValues,
+                          HashMap<String, Float> nutritionalValues,
                           Integer kCal)
     {
         this.foodName = foodName;
@@ -33,7 +30,7 @@ public class FoodOutputData {
     public Float getQuantity() {
         return this.quantity;
     }
-    public HashMap<String, Double> getNutritionalValues() {
+    public HashMap<String, Float> getNutritionalValues() {
         return this.nutritionalValues;
     }
 
