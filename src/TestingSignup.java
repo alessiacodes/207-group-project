@@ -124,7 +124,7 @@ class FakeDAO implements SignupDataAccessInterface, RecommendDataAccessInterface
 class FakeUserFactory implements entity.UserFactory{
 
     @Override
-    public User create(String username, String password, String name, String gender, Double weight, int age, Double height, ArrayList<String> dietaryRestrictions) {
+    public User create(String username, String password, String name, String gender, Float weight, int age, Float height, ArrayList<String> dietaryRestrictions) {
         BasicUser basicUser = new BasicUser(username, password, name, gender, weight, age, height, dietaryRestrictions);
         System.out.println("made user");
         return basicUser;

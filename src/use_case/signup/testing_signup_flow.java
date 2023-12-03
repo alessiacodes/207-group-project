@@ -47,7 +47,7 @@
 //class FakeUserFactory implements entity.UserFactory{
 //
 //    @Override
-//    public User create(String username, String password, String name, String gender, Double weight, int age, Double height, ArrayList<String> dietaryRestrictions) {
+//    public User create(String username, String password, String name, String gender, Float weight, int age, Float height, ArrayList<String> dietaryRestrictions) {
 //        entity.BasicUser basicUser = new entity.BasicUser(username, password, name, gender, weight, age, height, dietaryRestrictions);
 //        return basicUser;
 //    }

@@ -13,9 +13,9 @@ public class SignupController {
                         String name,
                         String gender,
                         int age,
-                        Double height,
+                        Float height,
                         ArrayList<String> dietaryRestrictions,
-                        Double weight){
+                        Float weight){
 
         SignupInputData inputData = new SignupInputData(username, password, name, gender, age, height, dietaryRestrictions,weight);
         interactor.execute(inputData);

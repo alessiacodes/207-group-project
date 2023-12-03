@@ -7,7 +7,7 @@ public class RecipeInputData {
     private final String recipeName;
     private final LinkedHashMap<Food, Integer> ingredients;
     private final Integer kCal = null;
-    private final LinkedHashMap<String, Double> totalNutrients = null;
+    private final LinkedHashMap<String, Float> totalNutrients = null;
 
     public RecipeInputData(String recipeName, LinkedHashMap<Food, Integer> ingredients) {
         this.recipeName = recipeName;
@@ -17,6 +17,6 @@ public class RecipeInputData {
     public String getRecipeName() {return recipeName;}
     public LinkedHashMap<Food, Integer> getIngredients() {return ingredients;}
     public Integer getkCal() {return kCal;}
-    public LinkedHashMap<String, Double> getTotalNutrients() {return totalNutrients;}
+    public LinkedHashMap<String, Float> getTotalNutrients() {return totalNutrients;}
 
 }

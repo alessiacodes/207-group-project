@@ -81,7 +81,7 @@ public class EdamamApiAccess implements RecipeDataAccessInterface, RecommendData
         }
     }
 
-    public HashMap<String, Double> getTotalNutrients(Food identifier) {
+    public HashMap<String, Float> getTotalNutrients(Food identifier) {
         String foodName = identifier.getName();
         OkHttpClient client = new OkHttpClient();
 
@@ -103,12 +103,12 @@ public class EdamamApiAccess implements RecipeDataAccessInterface, RecommendData
             Response response = client.newCall(request).execute();
             JSONObject responseBody = new JSONObject(response.body().string());
             Map<String, Object> totalNutrients = responseBody.getJSONObject("totalNutrients").toMap();
-            HashMap<String, Double> nutrients = new HashMap<String, Double>();
+            HashMap<String, Float> nutrients = new HashMap<String, Float>();
 
             Set<String> nutrientNames = totalNutrients.keySet();
             for (String nutrient : nutrientNames) {
-                Double doubleNutrient = (Double) totalNutrients.get(nutrient);
-                nutrients.put(nutrient, doubleNutrient);
+                Float FloatNutrient = (Float) totalNutrients.get(nutrient);
+                nutrients.put(nutrient, FloatNutrient);
             }
             return nutrients;
         }
@@ -219,15 +219,22 @@ public class EdamamApiAccess implements RecipeDataAccessInterface, RecommendData
 
             // Getting the response
             Response response = client.newCall(request).execute();
-            System.out.println(response);
+
             JSONObject responseBody = new JSONObject(response.body().string());
             Map<String, Object> totalNutrients = responseBody.getJSONObject("totalNutrients").toMap();
             HashMap<String, Float> nutrients = new HashMap<>();
-
             Set<String> nutrientNames = totalNutrients.keySet();
             for (String nutrient : nutrientNames) {
-                Float floatNutrient = (Float) totalNutrients.get(nutrient);
-                nutrients.put(nutrient, floatNutrient);
+                Map nutrientInfo = (Map) totalNutrients.get(nutrient);
+                if (nutrientInfo.containsKey("quantity")) {
+                    Object quantityObj = nutrientInfo.get("quantity");
+
+                    // Check if the quantity is a Number and cast it to Float
+                    if (quantityObj instanceof Number) {
+                        Float nutrientQuantity = ((Number) quantityObj).floatValue();
+                        nutrients.put(nutrient, quantity);
+                    }
+                }
             }
             return nutrients;
         }

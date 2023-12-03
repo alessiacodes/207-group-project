@@ -9,11 +9,11 @@ public class BasicUser implements User{
 
     private String gender;
 
-    private Double weight;
+    private Float weight;
 
     private int age;
 
-    private Double height;
+    private Float height;
 
     private ArrayList<String> dietaryRestrictions;
 
@@ -21,8 +21,8 @@ public class BasicUser implements User{
 
 
 
-    public BasicUser(String username, String password, String name, String gender, Double weight, int age,
-                     Double height, ArrayList<String> dietaryRestrictions){
+    public BasicUser(String username, String password, String name, String gender, Float weight, int age,
+                     Float height, ArrayList<String> dietaryRestrictions){
         this.username = username;
         this.password = password;
         this.name = name;
@@ -63,7 +63,7 @@ public class BasicUser implements User{
         return age;
     }
 
-    public Double getHeight(){
+    public Float getHeight(){
         return height;
     }
 
@@ -71,7 +71,7 @@ public class BasicUser implements User{
         return dietaryRestrictions;
     }
 
-    public Double getWeight(){
+    public Float getWeight(){
         return weight;
     }
 
@@ -87,7 +87,7 @@ public class BasicUser implements User{
         this.age = age;
     }
 
-    public void setHeight(Double height){
+    public void setHeight(Float height){
         this.height = height;
     }
 
@@ -95,7 +95,7 @@ public class BasicUser implements User{
         this.dietaryRestrictions = dietaryRestrictions;
     }
 
-    public void setWeight(Double weight){
+    public void setWeight(Float weight){
         this.weight = weight;
     }
 
