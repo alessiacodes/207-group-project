@@ -170,7 +170,8 @@ public class EdamamApiAccess implements RecipeDataAccessInterface, RecommendData
             JSONObject responseBody = new JSONObject(response.body().string());
 
             // determine number of recipes in response
-            int count = responseBody.getInt("count");
+            int count = responseBody.getInt("to");
+
             // generate random number to pick recipe out of those recommended (to offer more variety)
             Random rand = new Random();
             int randRecipe = rand.nextInt(count - 1);
