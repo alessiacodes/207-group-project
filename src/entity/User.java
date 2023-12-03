@@ -31,4 +31,5 @@ public interface User {
 
     Float getWeight();
 
+    String getUsername();
 }

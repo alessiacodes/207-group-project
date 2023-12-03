@@ -130,7 +130,7 @@ public class HomeScreenView implements PropertyChangeListener {
 
         TrackState state = (TrackState) evt.getNewValue();
         HashMap<String, Float> totalNutrition = state.getTracker().getTotalNutrition();
-        updateTotalMacros(state.getTracker().getTotalCalories(),
+        updateTotalMacros(state.getTracker().getTotalCalories().doubleValue(),
                 totalNutrition.get("Carbs"),
                 totalNutrition.get("Fat"),
                 totalNutrition.get("Protein")

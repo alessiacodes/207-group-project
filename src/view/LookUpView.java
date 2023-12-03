@@ -13,6 +13,7 @@ import java.awt.event.ActionListener;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.util.Map;
+import java.util.Objects;
 
 public class LookUpView implements PropertyChangeListener {
     private JPanel lookUpViewPanel;
@@ -114,11 +115,13 @@ public class LookUpView implements PropertyChangeListener {
         newPanel.add(calories);
 
         for (Map.Entry<String, Float> nutrition: state.getNutritionalValues().entrySet()) {
-            JLabel nutritionLabel = new JLabel();
-            nutritionLabel.setText(nutrition.getKey() + ": " + nutrition.getValue());
-            nutritionLabel.setHorizontalAlignment(SwingConstants.CENTER);
-            nutritionLabel.setFont(new Font(font.getName(), Font.PLAIN, 30));
-            newPanel.add(nutritionLabel);
+            if (!Objects.equals(nutrition.getKey(), "Calories")) {
+                JLabel nutritionLabel = new JLabel();
+                nutritionLabel.setText(nutrition.getKey() + ": " + nutrition.getValue());
+                nutritionLabel.setHorizontalAlignment(SwingConstants.CENTER);
+                nutritionLabel.setFont(new Font(font.getName(), Font.PLAIN, 30));
+                newPanel.add(nutritionLabel);
+            }
         }
 
 
