@@ -3,7 +3,6 @@ package entity;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 public class Tracker {
     public List<Food> foodDiary;
@@ -57,15 +56,34 @@ public class Tracker {
         return content;
     }
 
-    public Map<String, Float> getTotalNutrition() {
+    public HashMap<String, Float> getTotalNutrition() {
         return nutritionalValues;
     }
 
 
     public void addFood(Food food){
-        if (!foodDiary.contains(food)){
-            foodDiary.add(food);
-        }
+        foodDiary.add(food);
+        updateNutritionalValues(food);
+    }
+
+    private void updateNutritionalValues(Food food) {
+
+        // Updating Calories
+        float currentValueCal = nutritionalValues.get("Calories");
+        float newValueCal = currentValueCal + food.getCalories();
+        nutritionalValues.put("Calories", newValueCal);
+
+        float currentValueProtein = nutritionalValues.get("Protein");
+        float newValueProtein = currentValueProtein + food.getProtein();
+        nutritionalValues.put("Protein", newValueProtein);
+
+        float currentValueFat = nutritionalValues.get("Fat");
+        float newValueFat = currentValueFat + food.getFat();
+        nutritionalValues.put("Fat", newValueFat);
+
+        float currentValueCarbs = nutritionalValues.get("Carbs");
+        float newValueCarb = currentValueCarbs + food.getCarbs();
+        nutritionalValues.put("Carbs", newValueCarb);
     }
 
     public void removeFood(Food food){
