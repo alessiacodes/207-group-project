@@ -1,6 +1,6 @@
 package use_case.track;
 
-import data_access.InMemoryUserDataAccessObject;
+import data_access.EdamamApiAccess;
 import entity.Food;
 import entity.Tracker;
 import org.junit.Before;
@@ -24,7 +24,7 @@ public class TrackControllerTest {
         MockTrackPresenter presenter = new MockTrackPresenter();
 
         // Create a mock interactor
-        trackInteractor = new TrackInteractor(new InMemoryUserDataAccessObject(tracker), presenter);
+        trackInteractor = new TrackInteractor(new EdamamApiAccess(), presenter);
 
         // Initialize the TrackController with the mock interactor and the tracker instance
         trackController = new TrackController(trackInteractor, tracker);
