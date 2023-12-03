@@ -231,7 +231,7 @@ public class EdamamApiAccess implements RecipeDataAccessInterface, RecommendData
                     // Check if the quantity is a Number and cast it to Float
                     if (quantityObj instanceof Number) {
                         Float nutrientQuantity = ((Number) quantityObj).floatValue();
-                        nutrients.put(nutrient, quantity);
+                        nutrients.put(nutrient, nutrientQuantity);
                     }
                 }
             }
