@@ -26,7 +26,7 @@ public class Tracker {
         for (Food food: foodDiary){
             totalCals += food.getCalories();
         }
-        return totalCals;
+        return (float) totalCals;
     }
 
     public List<Float> getWaterDiary(){

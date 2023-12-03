@@ -11,8 +11,6 @@ import view.MainView;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 public class TestingSignup {
     public static void main(String[] args) throws IOException {
@@ -26,7 +24,7 @@ public class TestingSignup {
         FakeUserFactory fakeUserFactory = new FakeUserFactory();
         SignupInteractor interactor = new SignupInteractor(fakeDAO, fakePresenter, fakeUserFactory);
         SignupController controller = new SignupController(interactor);
-        controller.execute("alessia", "alessia", "alessia", "woman", 19, 160.0, null, 125.0);
+        controller.execute("alessia", "alessia", "alessia", "woman", 19, 160.0f, null, 125.0f);
     }
 
     public static void testWithUI() throws IOException {
@@ -38,7 +36,7 @@ public class TestingSignup {
 
         SignupViewModel signupViewModel = new SignupViewModel();
         SignupPresenter signupPresenter = new SignupPresenter(signupViewModel);
-        SignupInteractor signupInteractor = new SignupInteractor(fakeDAO, signupPresenter, fakeUserFactory);
+        SignupInteractor signupInteractor = new SignupInteractor(fileDAO, signupPresenter, fakeUserFactory);
         SignupController signupController = new SignupController(signupInteractor);
 
         RecommendViewModel recommendViewModel = new RecommendViewModel();
@@ -48,18 +46,18 @@ public class TestingSignup {
 
         FoodViewModel foodViewModel = new FoodViewModel();
         FoodPresenter foodPresenter = new FoodPresenter(foodViewModel);
-        FoodInteractor foodInteractor = new FoodInteractor(fakeDAO, foodPresenter);
+        FoodInteractor foodInteractor = new FoodInteractor(apiAccess, foodPresenter);
         FoodController foodController = new FoodController(foodInteractor);
 
         TrackState trackState = new TrackState();
         TrackViewModel trackViewModel = new TrackViewModel(trackState);
         TrackPresenter trackPresenter = new TrackPresenter(trackViewModel);
-        TrackInteractor trackInteractor = new TrackInteractor(fakeDAO, trackPresenter);
+        TrackInteractor trackInteractor = new TrackInteractor(apiAccess, trackPresenter);
         TrackController trackController = new TrackController(trackInteractor, new Tracker());
 
         LoginViewModel loginViewModel = new LoginViewModel();
         LoginPresenter loginPresenter = new LoginPresenter(loginViewModel);
-        LoginInteractor loginInteractor = new LoginInteractor(fakeDAO, loginPresenter);
+        LoginInteractor loginInteractor = new LoginInteractor(fileDAO, loginPresenter);
         LoginController loginController = new LoginController(loginInteractor);
 
         MainView mainView = new MainView(signupViewModel, signupController, recommendViewModel, recommendController, foodViewModel, foodController, trackViewModel, trackController, loginViewModel, loginController);
