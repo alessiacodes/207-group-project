@@ -1,5 +1,4 @@
 package use_case.recipe;
-import entity.Recipe;
 import entity.Food;
 
 import java.util.LinkedHashMap;
@@ -25,7 +24,7 @@ public class RecipeInteractor implements RecipeInputBoundary {
                     food.getQuantity());
         }
 
-        HashMap<String, Float> totalNutrients = new LinkedHashMap<String, Float>();
+        HashMap<String, Float> totalNutrients = new LinkedHashMap<>();
         for (Food food: ingre) {
             HashMap<String, Float> hashNutrients = recipeDataAccessObject.getFoodNutritionalValues(food.getName(),
                     food.getQuantity());

@@ -1,7 +1,5 @@
 package use_case.recipe;
 
-import entity.Recipe;
-
 public class RecipePresenter implements RecipeOutputBoundary {
     private final RecipeViewModel recipeViewModel;
 

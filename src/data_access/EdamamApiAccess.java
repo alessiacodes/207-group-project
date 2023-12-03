@@ -3,6 +3,8 @@ package data_access;
 import entity.Recommend;
 import okhttp3.*;
 import org.json.JSONArray;
+
+
 import org.json.JSONObject;
 import java.io.IOException;
 import java.util.*;
@@ -50,7 +52,7 @@ public class EdamamApiAccess implements RecipeDataAccessInterface, RecommendData
         }
     }*/
 
-    public Integer getCalories(Food identifier) {
+    public float getCalories(Food identifier) {
         String foodName = identifier.getName();
         OkHttpClient client = new OkHttpClient();
 

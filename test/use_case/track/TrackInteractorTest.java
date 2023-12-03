@@ -1,6 +1,6 @@
 package use_case.track;
 
-import data_access.InMemoryUserDataAccessObject;
+import data_access.EdamamApiAccess;
 import entity.Food;
 import entity.Tracker;
 import org.junit.Test;
@@ -13,7 +13,8 @@ public class TrackInteractorTest {
     public void testTrackInteractor() {
         // Create a mock data access object
         Tracker tracker = new Tracker();
-        InMemoryUserDataAccessObject dataAccessObject = new InMemoryUserDataAccessObject(tracker);
+        TrackDataAccessInterface dataAccessObject = new EdamamApiAccess();
+
 
         // Create a mock presenter
         MockTrackPresenter presenter = new MockTrackPresenter();

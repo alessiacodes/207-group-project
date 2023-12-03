@@ -3,6 +3,8 @@ package view;
 import use_case.food.FoodController;
 import use_case.food.FoodState;
 import use_case.food.FoodViewModel;
+import use_case.track.TrackController;
+import use_case.track.TrackViewModel;
 
 import javax.swing.*;
 import java.awt.*;
@@ -23,11 +25,15 @@ public class LookUpView implements PropertyChangeListener {
     private final MainView mainView;
     private final FoodViewModel foodViewModel;
     private final FoodController foodController;
+    private final TrackViewModel trackViewModel;
+    private final TrackController trackController;
 
-    public LookUpView(MainView mainView, FoodViewModel foodViewModel, FoodController foodController) {
+    public LookUpView(MainView mainView, FoodViewModel foodViewModel, FoodController foodController, TrackViewModel trackViewModel, TrackController trackController) {
         this.mainView = mainView;
         this.foodViewModel = foodViewModel;
         this.foodController = foodController;
+        this.trackViewModel = trackViewModel;
+        this.trackController = trackController;
 
         setUpPanel();
 
@@ -65,7 +71,18 @@ public class LookUpView implements PropertyChangeListener {
         addToTrackerButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                trackViewModel.addPropertyChangeListener(mainView.getHomeScreenView());
+                try {
+                    Float quantity = Float.parseFloat(quantityTextField.getText());
+                    if (unitTextField.getText() == null || foodNameTextField.getText() == null){
+                        launchFailView("Error: text field left blank");
+                    }
+                    System.out.println("got here 3");
+                    String foodName = unitTextField.getText() + " " + foodNameTextField.getText();
+                    trackController.execute(foodName, quantity.toString());
+                } catch(NumberFormatException error){
+                    launchFailView("Please enter a number quantity");
+                }
             }
         });
     }
