@@ -1,7 +1,6 @@
 package use_case.recipe;
 
 import entity.Food;
-import entity.Recipe;
 
 import java.util.LinkedHashMap;
 import java.util.HashMap;
@@ -13,10 +12,10 @@ public class RecipeOutputData {
 
     private final Integer kCal;
 
-    private final HashMap<String, Double> totalNutrients;
+    private final HashMap<String, Float> totalNutrients;
 
     public RecipeOutputData(String recipeName, LinkedHashMap<Food, Integer> ingredients, Integer kCal,
-                            HashMap<String, Double> totalNutrients) {
+                            HashMap<String, Float> totalNutrients) {
         this.recipeName = recipeName;
         this.ingredients = ingredients;
         this.kCal = kCal;
@@ -26,6 +25,6 @@ public class RecipeOutputData {
     public String getRecipeName() {return this.recipeName;}
     public LinkedHashMap<Food, Integer> getIngredients() {return this.ingredients;}
     public Integer getkCal() {return this.kCal;}
-    public HashMap<String, Double> getTotalNutrients() {return this.totalNutrients;}
+    public HashMap<String, Float> getTotalNutrients() {return this.totalNutrients;}
 
 }

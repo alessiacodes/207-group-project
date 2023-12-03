@@ -84,8 +84,4 @@ public class Food {
         return result;
     }
 
-    public Float getQuantity() {
-        return this.quantity;
-    }
-
 }
