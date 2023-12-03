@@ -11,6 +11,7 @@ public class TrackOutputData {
 
     public TrackOutputData(Food food, Tracker tracker) {
         this.food = food;
+        this.tracker = tracker;
     }
 
     public Food getFood(){ return food; }
