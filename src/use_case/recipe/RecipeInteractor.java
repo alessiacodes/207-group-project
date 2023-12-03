@@ -21,12 +21,14 @@ public class RecipeInteractor implements RecipeInputBoundary {
         Integer calories = 0;
         Set<Food> ingre = ingredients.keySet();
         for (Food food: ingre) {
-            calories += ingredients.get(food) * recipeDataAccessObject.getCalories(food);
+            calories += ingredients.get(food) * recipeDataAccessObject.getFoodCalories(food.getName(),
+                    food.getQuantity());
         }
 
         HashMap<String, Double> totalNutrients = new LinkedHashMap<String, Double>();
         for (Food food: ingre) {
-            HashMap<String, Double> hashNutrients = recipeDataAccessObject.getTotalNutrients(food);
+            HashMap<String, Double> hashNutrients = recipeDataAccessObject.getFoodNutritionalValues(food.getName(),
+                    food.getQuantity());
             Set<String> nutrients = hashNutrients.keySet();
             for (String nutrient : nutrients) {
                 if (totalNutrients.containsKey(nutrient)) {
