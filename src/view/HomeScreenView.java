@@ -71,7 +71,7 @@ public class HomeScreenView implements PropertyChangeListener {
         lookUpFoodButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                mainView.swapCard(mainView.LOOKUP_VIEW_PANEL_NAME);
             }
         });
     }
