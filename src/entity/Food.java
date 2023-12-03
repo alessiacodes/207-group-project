@@ -36,6 +36,8 @@ public class Food {
 
     public String getName() {return name;}
 
+    public float getQuantity() {return quantity;}
+
     public int getCalories(){
         return kcal;
     }
