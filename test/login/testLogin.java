@@ -50,7 +50,7 @@ class FakeDAO implements LoginUserDataAccessInterface {
     }
 
     @Override
-    public User get(String username) { return ...; }
+    public User get(String username) { return null; }// TODO fix later
 }
 
 
