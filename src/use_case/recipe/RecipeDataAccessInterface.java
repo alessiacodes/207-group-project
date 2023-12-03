@@ -6,9 +6,9 @@ import org.json.JSONArray;
 import java.util.HashMap;
 
 public interface RecipeDataAccessInterface {
-    Integer getCalories(Food identifier);
+    Integer getFoodCalories(String foodName, Float quantity);
 
-    HashMap<String, Double> getTotalNutrients(Food identifier);
+    HashMap<String, Double> getFoodNutritionalValues(String foodName, Float quantity);
 
 
 }
