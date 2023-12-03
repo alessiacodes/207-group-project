@@ -83,5 +83,4 @@ public class Food {
         result = 31 * result + (quantity != +0.0f ? Float.floatToIntBits(quantity) : 0);
         return result;
     }
-
 }
