@@ -3,6 +3,7 @@ package view;
 import use_case.recommend.RecommendController;
 import use_case.recommend.RecommendState;
 import use_case.recommend.RecommendViewModel;
+import use_case.track.TrackState;
 
 import javax.swing.*;
 import java.awt.*;
@@ -103,12 +104,33 @@ public class HomeScreenView implements PropertyChangeListener {
     }
 
     public void launchSuccessView(String successMessage){
+        JFrame successPopUpWindow = new JFrame();
+        successPopUpWindow.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
+        successPopUpWindow.setTitle("Success: food added!");
+        successPopUpWindow.setSize(600,500);
 
+        JLabel message = new JLabel();
+        message.setText(successMessage);
+        message.setHorizontalAlignment(SwingConstants.CENTER);
+        message.setVerticalAlignment(SwingConstants.CENTER);
+        Font font = message.getFont();
+        message.setFont(new Font(font.getName(), Font.PLAIN, 20));
+
+        successPopUpWindow.add(message);
+        successPopUpWindow.setLocationRelativeTo(null);
+        successPopUpWindow.setVisible(true);
 
     }
 
     @Override
     public void propertyChange(PropertyChangeEvent evt) {
+        mainView.swapCard(mainView.HOME_SCREEN_PANEL_NAME);
+
+        TrackState state = (TrackState) evt.getNewValue();
+
+        // TODO connect here
+
+
 
     }
 }

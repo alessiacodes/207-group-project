@@ -10,9 +10,9 @@ public class Food {
     private float quantity;
     private int kcal;
 
-    private final float protein;
-    private final float fat;
-    private final float carbs;
+    private float protein;
+    private float fat;
+    private float carbs;
 
     private HashMap<String, Float> nutritionalValues;
 
@@ -64,6 +64,10 @@ public class Food {
 
     public void setNutritionalValues(HashMap<String, Float> nutritionalValues) {
         this.nutritionalValues = nutritionalValues;
+        this.protein = nutritionalValues.get("Protein");
+        this.fat = nutritionalValues.get("Fat");
+        this.kcal = Math.round(nutritionalValues.get("Calories"));
+        this.carbs = nutritionalValues.get("Carbs");
     }
 
     @Override
@@ -84,8 +88,5 @@ public class Food {
         return result;
     }
 
-    public Float getQuantity() {
-        return this.quantity;
-    }
 
 }
