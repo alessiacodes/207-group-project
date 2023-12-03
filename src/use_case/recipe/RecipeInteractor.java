@@ -25,9 +25,9 @@ public class RecipeInteractor implements RecipeInputBoundary {
                     food.getQuantity());
         }
 
-        HashMap<String, Double> totalNutrients = new LinkedHashMap<String, Double>();
+        HashMap<String, Float> totalNutrients = new LinkedHashMap<String, Float>();
         for (Food food: ingre) {
-            HashMap<String, Double> hashNutrients = recipeDataAccessObject.getFoodNutritionalValues(food.getName(),
+            HashMap<String, Float> hashNutrients = recipeDataAccessObject.getFoodNutritionalValues(food.getName(),
                     food.getQuantity());
             Set<String> nutrients = hashNutrients.keySet();
             for (String nutrient : nutrients) {

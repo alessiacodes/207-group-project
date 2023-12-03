@@ -96,7 +96,7 @@ public class LookUpView implements PropertyChangeListener {
         calories.setFont(new Font(font.getName(), Font.PLAIN, 30));
         newPanel.add(calories);
 
-        for (Map.Entry<String, Double> nutrition: state.getNutritionalValues().entrySet()) {
+        for (Map.Entry<String, Float> nutrition: state.getNutritionalValues().entrySet()) {
             JLabel nutritionLabel = new JLabel();
             nutritionLabel.setText(nutrition.getKey() + ": " + nutrition.getValue());
             nutritionLabel.setHorizontalAlignment(SwingConstants.CENTER);

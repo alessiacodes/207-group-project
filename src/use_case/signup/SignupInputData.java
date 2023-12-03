@@ -9,9 +9,9 @@ public class SignupInputData {
     final private String name;
     final private String gender;
     final private int age;
-    final private Double height;
+    final private Float height;
     final private ArrayList<String> dietaryRestrictions;
-    final private Double weight;
+    final private Float weight;
 
 
     public SignupInputData(String username,
@@ -19,9 +19,9 @@ public class SignupInputData {
                            String name,
                            String gender,
                            int age,
-                           Double height,
+                           Float height,
                            ArrayList<String> dietaryRestrictions,
-                           Double weight) {
+                           Float weight) {
         this.username = username;
         this.password = password;
         this.name = name;
@@ -42,7 +42,7 @@ public class SignupInputData {
         return age;
     }
 
-    public Double getHeight() {
+    public Float getHeight() {
         return height;
     }
 
@@ -58,7 +58,7 @@ public class SignupInputData {
         return password;
     }
 
-    public Double getWeight() {
+    public Float getWeight() {
         return weight;
     }
 }

@@ -9,7 +9,7 @@ public class FoodInputData {
     final private float quantity;
 
     final private Integer kCal = null;
-    final private LinkedHashMap<String, Double> nutritionalValues = null;
+    final private LinkedHashMap<String, Float> nutritionalValues = null;
 
     public FoodInputData(String name, float quantity) {
         this.name = name;
@@ -22,13 +22,13 @@ public class FoodInputData {
 
     public Integer getFoodCalories() {return kCal;}
 
-    HashMap<String, Double > getFoodNutritionalValues() {return nutritionalValues;};
+    HashMap<String, Float > getFoodNutritionalValues() {return nutritionalValues;};
 
     //  To-do: review after discussing which type
     //  of HashMap to use throughout
     //  the whole project
     //
-    //     LinkedHashMap<String, Double > getFoodNutritionalValues() {return nutritionalValues;};
+    //     LinkedHashMap<String, Float > getFoodNutritionalValues() {return nutritionalValues;};
     //  int getCalories() {return calories;};
 
 }

@@ -6,13 +6,13 @@ import java.util.List;
 
 public class Tracker {
     public List<Food> foodDiary;
-    public List<Double> waterDiary;
+    public List<Float> waterDiary;
 
     public HashMap<String, Float> nutritionalValues = new HashMap<>();
 
     public Tracker(){
         this.foodDiary = new ArrayList<Food>();
-        this.waterDiary = new ArrayList<Double>();
+        this.waterDiary = new ArrayList<Float>();
 
         // Create Nutritional Values HashMap
         this.nutritionalValues.put("Calories", 0.0F);
@@ -21,7 +21,7 @@ public class Tracker {
         this.nutritionalValues.put("Carbs", 0.0F);
     }
 
-    public double getTotalCalories(){
+    public Float getTotalCalories(){
         int totalCals = 0;
         for (Food food: foodDiary){
             totalCals += food.getCalories();
@@ -29,7 +29,7 @@ public class Tracker {
         return totalCals;
     }
 
-    public List<Double> getWaterDiary(){
+    public List<Float> getWaterDiary(){
         return this.waterDiary;
     }
 
@@ -48,7 +48,7 @@ public class Tracker {
     /* Returns the total nutrition of the whole diary based on a single nutritional value (i.e. returns all the protein
     from the whole diary.
     * */
-    public double getNutrientContent(String nutrient){
+    public Float getNutrientContent(String nutrient){
         Float content = (float) 0;
         for (Food food: foodDiary){
             content += food.getNutritionalValues().get(nutrient);

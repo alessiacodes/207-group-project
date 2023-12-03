@@ -9,11 +9,11 @@ public interface User {
 
     void setAge(int age);
 
-    void setHeight(Double height);
+    void setHeight(Float height);
 
     void setRestrictions(ArrayList<String> dietaryRestrictions);
 
-    void setWeight(Double weight);
+    void setWeight(Float weight);
 
     User getUser();
 
@@ -25,10 +25,10 @@ public interface User {
 
     int getAge();
 
-    Double getHeight();
+    Float getHeight();
 
     ArrayList<String> getRestrictions();
 
-    Double getWeight();
+    Float getWeight();
 
 }
