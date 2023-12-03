@@ -1,15 +1,12 @@
 import data_access.EdamamApiAccess;
 import data_access.FileUserDataAccessObject;
-import entity.Food;
-import entity.Recommend;
-import entity.User;
+import entity.*;
 import use_case.food.*;
 import use_case.login.*;
 import use_case.recommend.*;
 import use_case.signup.*;
 import use_case.track.*;
 import view.MainView;
-import entity.BasicUser;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -58,7 +55,7 @@ public class TestingSignup {
         TrackViewModel trackViewModel = new TrackViewModel(trackState);
         TrackPresenter trackPresenter = new TrackPresenter(trackViewModel);
         TrackInteractor trackInteractor = new TrackInteractor(fakeDAO, trackPresenter);
-        TrackController trackController = new TrackController(trackInteractor);
+        TrackController trackController = new TrackController(trackInteractor, new Tracker());
 
         LoginViewModel loginViewModel = new LoginViewModel();
         LoginPresenter loginPresenter = new LoginPresenter(loginViewModel);
@@ -105,9 +102,13 @@ class FakeDAO implements SignupDataAccessInterface, RecommendDataAccessInterface
 
     @Override
     public HashMap<String, Float> getFoodNutritionalValues(String foodName, Float quantity) {
+        System.out.println("entered fake dao");
         HashMap<String, Float> nutritionalValues = new HashMap<String, Float>();
         nutritionalValues.put("Carbs", 10.0f);
         nutritionalValues.put("Protein", 5.0f);
+        nutritionalValues.put("Fat", 7.0f);
+        nutritionalValues.put("Calories", 300.0f);
+        System.out.println(nutritionalValues);
         return nutritionalValues;
     }
 
@@ -116,30 +117,7 @@ class FakeDAO implements SignupDataAccessInterface, RecommendDataAccessInterface
         return 300;
     }
 
-    @Override
-    public List<Food> getFoodDiary() {
-        return null;
-    }
 
-    @Override
-    public void addFoodEntry(Food foodEntry) {
-
-    }
-
-    @Override
-    public void updateFoodEntry(String updatedFoodEntry, float newAmount) {
-
-    }
-
-    @Override
-    public void removeFood(Food foodEntry) {
-
-    }
-
-    @Override
-    public Map<String, Float> getTotalNutrition() {
-        return null;
-    }
 }
 
 
