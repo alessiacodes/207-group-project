@@ -1,5 +1,7 @@
 package use_case.recommend;
 
+import use_case.recipe.RecipeState;
+
 public class RecommendPresenter implements RecommendOutputBoundary{
     private final RecommendViewModel recommendViewModel;
 
@@ -23,6 +25,7 @@ public class RecommendPresenter implements RecommendOutputBoundary{
 
     @Override
     public void prepareFailView(String error) {
-
+        RecommendState recommendState = recommendViewModel.getState();
+        recommendViewModel.firePropertyChanged();
     }
 }
