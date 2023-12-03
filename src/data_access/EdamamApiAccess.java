@@ -130,6 +130,7 @@ public class EdamamApiAccess implements RecipeDataAccessInterface, RecommendData
         String mealType = identifier.getMealType();
         OkHttpClient client = new OkHttpClient();
 
+
         try {
             // Build correct URL with appropriate parameters
 
@@ -142,7 +143,7 @@ public class EdamamApiAccess implements RecipeDataAccessInterface, RecommendData
                 urlBuilder.addQueryParameter("diet", item); //adds each tag
             }
 
-            // add all health tags
+            // add all health tags     TODO can I add an if statement around this to check if null before adding to the URL?
             for (String item : health) {
                 urlBuilder.addQueryParameter("health", item); //adds each tag
             }
@@ -161,10 +162,14 @@ public class EdamamApiAccess implements RecipeDataAccessInterface, RecommendData
             Response response = client.newCall(request).execute();
             JSONObject responseBody = new JSONObject(response.body().string());
 
-            //change to recommend use case
-            String recommendLink = responseBody.getJSONObject("hits").getJSONObject("recipe").getJSONObject("shareAs").toString();
 
-            return recommendLink;
+            //sort through JSON object to return only the link for the recipe
+            JSONArray hits = responseBody.getJSONArray("hits");
+            JSONObject recipeObject = hits.getJSONObject(0);
+            JSONObject recipeData = recipeObject.getJSONObject("recipe");
+
+
+            return recipeData.getString("shareAs");
         }
         catch (IOException e) {
             throw new RuntimeException(e);
