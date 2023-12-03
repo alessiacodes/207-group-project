@@ -10,10 +10,13 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
+import java.net.URISyntaxException;
+import java.net.URL;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
-import java.util.List;
+import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
 
 public class RecommendView implements PropertyChangeListener {
     private final RecommendViewModel recommendViewModel;
@@ -61,7 +64,8 @@ public class RecommendView implements PropertyChangeListener {
     private void setUpPanel(){
         Collections.addAll(listOfNutritionalNeeds, balancedCheckBox, highFiberCheckBox, highProteinCheckBox, lowCarbCheckBox, lowFatCheckBox,lowSodiumCheckBox);
         Collections.addAll(listOfRestrictions, dairyFreeCheckBox, glutenFreeCheckBox, ketoFriendlyCheckBox, kosherCheckBox,lowSugarCheckBox, paleoCheckBox, pescatarianCheckBox, veganCheckBox, vegetarianCheckBox);
-        
+        recommendViewModel.addPropertyChangeListener(this);
+
         mealTypeDropDown.addItem("Breakfast");
         mealTypeDropDown.addItem("Lunch");
         mealTypeDropDown.addItem("Dinner");
@@ -132,6 +136,26 @@ public class RecommendView implements PropertyChangeListener {
         successPopUpWindow.setVisible(true);
 
     }
+    private void openLink(String url){
+
+        if(Desktop.isDesktopSupported()){
+            Desktop desktop = Desktop.getDesktop();
+            try {
+                desktop.browse(new URI(url));
+            } catch (IOException | URISyntaxException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
+        }else{
+            Runtime runtime = Runtime.getRuntime();
+            try {
+                runtime.exec("xdg-open " + url);
+            } catch (IOException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
+        }
+    }
 
     @Override
     public void propertyChange(PropertyChangeEvent evt) {
@@ -143,6 +167,7 @@ public class RecommendView implements PropertyChangeListener {
         }
         else{ // successfully got link
             launchSuccessView(state.getCurrentSuccessMessage() + " " + state.getRecommendLink());
+            openLink(state.getRecommendLink());
             state.setRecommendLink("");
             state.setCurrentSuccessMessage(null);
 

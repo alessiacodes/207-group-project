@@ -6,10 +6,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 import entity.Food;
 import use_case.food.FoodDataAccessInterface;
@@ -141,14 +138,18 @@ public class EdamamApiAccess implements RecipeDataAccessInterface, RecommendData
             urlBuilder.addQueryParameter("app_id", APP_ID_REC);
             urlBuilder.addQueryParameter("app_key", APP_KEY_REC);
 
-            // add all diet tags
-            for (String item : diet) {
-                urlBuilder.addQueryParameter("diet", item); //adds each tag
+            if (!diet.isEmpty()) {
+                // add all diet tags
+                for (String item : diet) {
+                    urlBuilder.addQueryParameter("diet", item); //adds each tag
+                }
             }
 
-            // add all health tags     TODO can I add an if statement around this to check if null before adding to the URL?
-            for (String item : health) {
-                urlBuilder.addQueryParameter("health", item); //adds each tag
+            if (!health.isEmpty()) {
+                // add all health tags     TODO can I add an if statement around this to check if null before adding to the URL?
+                for (String item : health) {
+                    urlBuilder.addQueryParameter("health", item); //adds each tag
+                }
             }
 
             ArrayList<String> mealTypeList = new ArrayList<>();
@@ -156,8 +157,8 @@ public class EdamamApiAccess implements RecipeDataAccessInterface, RecommendData
 
             // add mealType tag
             urlBuilder.addQueryParameter("mealType", mealType);
+            urlBuilder.addQueryParameter("type", "public");
             String apiURL = urlBuilder.build().toString();
-
 
             // Making the actual request
             Request request = new Request.Builder()
@@ -168,11 +169,19 @@ public class EdamamApiAccess implements RecipeDataAccessInterface, RecommendData
             Response response = client.newCall(request).execute();
             JSONObject responseBody = new JSONObject(response.body().string());
 
-            System.out.println(responseBody);
-            //change to recommend use case
-            String recommendLink = responseBody.getJSONObject("hits").getJSONObject("recipe").getJSONObject("shareAs").toString();
+            // determine number of recipes in response
+            int count = responseBody.getInt("count");
+            // generate random number to pick recipe out of those recommended (to offer more variety)
+            Random rand = new Random();
+            int randRecipe = rand.nextInt(count - 1);
 
-            return recommendLink;
+
+            //sort through JSON object to return only the link for the recipe
+            JSONArray hits = responseBody.getJSONArray("hits");
+            JSONObject recipeObject = hits.getJSONObject(randRecipe);
+            JSONObject recipeData = recipeObject.getJSONObject("recipe");
+
+            return recipeData.getString("shareAs");
         }
         catch (IOException e) {
             throw new RuntimeException(e);
