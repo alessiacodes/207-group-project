@@ -30,6 +30,7 @@ public class TestingSignup {
         FakeDAO fakeDAO = new FakeDAO();
         FileUserDataAccessObject fileDAO = new FileUserDataAccessObject("users.csv", fakeUserFactory);
         EdamamApiAccess apiAccess = new EdamamApiAccess();
+        
 
         SignupViewModel signupViewModel = new SignupViewModel();
         SignupPresenter signupPresenter = new SignupPresenter(signupViewModel);
@@ -74,6 +75,7 @@ class FakeDAO implements SignupDataAccessInterface, RecommendDataAccessInterface
         return null;
     }
 }
+
 
 class FakeUserFactory implements entity.UserFactory{
 
