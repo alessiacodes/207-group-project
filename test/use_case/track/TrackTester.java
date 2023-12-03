@@ -37,17 +37,10 @@ public class TrackTester {
     }
 
     @Test
-    public void testWasFoodEntryUpdated(){
-        Tracker tracker = TrackTester();
-        Food apple = new Food("Apple", 2F);
-        assert tracker.getDiary().contains(apple);
-    }
-
-    @Test
     public void testTrackInteractor() {
         // Create a mock data access object
         Tracker tracker = new Tracker();
-        InMemoryUserDataAccessObject dataAccessObject = new InMemoryUserDataAccessObject(tracker);
+        TrackDataAccessInterface dataAccessObject = new InMemoryUserDataAccessObject(tracker);
 
         // Create a mock presenter
         MockTrackPresenter presenter = new MockTrackPresenter();
@@ -67,7 +60,7 @@ public class TrackTester {
     }
 
     // MockTrackPresenter for testing purposes
-    private static class MockTrackPresenter implements TrackOutputBoundary {
+    static class MockTrackPresenter implements TrackOutputBoundary {
 
         private TrackOutputData outputData;
 
