@@ -8,7 +8,7 @@ import java.util.List;
 
 public class TrackState {
     private List<Food> foodDiary;
-    private List<Double> waterDiary;
+    private List<Float> waterDiary;
 
     private HashMap<String, Float> nutritionalValues = new HashMap<>();
 
@@ -28,7 +28,7 @@ public class TrackState {
         this.nutritionalValues = nutritionalValues;
     }
 
-    public void setWaterDiary(List<Double> waterDiary) {
+    public void setWaterDiary(List<Float> waterDiary) {
         this.waterDiary = waterDiary;
     }
 
@@ -36,7 +36,7 @@ public class TrackState {
         this.tracker = tracker;
     }
 
-    public List<Double> getWaterDiary() {
+    public List<Float> getWaterDiary() {
         return waterDiary;
     }
 
