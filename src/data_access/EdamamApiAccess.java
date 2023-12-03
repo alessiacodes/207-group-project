@@ -2,8 +2,6 @@ package data_access;
 
 import entity.Recommend;
 import okhttp3.*;
-import org.json.JSONArray;
-import org.json.JSONException;
 import org.json.JSONObject;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -15,10 +13,11 @@ import entity.Food;
 import use_case.food.FoodDataAccessInterface;
 import use_case.recipe.RecipeDataAccessInterface;
 import use_case.recommend.RecommendDataAccessInterface;
+import use_case.track.TrackDataAccessInterface;
 
-public class EdamamApiAccess implements RecipeDataAccessInterface, RecommendDataAccessInterface, FoodDataAccessInterface {
-    private static final String APP_ID = "64984032"; //this is for food lookup
-    private static final String APP_KEY = "47ecdbab5b1aa48bcbd2c622f83c8006"; //this is for food lookup
+public class EdamamApiAccess implements RecipeDataAccessInterface, RecommendDataAccessInterface, FoodDataAccessInterface, TrackDataAccessInterface {
+    private static final String APP_ID = "e39f0969"; //this is for food lookup
+    private static final String APP_KEY = "79a151f9b62c0a9f14ee3d91f7c2242b"; //this is for food lookup
 
     private static final String APP_ID_REC = "cd905d5f"; //for recommending recipes
     private static final String APP_KEY_REC = "19dbdd026906aa90c7a5ca301942a30d"; //for recommending recipes
@@ -175,7 +174,7 @@ public class EdamamApiAccess implements RecipeDataAccessInterface, RecommendData
 
 
     @Override
-    public HashMap<String, Double> getFoodNutritionalValues(String foodName, Float quantity) {
+    public HashMap<String, Float> getFoodNutritionalValues(String foodName, Float quantity) {
         OkHttpClient client = new OkHttpClient();
 
         String foodParameter;
@@ -200,12 +199,12 @@ public class EdamamApiAccess implements RecipeDataAccessInterface, RecommendData
             Response response = client.newCall(request).execute();
             JSONObject responseBody = new JSONObject(response.body().string());
             Map<String, Object> totalNutrients = responseBody.getJSONObject("totalNutrients").toMap();
-            HashMap<String, Double> nutrients = new HashMap<String, Double>();
+            HashMap<String, Float> nutrients = new HashMap<>();
 
             Set<String> nutrientNames = totalNutrients.keySet();
             for (String nutrient : nutrientNames) {
-                Double doubleNutrient = (Double) totalNutrients.get(nutrient);
-                nutrients.put(nutrient, doubleNutrient);
+                Float floatNutrient = (Float) totalNutrients.get(nutrient);
+                nutrients.put(nutrient, floatNutrient);
             }
             return nutrients;
         }
