@@ -6,6 +6,12 @@ import static org.junit.Assert.*;
 
 public class RecommendViewModelTest {
 
+
+    @Test
+    void successTest(){
+
+    }
+
     @Test
     public void firePropertyChanged() {
     }
