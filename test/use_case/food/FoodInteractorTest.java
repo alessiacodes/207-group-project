@@ -22,7 +22,9 @@ public class FoodInteractorTest {
         FoodOutputBoundary successPresenter = new FoodOutputBoundary() {
             @Override
             public void prepareSuccessView(FoodOutputData outputData) {
-
+//                Testing if the API call is working
+                assertNotNull(outputData.getKcal());
+                assertNotNull(outputData.getNutritionalValues());
             }
 
             @Override
@@ -30,6 +32,9 @@ public class FoodInteractorTest {
                 fail("Use case failure is unexpected");
             }
         };
+
+        FoodInputBoundary interactor = new FoodInteractor(foodDataAccessObject, successPresenter);
+        interactor.execute(inputData);
     }
 
 
