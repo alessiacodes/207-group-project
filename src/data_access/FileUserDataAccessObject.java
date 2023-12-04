@@ -72,7 +72,7 @@ public class FileUserDataAccessObject implements SignupDataAccessInterface, Logi
 
     @Override
     public void saveNewUser(User user) {
-        accounts.put(user.getName(), user);
+        accounts.put(user.getUsername(), user);
         this.save();
     }
 
