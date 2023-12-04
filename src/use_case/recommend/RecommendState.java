@@ -17,6 +17,7 @@ public class RecommendState {
         diet = copy.diet;
         health = copy.health;
         mealType = copy.mealType;
+        recommendLink = copy.recommendLink;
         currentErrorMessage = copy.currentErrorMessage;
         currentSuccessMessage = copy.currentSuccessMessage;
     }
