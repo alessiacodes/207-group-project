@@ -14,7 +14,7 @@ public class testFood {
 class FakeDAO implements FoodDataAccessInterface{
 
     @Override
-    public HashMap<String, Double> getFoodNutritionalValues(String foodName, Float quantity) {
+    public HashMap<String, Float> getFoodNutritionalValues(String foodName, Float quantity) {
         return null;
     }
 
