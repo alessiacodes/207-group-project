@@ -3,6 +3,7 @@ import data_access.FileUserDataAccessObject;
 import entity.*;
 import use_case.food.*;
 import use_case.login.*;
+import use_case.recipe.*;
 import use_case.recommend.*;
 import use_case.signup.*;
 import use_case.track.*;
@@ -60,7 +61,13 @@ public class TestingSignup {
         LoginInteractor loginInteractor = new LoginInteractor(fileDAO, loginPresenter);
         LoginController loginController = new LoginController(loginInteractor);
 
-        MainView mainView = new MainView(signupViewModel, signupController, recommendViewModel, recommendController, foodViewModel, foodController, trackViewModel, trackController, loginViewModel, loginController);
+        RecipeViewModel recipeViewModel = new RecipeViewModel();
+        RecipePresenter recipePresenter = new RecipePresenter(recipeViewModel);
+        RecipeInteractor recipeInteractor = new RecipeInteractor(apiAccess, recipePresenter);
+        RecipeController recipeController = new RecipeController(recipeInteractor);
+
+
+        MainView mainView = new MainView(signupViewModel, signupController, recommendViewModel, recommendController, foodViewModel, foodController, trackViewModel, trackController, loginViewModel, loginController, recipeViewModel, recipeController);
     }
 }
 class FakePresenter implements SignupOutputBoundary {
@@ -76,7 +83,7 @@ class FakePresenter implements SignupOutputBoundary {
     }
 }
 
-class FakeDAO implements SignupDataAccessInterface, RecommendDataAccessInterface, FoodDataAccessInterface, TrackDataAccessInterface, LoginUserDataAccessInterface {
+class FakeDAO implements SignupDataAccessInterface, RecommendDataAccessInterface, FoodDataAccessInterface, TrackDataAccessInterface, LoginUserDataAccessInterface, RecipeDataAccessInterface {
 
     @Override
     public boolean existsByName(String identifier) {
