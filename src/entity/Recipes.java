@@ -10,5 +10,5 @@ public interface Recipes {
 
     Integer getkCal();
 
-    HashMap<String, Double> getTotalNutrients();
+    HashMap<String, Float> getTotalNutrients();
 }

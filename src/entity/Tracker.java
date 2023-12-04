@@ -3,17 +3,16 @@ package entity;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 public class Tracker {
     public List<Food> foodDiary;
-    public List<Double> waterDiary;
+    public List<Float> waterDiary;
 
     public HashMap<String, Float> nutritionalValues = new HashMap<>();
 
     public Tracker(){
         this.foodDiary = new ArrayList<Food>();
-        this.waterDiary = new ArrayList<Double>();
+        this.waterDiary = new ArrayList<Float>();
 
         // Create Nutritional Values HashMap
         this.nutritionalValues.put("Calories", 0.0F);
@@ -22,15 +21,15 @@ public class Tracker {
         this.nutritionalValues.put("Carbs", 0.0F);
     }
 
-    public double getTotalCalories(){
+    public Float getTotalCalories(){
         int totalCals = 0;
         for (Food food: foodDiary){
             totalCals += food.getCalories();
         }
-        return totalCals;
+        return (float) totalCals;
     }
 
-    public List<Double> getWaterDiary(){
+    public List<Float> getWaterDiary(){
         return this.waterDiary;
     }
 
@@ -49,7 +48,7 @@ public class Tracker {
     /* Returns the total nutrition of the whole diary based on a single nutritional value (i.e. returns all the protein
     from the whole diary.
     * */
-    public double getNutrientContent(String nutrient){
+    public Float getNutrientContent(String nutrient){
         Float content = (float) 0;
         for (Food food: foodDiary){
             content += food.getNutritionalValues().get(nutrient);
@@ -57,15 +56,36 @@ public class Tracker {
         return content;
     }
 
-    public Map<String, Float> getTotalNutrition() {
+    public HashMap<String, Float> getTotalNutrition() {
         return nutritionalValues;
     }
 
 
     public void addFood(Food food){
-        if (!foodDiary.contains(food)){
-            foodDiary.add(food);
-        }
+        foodDiary.add(food);
+        updateNutritionalValues(food);
+    }
+
+    private void updateNutritionalValues(Food food) {
+
+
+        // Updating Calories
+        float currentValueCal = nutritionalValues.get("Calories");
+        float newValueCal = currentValueCal + food.getCalories();
+        nutritionalValues.put("Calories", newValueCal);
+
+        float currentValueProtein = nutritionalValues.get("Protein");
+        float newValueProtein = currentValueProtein + food.getProtein();
+        nutritionalValues.put("Protein", newValueProtein);
+
+        float currentValueFat = nutritionalValues.get("Fat");
+        float newValueFat = currentValueFat + food.getFat();
+        nutritionalValues.put("Fat", newValueFat);
+
+        float currentValueCarbs = nutritionalValues.get("Carbs");
+        float newValueCarb = currentValueCarbs + food.getCarbs();
+        nutritionalValues.put("Carbs", newValueCarb);
+
     }
 
     public void removeFood(Food food){

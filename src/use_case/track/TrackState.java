@@ -8,11 +8,13 @@ import java.util.List;
 
 public class TrackState {
     private List<Food> foodDiary;
-    private List<Double> waterDiary;
+    private List<Float> waterDiary;
 
     private HashMap<String, Float> nutritionalValues = new HashMap<>();
 
     private Tracker tracker;
+
+    private Food food;
 
     public TrackState(){}
 
@@ -20,11 +22,13 @@ public class TrackState {
         this.foodDiary = foodDiary;
     }
 
+    public void setFood(Food food){this.food = food;}
+
     public void setNutritionalValues(HashMap<String, Float> nutritionalValues) {
         this.nutritionalValues = nutritionalValues;
     }
 
-    public void setWaterDiary(List<Double> waterDiary) {
+    public void setWaterDiary(List<Float> waterDiary) {
         this.waterDiary = waterDiary;
     }
 
@@ -32,7 +36,7 @@ public class TrackState {
         this.tracker = tracker;
     }
 
-    public List<Double> getWaterDiary() {
+    public List<Float> getWaterDiary() {
         return waterDiary;
     }
 
@@ -46,5 +50,9 @@ public class TrackState {
 
     public List<Food> getFoodDiary() {
         return foodDiary;
+    }
+
+    public Food getFood() {
+        return food;
     }
 }

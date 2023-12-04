@@ -12,9 +12,10 @@ public class Recipe implements Recipes {
 
     private final Integer kCal;
 
-    private final HashMap<String, Double> totalNutrients;
+    private final HashMap<String, Float> totalNutrients;
 
-    public Recipe(String recipeName, LinkedHashMap<Food, Integer> ingredients, Integer kCal, HashMap<String, Double>
+    public Recipe(String recipeName, LinkedHashMap<Food, Integer> ingredients, Integer kCal, HashMap<String, Float>
+
            totalNutrients) {
         this.recipeName = recipeName;
         this.ingredients = ingredients;
@@ -32,11 +33,11 @@ public class Recipe implements Recipes {
     public Integer getkCal() {return kCal;}
 
     @Override
-    public HashMap<String, Double> getTotalNutrients() {return totalNutrients;}
+    public HashMap<String, Float> getTotalNutrients() {return totalNutrients;}
 
     /*
-    public double getTotalCalories() {
-        double calories = 0;
+    public Float getTotalCalories() {
+        Float calories = 0;
         Set<Food> ingre = ingredients.keySet();
         for (Food food : ingre) {
             calories += ingredients.get(food) * food.getCalories();
@@ -44,9 +45,9 @@ public class Recipe implements Recipes {
         return calories;
     }
 
-    public LinkedHashMap<String, Double> getTotalNutrients() {
+    public LinkedHashMap<String, Float> getTotalNutrients() {
         Set<Food> ingre = ingredients.keySet();
-        LinkedHashMap<String, Double> total = new LinkedHashMap<String, Double>();
+        LinkedHashMap<String, Float> total = new LinkedHashMap<String, Float>();
 
         for (Food food : ingre) {
             HashMap<String, Float> hashNutrients = food.getNutritionalValues();

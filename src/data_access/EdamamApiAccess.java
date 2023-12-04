@@ -3,7 +3,8 @@ package data_access;
 import entity.Recommend;
 import okhttp3.*;
 import org.json.JSONArray;
-import org.json.JSONException;
+
+
 import org.json.JSONObject;
 import java.io.IOException;
 import java.util.*;
@@ -12,8 +13,9 @@ import entity.Food;
 import use_case.food.FoodDataAccessInterface;
 import use_case.recipe.RecipeDataAccessInterface;
 import use_case.recommend.RecommendDataAccessInterface;
+import use_case.track.TrackDataAccessInterface;
 
-public class EdamamApiAccess implements RecipeDataAccessInterface, RecommendDataAccessInterface, FoodDataAccessInterface {
+public class EdamamApiAccess implements RecipeDataAccessInterface, RecommendDataAccessInterface, FoodDataAccessInterface, TrackDataAccessInterface {
     private static final String APP_ID = "64984032"; //this is for food lookup
     private static final String APP_KEY = "47ecdbab5b1aa48bcbd2c622f83c8006"; //this is for food lookup
 
@@ -50,7 +52,7 @@ public class EdamamApiAccess implements RecipeDataAccessInterface, RecommendData
         }
     }*/
 
-    public Integer getCalories(Food identifier) {
+    public float getCalories(Food identifier) {
         String foodName = identifier.getName();
         OkHttpClient client = new OkHttpClient();
 
@@ -79,7 +81,7 @@ public class EdamamApiAccess implements RecipeDataAccessInterface, RecommendData
         }
     }
 
-    public HashMap<String, Double> getTotalNutrients(Food identifier) {
+    public HashMap<String, Float> getTotalNutrients(Food identifier) {
         String foodName = identifier.getName();
         OkHttpClient client = new OkHttpClient();
 
@@ -101,12 +103,12 @@ public class EdamamApiAccess implements RecipeDataAccessInterface, RecommendData
             Response response = client.newCall(request).execute();
             JSONObject responseBody = new JSONObject(response.body().string());
             Map<String, Object> totalNutrients = responseBody.getJSONObject("totalNutrients").toMap();
-            HashMap<String, Double> nutrients = new HashMap<String, Double>();
+            HashMap<String, Float> nutrients = new HashMap<String, Float>();
 
             Set<String> nutrientNames = totalNutrients.keySet();
             for (String nutrient : nutrientNames) {
-                Double doubleNutrient = (Double) totalNutrients.get(nutrient);
-                nutrients.put(nutrient, doubleNutrient);
+                Float FloatNutrient = (Float) totalNutrients.get(nutrient);
+                nutrients.put(nutrient, FloatNutrient);
             }
             return nutrients;
         }
@@ -146,11 +148,14 @@ public class EdamamApiAccess implements RecipeDataAccessInterface, RecommendData
             }
 
             if (!health.isEmpty()) {
-                // add all health tags     TODO can I add an if statement around this to check if null before adding to the URL?
+                // add all health tags
                 for (String item : health) {
                     urlBuilder.addQueryParameter("health", item); //adds each tag
                 }
             }
+
+            ArrayList<String> mealTypeList = new ArrayList<>();
+            mealTypeList.add(mealType);
 
             // add mealType tag
             urlBuilder.addQueryParameter("mealType", mealType);
@@ -165,7 +170,6 @@ public class EdamamApiAccess implements RecipeDataAccessInterface, RecommendData
             // Getting the response
             Response response = client.newCall(request).execute();
             JSONObject responseBody = new JSONObject(response.body().string());
-
             // determine number of recipes in response
             int count = responseBody.getInt("to");
 
@@ -188,7 +192,7 @@ public class EdamamApiAccess implements RecipeDataAccessInterface, RecommendData
 
 
     @Override
-    public HashMap<String, Double> getFoodNutritionalValues(String foodName, Float quantity) {
+    public HashMap<String, Float> getFoodNutritionalValues(String foodName, Float quantity) {
         OkHttpClient client = new OkHttpClient();
 
         String foodParameter;
@@ -213,16 +217,29 @@ public class EdamamApiAccess implements RecipeDataAccessInterface, RecommendData
 
             // Getting the response
             Response response = client.newCall(request).execute();
+
             JSONObject responseBody = new JSONObject(response.body().string());
             Map<String, Object> totalNutrients = responseBody.getJSONObject("totalNutrients").toMap();
-            HashMap<String, Double> nutrients = new HashMap<String, Double>();
-
+            HashMap<String, Float> nutrients = new HashMap<>();
             Set<String> nutrientNames = totalNutrients.keySet();
             for (String nutrient : nutrientNames) {
-                Double doubleNutrient = (Double) totalNutrients.get(nutrient);
-                nutrients.put(nutrient, doubleNutrient);
+                Map nutrientInfo = (Map) totalNutrients.get(nutrient);
+                if (nutrientInfo.containsKey("quantity")) {
+                    Object quantityObj = nutrientInfo.get("quantity");
+
+                    // Check if the quantity is a Number and cast it to Float
+                    if (quantityObj instanceof Number) {
+                        Float nutrientQuantity = ((Number) quantityObj).floatValue();
+                        nutrients.put(nutrient, nutrientQuantity);
+                    }
+                }
             }
-            return nutrients;
+            HashMap<String, Float> nutrientsFRFR = new HashMap<>();
+            nutrientsFRFR.put("Calories", nutrients.get("ENERC_KCAL"));
+            nutrientsFRFR.put("Carbs", nutrients.get("CHOCDF"));
+            nutrientsFRFR.put("Protein", nutrients.get("PROCNT"));
+            nutrientsFRFR.put("Fat", nutrients.get("FAT"));
+            return nutrientsFRFR;
         }
         catch (IOException e) {
             throw new RuntimeException(e);

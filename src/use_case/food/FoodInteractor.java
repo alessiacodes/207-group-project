@@ -1,7 +1,6 @@
 package use_case.food;
 
 import java.util.HashMap;
-import java.util.LinkedHashMap;
 
 public class FoodInteractor implements FoodInputBoundary{
 
@@ -20,14 +19,13 @@ public class FoodInteractor implements FoodInputBoundary{
         float quantity = foodInputData.getFoodQuantity();
         Integer kCal;
 
-        HashMap<String, Double> nutritionalValues = new HashMap<String, Double>();
+        HashMap<String, Float> nutritionalValues = new HashMap<>();
 
         nutritionalValues = foodDataAccessObject.getFoodNutritionalValues(name, quantity);
 
         kCal = foodDataAccessObject.getFoodCalories(name, quantity);
 
         FoodOutputData foodOutputData = new FoodOutputData(name, quantity, nutritionalValues, kCal);
-
         foodPresenter.prepareSuccessView(foodOutputData);
     }
 }

@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="view.LookUpView">
+  <grid id="27dc6" binding="lookUpViewPanel" layout-manager="GridLayoutManager" row-count="8" column-count="5" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+    <margin top="0" left="0" bottom="0" right="0"/>
+    <constraints>
+      <xy x="20" y="20" width="665" height="400"/>
+    </constraints>
+    <properties>
+      <background color="-262"/>
+      <foreground color="-262"/>
+    </properties>
+    <border type="none"/>
+    <children>
+      <component id="66f50" class="javax.swing.JLabel">
+        <constraints>
+          <grid row="1" column="1" row-span="1" col-span="3" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <background color="-11555217"/>
+          <font name="Calibri" size="80" style="1"/>
+          <foreground color="-10764429"/>
+          <horizontalAlignment value="0"/>
+          <horizontalTextPosition value="0"/>
+          <text value="Look-up"/>
+        </properties>
+      </component>
+      <component id="d68a9" class="javax.swing.JLabel">
+        <constraints>
+          <grid row="3" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <font size="22" style="1"/>
+          <foreground color="-10764429"/>
+          <text value="Units"/>
+        </properties>
+      </component>
+      <component id="9b38d" class="javax.swing.JLabel">
+        <constraints>
+          <grid row="3" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <font size="22" style="1"/>
+          <foreground color="-10764429"/>
+          <text value="Food Name"/>
+        </properties>
+      </component>
+      <vspacer id="8ef60">
+        <constraints>
+          <grid row="0" column="2" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
+        </constraints>
+      </vspacer>
+      <component id="1e137" class="javax.swing.JLabel">
+        <constraints>
+          <grid row="3" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <font size="22" style="1"/>
+          <foreground color="-10764429"/>
+          <text value="Quantity"/>
+        </properties>
+      </component>
+      <component id="ab013" class="javax.swing.JLabel">
+        <constraints>
+          <grid row="2" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <font size="22" style="2"/>
+          <foreground color="-10066330"/>
+          <text value="Example: &quot;1 cup rice&quot;"/>
+        </properties>
+      </component>
+      <component id="d1364" class="javax.swing.JButton" binding="getNutritionButton">
+        <constraints>
+          <grid row="5" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false">
+            <maximum-size width="278" height="-1"/>
+          </grid>
+        </constraints>
+        <properties>
+          <background color="-10764429"/>
+          <font name="Calibri" size="20" style="1"/>
+          <hideActionText value="false"/>
+          <text value="Get Nutritional Content!"/>
+        </properties>
+      </component>
+      <component id="8639b" class="javax.swing.JButton" binding="addToTrackerButton">
+        <constraints>
+          <grid row="6" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false">
+            <maximum-size width="278" height="-1"/>
+          </grid>
+        </constraints>
+        <properties>
+          <background color="-10764429"/>
+          <font name="Calibri" size="20" style="1"/>
+          <hideActionText value="false"/>
+          <text value="Add to my Tracker"/>
+        </properties>
+      </component>
+      <vspacer id="d880b">
+        <constraints>
+          <grid row="7" column="2" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
+        </constraints>
+      </vspacer>
+      <component id="30559" class="javax.swing.JTextField" binding="quantityTextField">
+        <constraints>
+          <grid row="4" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+            <preferred-size width="150" height="-1"/>
+          </grid>
+        </constraints>
+        <properties>
+          <font name="Calibri" size="20"/>
+          <text value=""/>
+        </properties>
+      </component>
+      <component id="d075" class="javax.swing.JTextField" binding="unitTextField">
+        <constraints>
+          <grid row="4" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+            <preferred-size width="150" height="-1"/>
+          </grid>
+        </constraints>
+        <properties>
+          <font name="Calibri" size="20"/>
+          <text value=""/>
+        </properties>
+      </component>
+      <component id="953df" class="javax.swing.JTextField" binding="foodNameTextField">
+        <constraints>
+          <grid row="4" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+            <preferred-size width="150" height="-1"/>
+          </grid>
+        </constraints>
+        <properties>
+          <font name="Calibri" size="20"/>
+          <text value=""/>
+        </properties>
+      </component>
+      <hspacer id="9c628">
+        <constraints>
+          <grid row="4" column="0" row-span="1" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+        </constraints>
+      </hspacer>
+      <hspacer id="6c867">
+        <constraints>
+          <grid row="3" column="4" row-span="1" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+        </constraints>
+      </hspacer>
+      <component id="a1987" class="javax.swing.JButton" binding="backButton">
+        <constraints>
+          <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false">
+            <maximum-size width="278" height="-1"/>
+          </grid>
+        </constraints>
+        <properties>
+          <background color="-10764429"/>
+          <font name="Calibri" size="16" style="1"/>
+          <hideActionText value="false"/>
+          <text value="Back"/>
+        </properties>
+      </component>
+    </children>
+  </grid>
+</form>
