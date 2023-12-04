@@ -10,31 +10,26 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 public class TrackControllerTest {
-
     private Tracker tracker;
     private TrackController trackController;
-
     private TrackInputBoundary trackInteractor;
 
     @Before
     public void setUp() {
         // Initialize a new Tracker
         tracker = new Tracker();
-
-        // Create a mock presenter
+        FakeDAO dao = new FakeDAO();
         MockTrackPresenter presenter = new MockTrackPresenter();
+        trackInteractor = new TrackInteractor(dao, presenter);
 
-        // Create a mock interactor
-        trackInteractor = new TrackInteractor(new EdamamApiAccess(), presenter);
-
-
-        // Initialize the TrackController with the mock interactor and the tracker instance
+        // Initialize the TrackController with the mock interactor and the
+        // tracker instance
         trackController = new TrackController(trackInteractor, tracker);
     }
 
     @Test
     public void testAddFoodToTracker() {
-        // Invoke the method you want to test
+        // Create a sample food object to test the controller's execute method
         trackController.execute("Apple", "1");
         Food apple = new Food("Apple", 1F);
 
@@ -59,6 +54,16 @@ public class TrackControllerTest {
 
         TrackOutputData getOutputData() {
             return outputData;
+        }
+    }
+
+    private static class MockTrackInputBoundary implements TrackInputBoundary {
+
+        private TrackInputData inputData;
+
+        @Override
+        public void execute(TrackInputData trackInputData) {
+
         }
     }
 }

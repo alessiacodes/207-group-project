@@ -62,13 +62,18 @@ public class Food {
         return this.carbs;
     }
 
+    /**
+     * Sets the nutritional values for the food item.
+     * @param nutritionalValues A map containing nutritional values.
+     *                          Keys: "Calories", "Protein", "Fat", "Carbs".
+     */
     public void setNutritionalValues(HashMap<String, Float> nutritionalValues) {
-        this.nutritionalValues = nutritionalValues;
-        this.protein = nutritionalValues.get("Protein");
-        this.fat = nutritionalValues.get("Fat");
-        this.kcal = Math.round(nutritionalValues.get("Calories"));
-        this.carbs = nutritionalValues.get("Carbs");
+        this.nutritionalValues.put("Calories", nutritionalValues.get("Calories"));
+        this.nutritionalValues.put("Protein", nutritionalValues.get("Protein"));
+        this.nutritionalValues.put("Fat", nutritionalValues.get("Fat"));
+        this.nutritionalValues.put("Carbs", nutritionalValues.get("Carbs"));
     }
+
 
     @Override
     public boolean equals(Object o) {

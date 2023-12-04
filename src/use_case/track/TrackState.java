@@ -10,6 +10,8 @@ public class TrackState {
     private List<Food> foodDiary;
     private List<Float> waterDiary;
 
+    private String errorMessage = "";
+
     private HashMap<String, Float> nutritionalValues = new HashMap<>();
 
     private Tracker tracker;
@@ -44,6 +46,10 @@ public class TrackState {
         return nutritionalValues;
     }
 
+    public void setErrorMessage(String errorMessage) {
+        this.errorMessage = errorMessage;
+    }
+
     public Tracker getTracker() {
         return tracker;
     }
@@ -54,5 +60,9 @@ public class TrackState {
 
     public Food getFood() {
         return food;
+    }
+
+    public String getErrorMessage() {
+        return errorMessage;
     }
 }

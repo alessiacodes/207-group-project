@@ -7,7 +7,6 @@ import java.beans.PropertyChangeSupport;
 
 public class RecipeViewModel implements ViewModel {
 
-    //TODO: figure out what labels/constants to put if any
     private RecipeState state = new RecipeState();
     private final PropertyChangeSupport support = new PropertyChangeSupport(this);
 
