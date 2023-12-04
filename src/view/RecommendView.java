@@ -121,7 +121,7 @@ public class RecommendView implements PropertyChangeListener {
     public void launchSuccessView(String successMessage){
         JFrame successPopUpWindow = new JFrame();
         successPopUpWindow.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
-        successPopUpWindow.setTitle("Success: user created!");
+        successPopUpWindow.setTitle("Success: recipe found!");
         successPopUpWindow.setSize(600,500);
 
         JLabel message = new JLabel();

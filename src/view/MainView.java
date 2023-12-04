@@ -97,7 +97,7 @@ public class MainView extends JFrame {
         parentPanel.add(lookUpView.getLookupPanel(), LOOKUP_VIEW_PANEL_NAME);
         parentPanel.add(recipeView.getMainPanel(), RECIPE_VIEW_PANEL_NAME);
         cardLayout  = (CardLayout) parentPanel.getLayout();
-        swapCard(RECIPE_VIEW_PANEL_NAME);
+        swapCard(LOGIN_PANEL_NAME);
         this.setVisible(true);
     }
 
