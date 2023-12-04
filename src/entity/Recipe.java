@@ -14,7 +14,8 @@ public class Recipe implements Recipes {
 
     private final HashMap<String, Float> totalNutrients;
 
-    Recipe(String recipeName, LinkedHashMap<Food, Integer> ingredients, Integer kCal, HashMap<String, Float>
+    public Recipe(String recipeName, LinkedHashMap<Food, Integer> ingredients, Integer kCal, HashMap<String, Float>
+
            totalNutrients) {
         this.recipeName = recipeName;
         this.ingredients = ingredients;
