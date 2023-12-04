@@ -8,7 +8,7 @@ public class Food {
 
     private String name;
     private float quantity;
-    private int kcal;
+    private Float kcal;
 
     private float protein;
     private float fat;
@@ -22,7 +22,7 @@ public class Food {
         this.quantity = quantity;
         this.nutritionalValues = new HashMap<String, Float>();
 
-        this.kcal = 0;
+        this.kcal = 0.0F;
         this.protein = 0.0F;
         this.fat = 0.0F;
         this.carbs = 0.0F;
@@ -38,7 +38,7 @@ public class Food {
 
     public float getQuantity() {return quantity;}
 
-    public int getCalories(){
+    public Float getCalories(){
         return kcal;
     }
 
@@ -69,9 +69,13 @@ public class Food {
      */
     public void setNutritionalValues(HashMap<String, Float> nutritionalValues) {
         this.nutritionalValues.put("Calories", nutritionalValues.get("Calories"));
+        this.kcal = nutritionalValues.get("Calories");
         this.nutritionalValues.put("Protein", nutritionalValues.get("Protein"));
+        this.protein = nutritionalValues.get("Protein");
         this.nutritionalValues.put("Fat", nutritionalValues.get("Fat"));
+        this.fat = nutritionalValues.get("Fat");
         this.nutritionalValues.put("Carbs", nutritionalValues.get("Carbs"));
+        this.carbs = nutritionalValues.get("Carbs");
     }
 
 

@@ -9,7 +9,6 @@ import static org.junit.Assert.assertEquals;
 // Mock TrackOutputBoundary for testing purposes
 
 public class TrackPresenterTest {
-
     private TrackState trackState = new TrackState();
     private TrackViewModel trackViewModel = new TrackViewModel(trackState);
     private Food food = new Food("Apple", 1.0F);
@@ -20,10 +19,6 @@ public class TrackPresenterTest {
 
     @Test
     public void prepareSuccessView() {
-        // Create a sample food and tracker
-        Food food = new Food("Banana", 1);
-        Tracker tracker = new Tracker();
-
         trackPresenter.prepareSuccessView(trackOutputData);
         assertEquals(trackOutputData.getFood(), trackState.getFood());
         assertEquals(trackOutputData.getTracker(), trackState.getTracker());
@@ -33,13 +28,10 @@ public class TrackPresenterTest {
 
     @Test
     public void prepareFailView() {
-        // Create a sample error message
-        String errorMessage = "Food not tracked successfully";
-
         // Call prepareFailView with the error message
-        trackPresenter.prepareFailView(errorMessage);
+        trackPresenter.prepareFailView("Food not tracked.");
 
         // Validate that the error message in the TrackState matches the input
-        assertEquals(errorMessage, trackState.getErrorMessage());
+        assertEquals("Food not tracked.", trackState.getErrorMessage());
     }
 }

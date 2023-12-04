@@ -9,6 +9,7 @@ import use_case.recommend.RecommendDataAccessInterface;
 import use_case.signup.SignupDataAccessInterface;
 
 import java.util.HashMap;
+import java.util.Optional;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
@@ -19,7 +20,7 @@ public class TrackInteractorTest {
     public void successTest() {
         // Create a tracker and food
         Tracker tracker = new Tracker();
-        Food food = new Food("Apple", 1);
+        Food food = new Food("TestFood", 1);
         TrackInputData inputData = new TrackInputData(food, tracker);
 
         // Create a fake DAO, mock presenter, and interactor
@@ -32,8 +33,24 @@ public class TrackInteractorTest {
 
         // Validate the results
         TrackOutputData outputData = presenter.getOutputData();
-        assertEquals("Apple", outputData.getFood().getName());
+
+        // Validating Output Data
+        assertEquals("TestFood", outputData.getFood().getName());
+
+        // Validating that the tracker's food diary has the food
         assertTrue(tracker.getDiary().contains(food));
+
+        // Validating the correct caloric content
+        assertTrue(tracker.getTotalCalories()==300.0);
+
+        // Validating that no water has been added to diary
+        assertTrue(tracker.getWaterDiary().isEmpty());
+
+        // Checking that getDiary() method works
+        assertTrue(!tracker.getDiary().isEmpty());
+
+        // Validating that getNutritionalContent works
+        assertTrue(tracker.getTotalNutrition().get("Protein") == 5.0F);
 
     }
 }
