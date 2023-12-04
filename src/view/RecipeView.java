@@ -50,7 +50,7 @@ public class RecipeView implements PropertyChangeListener {
         JScrollPane scrollFrame = new JScrollPane(holderPanel);
         holderPanel.setAutoscrolls(true);
         scrollFrame.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
-        scrollFrame.getViewport().setPreferredSize(new Dimension( 1900,1000));
+        scrollFrame.setPreferredSize(new Dimension( 1800,1000));
         mainPanel.add(scrollFrame);
         scrollFrame.getViewport().add(holderPanel,null);
         Font font = backButton.getFont();
