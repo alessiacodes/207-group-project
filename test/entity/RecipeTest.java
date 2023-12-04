@@ -16,7 +16,7 @@ public class RecipeTest {
     LinkedHashMap<Food, Integer> ingredients = new LinkedHashMap<Food, Integer>();
     HashMap<String, Float> nutrients = new HashMap<String, Float>();
 
-    @BeforeEach
+    @Before
     public void setUp(){
         Food rice = new Food("rice", 1);
         Food carrots = new Food("carrots", 1);
