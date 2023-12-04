@@ -55,7 +55,7 @@ public class HomeScreenView implements PropertyChangeListener {
         calculateCaloriesInRecipeButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                mainView.swapCard(mainView.RECIPE_VIEW_PANEL_NAME);
             }
         });
         recommendARecipeButton.addActionListener(new ActionListener() {

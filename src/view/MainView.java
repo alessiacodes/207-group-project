@@ -4,6 +4,8 @@ import use_case.food.FoodController;
 import use_case.food.FoodViewModel;
 import use_case.login.LoginController;
 import use_case.login.LoginViewModel;
+import use_case.recipe.RecipeController;
+import use_case.recipe.RecipeViewModel;
 import use_case.recommend.RecommendController;
 import use_case.recommend.RecommendViewModel;
 import use_case.signup.SignupController;
@@ -21,6 +23,7 @@ public class MainView extends JFrame {
     public final String HOME_SCREEN_PANEL_NAME = "homeScreenPanel";
     public final String RECOMMEND_PANEL_NAME = "recommendPanel";
     public final String LOOKUP_VIEW_PANEL_NAME = "foodLookupPanel";
+    public final String RECIPE_VIEW_PANEL_NAME = "recipe_view_panel";
     private JPanel parentPanel;
     private CardLayout cardLayout;
     private HomeScreenView homeScreenView;
@@ -36,6 +39,8 @@ public class MainView extends JFrame {
     private final TrackController trackController;
     private final LoginViewModel loginViewModel;
     private final LoginController loginController;
+    private final RecipeViewModel recipeViewModel;
+    private final RecipeController recipeController;
 
 
 
@@ -50,7 +55,7 @@ public class MainView extends JFrame {
 //        MainView view = new MainView(signupViewModel, signupController);
 //    }
     public MainView(SignupViewModel signupViewModel, SignupController signupController, RecommendViewModel recommendViewModel,
-                    RecommendController recommendController, FoodViewModel foodViewModel, FoodController foodController, TrackViewModel trackViewModel, TrackController trackController, LoginViewModel loginViewModel, LoginController loginController){
+                    RecommendController recommendController, FoodViewModel foodViewModel, FoodController foodController, TrackViewModel trackViewModel, TrackController trackController, LoginViewModel loginViewModel, LoginController loginController, RecipeViewModel recipeViewModel, RecipeController recipeController){
         this.signupViewModel = signupViewModel;
         this.signupController = signupController;
         this.recommendController = recommendController;
@@ -61,6 +66,8 @@ public class MainView extends JFrame {
         this.trackController = trackController;
         this.loginViewModel = loginViewModel;
         this.loginController = loginController;
+        this.recipeViewModel = recipeViewModel;
+        this.recipeController = recipeController;
 
         this.setUpMainView();
     }
@@ -80,6 +87,7 @@ public class MainView extends JFrame {
         homeScreenView = new HomeScreenView(this);
         RecommendView recommendView = new RecommendView(this, recommendViewModel, recommendController);
         LookUpView lookUpView = new LookUpView(this, foodViewModel, foodController, trackViewModel, trackController);
+        RecipeView recipeView = new RecipeView(this, recipeController, recipeViewModel);
 
         // Add them to the card layout
         parentPanel.add(loginView.getPanel(), LOGIN_PANEL_NAME);
@@ -87,8 +95,9 @@ public class MainView extends JFrame {
         parentPanel.add(homeScreenView.getHomeScreenPanel(), HOME_SCREEN_PANEL_NAME);
         parentPanel.add(recommendView.getRecommendViewPanel(), RECOMMEND_PANEL_NAME);
         parentPanel.add(lookUpView.getLookupPanel(), LOOKUP_VIEW_PANEL_NAME);
+        parentPanel.add(recipeView.getMainPanel(), RECIPE_VIEW_PANEL_NAME);
         cardLayout  = (CardLayout) parentPanel.getLayout();
-        swapCard(LOGIN_PANEL_NAME);
+        swapCard(RECIPE_VIEW_PANEL_NAME);
         this.setVisible(true);
     }
 
