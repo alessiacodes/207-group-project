@@ -26,6 +26,7 @@ public class TrackPresenter implements TrackOutputBoundary {
     @Override
     public void prepareFailView(String error) {
         TrackState state = trackViewModel.getState();
+        state.setErrorMessage(error);
         System.out.println("Error: " + error);
         trackViewModel.setState(state);
         trackViewModel.firePropertyChanged();
