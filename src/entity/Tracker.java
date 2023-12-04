@@ -37,6 +37,10 @@ public class Tracker {
         }
     }
 
+    public void addWater(float quantity){
+        this.waterDiary.add(quantity);
+    }
+
     public HashMap<String, Float> getTotalNutrition() {
         return nutritionalValues;
     }
