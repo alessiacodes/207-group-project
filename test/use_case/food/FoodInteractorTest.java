@@ -1,5 +1,6 @@
 package use_case.food;
 
+import data_access.EdamamApiAccess;
 import org.json.JSONObject;
 import org.junit.Test;
 
@@ -7,10 +8,32 @@ import static org.junit.Assert.*;
 
 public class FoodInteractorTest {
 
+
+
+
     @Test
-    public void execute() {
+    public void successTest() {
+        String foodName = "apple";
+        Float quantity = 1.0f;
+
+        FoodInputData inputData = new FoodInputData(foodName, quantity);
+        FoodDataAccessInterface foodDataAccessObject = new EdamamApiAccess();
+
+        FoodOutputBoundary successPresenter = new FoodOutputBoundary() {
+            @Override
+            public void prepareSuccessView(FoodOutputData outputData) {
+
+            }
+
+            @Override
+            public void prepareFailView(String error) {
+                fail("Use case failure is unexpected");
+            }
+        };
     }
 
+
+//    Objects for testing different scenarios, will update the file to test the API Call as a whole
     JSONObject multipleFoodObject = new JSONObject();
     JSONObject singularFoodObject = new JSONObject();
     JSONObject water = new JSONObject();
