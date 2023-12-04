@@ -1,2 +1,5 @@
 username,password,name,gender,weight,age,height,dietary restrictions
-vickomode,ilovecs!,victoria,null,100.0,19,100.0,[null]
+helloworld,hello!,vic,null,100.0,100,100.0,[null]
+vickomode,ilovecs!,victoria,null,100.0,19,100.0,[[[[null]]]]
+alessia2,ilovecs!,alessia,null,100.0,100,100.0,[[null]]
+joemama,iloveyourmama,joe,null,100.0,100,100.0,[[[null]]]

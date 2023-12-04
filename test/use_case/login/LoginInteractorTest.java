@@ -32,7 +32,7 @@ public class LoginInteractorTest {
             @Override
             public void prepareSuccessView(LoginOutputData user) {
                 // check for correct output and if the user has been created in users.csv
-                assertEquals("vpergola22", user.getUsername());
+                assertEquals("victoria", user.getUsername());
                 assertFalse(user.getUseCaseFailed());
             }
 
