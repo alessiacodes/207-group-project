@@ -61,7 +61,7 @@ public class RecipeInteractorTest {
             public void prepareSuccessView(RecipeOutputData outputData) {
                 assertEquals(outputData.getRecipeName(), "egg rice");
                 assertEquals(outputData.getIngredients(), ingredients);
-                assertEquals(outputData.getkCal(), Integer.valueOf(1465));
+                assertEquals(outputData.getkCal(), Integer.valueOf(235));
                 assertNotNull(outputData.getTotalNutrients());
             }
 

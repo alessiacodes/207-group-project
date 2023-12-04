@@ -20,9 +20,9 @@ public class FoodInteractorTest {
     void setUp() {
         stubDataAccess = new FoodDataAccessInterface() {
             @Override
-            public HashMap<String, Double> getFoodNutritionalValues(String foodName, Float quantity) {
-                HashMap<String, Double> nutritionalValues = new HashMap<>();
-                nutritionalValues.put("Fiber", 4.0);
+            public HashMap<String, Float> getFoodNutritionalValues(String foodName, Float quantity) {
+                HashMap<String, Float> nutritionalValues = new HashMap<>();
+                nutritionalValues.put("Fiber", 4.0F);
                 return nutritionalValues;
             }
 

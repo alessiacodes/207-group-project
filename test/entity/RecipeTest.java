@@ -14,7 +14,7 @@ public class RecipeTest {
 
     private Recipe test;
     LinkedHashMap<Food, Integer> ingredients = new LinkedHashMap<Food, Integer>();
-    HashMap<String, Double> nutrients = new HashMap<String, Double>();
+    HashMap<String, Float> nutrients = new HashMap<String, Float>();
 
     @BeforeEach
     public void setUp(){
@@ -26,8 +26,11 @@ public class RecipeTest {
         ingredients.put(carrots, 1);
         ingredients.put(egg, 3);
 
-        nutrients.put("protein", 10.0);
-        nutrients.put("carbs", 250.0);
+        float temp1 = 10;
+        float temp2 = 250;
+
+        nutrients.put("protein", temp1);
+        nutrients.put("carbs", temp2);
 
         test = new Recipe("fried rice", ingredients, 500, nutrients);
     }
