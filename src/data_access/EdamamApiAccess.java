@@ -197,7 +197,9 @@ public class EdamamApiAccess implements RecipeDataAccessInterface, RecommendData
 
         String foodParameter;
 
-        foodParameter = String.valueOf(quantity) + foodName;
+
+//        Setting the API Parameter by concatenating foodQuantity and foodName
+        foodParameter = String.valueOf(quantity) + " " +  foodName;
 
 
 
