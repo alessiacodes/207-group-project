@@ -3,6 +3,8 @@ package use_case.recommend;
 import java.util.ArrayList;
 
 public class RecommendInputData {
+
+    //diet and health are arrays so that the user may input more than one tag for each as per use case
     private final ArrayList<String> diet;
 
     private final ArrayList<String> health;

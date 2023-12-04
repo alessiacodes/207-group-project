@@ -21,16 +21,18 @@ public class RecommendInteractor implements RecommendInputBoundary{
 
     @Override
     public void execute(RecommendInputData inputData) {
+        // create recommend object using user input data
         ArrayList<String> diet = inputData.getDiet();
         ArrayList<String> health = inputData.getHealth();
         String mealType = inputData.getMealType();
-
         Recommend recommend = new Recommend(diet, health, mealType);
 
+        // get link to recipe using data in recommend object
         String recommendLink = recommendDataAccessObject.getRecommendLink(recommend);
 
         RecommendOutputData recommendOutputData = new RecommendOutputData(recommendLink);
 
+        // update view
         recommendPresenter.prepareSuccessView(recommendOutputData);
 
     }

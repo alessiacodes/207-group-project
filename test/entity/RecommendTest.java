@@ -2,7 +2,6 @@ package entity;
 
 import org.junit.Before;
 import org.junit.Test;
-import org.junit.jupiter.api.BeforeEach;
 
 import java.util.ArrayList;
 
@@ -16,13 +15,16 @@ public class RecommendTest {
 
     private ArrayList<String> health = new ArrayList<String>();
 
+    private String mealType = "Dinner";
+
     @Before
     public void init(){
         diet.add("high_protein");
         health.add("vegan");
-        recommend = new Recommend(diet, health, "Dinner");
+        recommend = new Recommend(diet, health, mealType);
     }
 
+    // check that getters return the correct data
     @Test
     public void getDiet() {
         assertEquals(diet, recommend.getDiet());
@@ -35,10 +37,11 @@ public class RecommendTest {
 
     @Test
     public void getMealType() {
-        assertEquals("Dinner", recommend.getMealType());
+        assertEquals(mealType, recommend.getMealType());
     }
 
 
+    // check that setters update correct data in recommend object
     @Test
     public void setDiet() {
         ArrayList<String> newDiet = new ArrayList<String>();

@@ -3,7 +3,7 @@ package use_case.recommend;
 
 public class RecommendOutputData {
 
-    private final String recommendLink; //not sure if this would be strings
+    private final String recommendLink;
 
 
     public RecommendOutputData(String recommendLink){
