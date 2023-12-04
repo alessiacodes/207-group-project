@@ -1,6 +1,4 @@
-package food;
-
-import use_case.food.FoodDataAccessInterface;
+package use_case.food;
 
 import java.util.HashMap;
 
