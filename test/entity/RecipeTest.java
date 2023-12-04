@@ -26,11 +26,8 @@ public class RecipeTest {
         ingredients.put(carrots, 1);
         ingredients.put(egg, 3);
 
-        float temp1 = 10;
-        float temp2 = 250;
-
-        nutrients.put("protein", temp1);
-        nutrients.put("carbs", temp2);
+        nutrients.put("protein", 10F);
+        nutrients.put("carbs", 250F);
 
         test = new Recipe("fried rice", ingredients, 500, nutrients);
     }
