@@ -1,10 +1,11 @@
+package use_case.signup;
+
 import data_access.EdamamApiAccess;
 import data_access.FileUserDataAccessObject;
 import entity.*;
 import use_case.food.*;
 import use_case.login.*;
 import use_case.recommend.*;
-import use_case.signup.*;
 import use_case.track.*;
 import view.MainView;
 
