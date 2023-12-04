@@ -55,7 +55,7 @@ public class HomeScreenView implements PropertyChangeListener {
         calculateCaloriesInRecipeButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                mainView.swapCard(mainView.RECIPE_VIEW_PANEL_NAME);
             }
         });
         recommendARecipeButton.addActionListener(new ActionListener() {
@@ -130,7 +130,7 @@ public class HomeScreenView implements PropertyChangeListener {
 
         TrackState state = (TrackState) evt.getNewValue();
         HashMap<String, Float> totalNutrition = state.getTracker().getTotalNutrition();
-        updateTotalMacros(state.getTracker().getTotalCalories(),
+        updateTotalMacros(state.getTracker().getTotalCalories().doubleValue(),
                 totalNutrition.get("Carbs"),
                 totalNutrition.get("Fat"),
                 totalNutrition.get("Protein")

@@ -13,6 +13,7 @@ import java.awt.event.ActionListener;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.util.Map;
+import java.util.Objects;
 
 public class LookUpView implements PropertyChangeListener {
     private JPanel lookUpViewPanel;
@@ -59,7 +60,6 @@ public class LookUpView implements PropertyChangeListener {
                     if (unitTextField.getText() == null || foodNameTextField.getText() == null){
                         launchFailView("Error: text field left blank");
                     }
-                    System.out.println("got here 3");
                     String foodName = unitTextField.getText() + " " + foodNameTextField.getText();
                     foodController.execute(foodName, quantity);
                 } catch(NumberFormatException error){
@@ -77,7 +77,6 @@ public class LookUpView implements PropertyChangeListener {
                     if (unitTextField.getText() == null || foodNameTextField.getText() == null){
                         launchFailView("Error: text field left blank");
                     }
-                    System.out.println("got here 3");
                     String foodName = unitTextField.getText() + " " + foodNameTextField.getText();
                     trackController.execute(foodName, quantity.toString());
                 } catch(NumberFormatException error){
@@ -114,11 +113,13 @@ public class LookUpView implements PropertyChangeListener {
         newPanel.add(calories);
 
         for (Map.Entry<String, Float> nutrition: state.getNutritionalValues().entrySet()) {
-            JLabel nutritionLabel = new JLabel();
-            nutritionLabel.setText(nutrition.getKey() + ": " + nutrition.getValue());
-            nutritionLabel.setHorizontalAlignment(SwingConstants.CENTER);
-            nutritionLabel.setFont(new Font(font.getName(), Font.PLAIN, 30));
-            newPanel.add(nutritionLabel);
+            if (!Objects.equals(nutrition.getKey(), "Calories")) {
+                JLabel nutritionLabel = new JLabel();
+                nutritionLabel.setText(nutrition.getKey() + ": " + nutrition.getValue());
+                nutritionLabel.setHorizontalAlignment(SwingConstants.CENTER);
+                nutritionLabel.setFont(new Font(font.getName(), Font.PLAIN, 30));
+                newPanel.add(nutritionLabel);
+            }
         }
 
 
