@@ -21,17 +21,9 @@ public class Tracker {
         this.nutritionalValues.put("Carbs", 0.0F);
     }
 
-    public Float getTotalCalories(){
-        int totalCals = 0;
-        for (Food food: foodDiary){
-            totalCals += food.getCalories();
-        }
-        return (float) totalCals;
-    }
+    public Float getTotalCalories(){return this.nutritionalValues.get("Calories");}
 
-    public List<Float> getWaterDiary(){
-        return this.waterDiary;
-    }
+    public List<Float> getWaterDiary(){return this.waterDiary;}
 
     public List<Food> getDiary(){
         return this.foodDiary;
@@ -45,21 +37,9 @@ public class Tracker {
         }
     }
 
-    /* Returns the total nutrition of the whole diary based on a single nutritional value (i.e. returns all the protein
-    from the whole diary.
-    * */
-    public Float getNutrientContent(String nutrient){
-        Float content = (float) 0;
-        for (Food food: foodDiary){
-            content += food.getNutritionalValues().get(nutrient);
-        }
-        return content;
-    }
-
     public HashMap<String, Float> getTotalNutrition() {
         return nutritionalValues;
     }
-
 
     public void addFood(Food food){
         foodDiary.add(food);
@@ -67,8 +47,6 @@ public class Tracker {
     }
 
     private void updateNutritionalValues(Food food) {
-
-
         // Updating Calories
         float currentValueCal = nutritionalValues.get("Calories");
         float newValueCal = currentValueCal + food.getCalories();
@@ -85,14 +63,6 @@ public class Tracker {
         float currentValueCarbs = nutritionalValues.get("Carbs");
         float newValueCarb = currentValueCarbs + food.getCarbs();
         nutritionalValues.put("Carbs", newValueCarb);
-
-    }
-
-    public void removeFood(Food food){
-        if (!this.foodDiary.isEmpty()) {
-            this.foodDiary.remove(food);
-        }
-        System.out.println("Food not currently in diary.");
     }
 
     boolean isEmpty(){
