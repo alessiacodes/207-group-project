@@ -6,7 +6,6 @@ import java.util.HashMap;
 import java.util.LinkedHashMap;
 
 public class RecipeState {
-    //TODO: figure out what ingredients and nutrients should be = to; or whether they need equal at all
     private String recipeName = "";
 
     private LinkedHashMap<Food, Integer> ingredients;
