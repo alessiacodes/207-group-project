@@ -66,7 +66,7 @@ public class BasicUserTest {
     @Test
     public void getHeight() {
         float height = user.getHeight();
-        assertEquals(height, 100F);
+        assertTrue(height == 100F);
     }
 
     @Test
@@ -78,7 +78,7 @@ public class BasicUserTest {
     @Test
     public void getWeight() {
         float weight = user.getWeight();
-        assertEquals(weight, 100F);
+        assertTrue(weight == 100F);
     }
 
     @Test
