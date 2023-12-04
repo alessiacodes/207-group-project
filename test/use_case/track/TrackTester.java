@@ -10,6 +10,8 @@ import org.junit.Test;
 
 
 import java.util.HashMap;
+import java.util.Optional;
+
 import static org.junit.Assert.assertEquals;
 
 public class TrackTester {
@@ -51,14 +53,18 @@ public class TrackTester {
         TrackInteractor interactor = new TrackInteractor(dataAccessObject, presenter);
 
         // Create the input data object
-        Food food = new Food("TestFood", 3.0F);
+        Food food = new Food("Apple", 1.0F);
         TrackInputData inputData = new TrackInputData(food, tracker);
 
         // Invoke the interactor
         interactor.execute(inputData);
 
+        System.out.println(tracker.getTotalCalories());
+
         // Validate the output data using the mock presenter
-        assertEquals("TestFood", presenter.getOutputData().getFood().getName());
+        assertEquals("Apple", presenter.getOutputData().getFood().getName());
+
+
     }
 
     // MockTrackPresenter for testing purposes

@@ -52,6 +52,9 @@ public class TrackInteractorTest {
         // Validating that getNutritionalContent works
         assertTrue(tracker.getTotalNutrition().get("Protein") == 5.0F);
 
+        tracker.addWater(100);
+        assertTrue(tracker.getWaterDiary().size() == 1);
+
     }
 }
 
