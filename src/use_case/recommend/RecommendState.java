@@ -12,11 +12,12 @@ public class RecommendState {
     private String currentErrorMessage = null;
     private String currentSuccessMessage = null;
 
-    // TODO do we need this to make a copy?
+
     public RecommendState(RecommendState copy) {
         diet = copy.diet;
         health = copy.health;
         mealType = copy.mealType;
+        recommendLink = copy.recommendLink;
         currentErrorMessage = copy.currentErrorMessage;
         currentSuccessMessage = copy.currentSuccessMessage;
     }

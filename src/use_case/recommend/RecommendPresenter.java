@@ -1,6 +1,5 @@
 package use_case.recommend;
 
-import use_case.recipe.RecipeState;
 
 public class RecommendPresenter implements RecommendOutputBoundary{
     private final RecommendViewModel recommendViewModel;
@@ -13,7 +12,7 @@ public class RecommendPresenter implements RecommendOutputBoundary{
     public void prepareSuccessView(RecommendOutputData outputData) {
 
         // prepare to display link for recommended recipe with message
-        String successMessage = "Here is your recipe recommendation: " + outputData.getRecommendLink() +" 💚"; //TODO place holder for now
+        String successMessage = "Here is your recipe recommendation: " + outputData.getRecommendLink() +" 💚";
         RecommendState state = recommendViewModel.getState();
 
         // update state and display result
@@ -25,7 +24,11 @@ public class RecommendPresenter implements RecommendOutputBoundary{
 
     @Override
     public void prepareFailView(String error) {
-        RecommendState recommendState = recommendViewModel.getState();
+        // TODO might need fixing
+        // update state
+        RecommendState state = recommendViewModel.getState();
+        state.setCurrentErrorMessage(error);
+        recommendViewModel.setState(state);
         recommendViewModel.firePropertyChanged();
     }
 }
