@@ -39,6 +39,25 @@ public class TrackInteractorTest {
 
         // Validating that the tracker's food diary has the food
         assertTrue(tracker.getDiary().contains(food));
+    }
+
+    @Test
+    private void gettersTest(){
+        // Create a tracker and food
+        Tracker tracker = new Tracker();
+        Food food = new Food("TestFood", 1);
+        TrackInputData inputData = new TrackInputData(food, tracker);
+
+        // Create a fake DAO, mock presenter, and interactor
+        FakeDAO dao = new FakeDAO();
+        MockTrackPresenter presenter = new MockTrackPresenter();
+        TrackInteractor interactor = new TrackInteractor(dao, presenter);
+
+        // Execute the interactor
+        interactor.execute(inputData);
+
+        // Validate the results
+        TrackOutputData outputData = presenter.getOutputData();
 
         // Validating the correct caloric content
         assertTrue(tracker.getTotalCalories()==300.0);
@@ -55,10 +74,11 @@ public class TrackInteractorTest {
         tracker.addWater(100);
         assertTrue(tracker.getWaterDiary().size() == 1);
 
-
-
     }
+
 }
+
+
 
 class MockTrackPresenter implements TrackOutputBoundary {
 
