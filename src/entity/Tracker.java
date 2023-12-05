@@ -4,73 +4,101 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+/**
+ * This is the Tracker class to keep record of the user's food and water intake.
+ */
 public class Tracker {
+    // Lists to track your food and water diaries.
     public List<Food> foodDiary;
     public List<Float> waterDiary;
 
+    // HashMap to store nutritional values.
     public HashMap<String, Float> nutritionalValues = new HashMap<>();
 
+    /**
+     * Constructor to initialize your diaries and nutritional values.
+     */
     public Tracker(){
-        this.foodDiary = new ArrayList<Food>();
-        this.waterDiary = new ArrayList<Float>();
+        this.foodDiary = new ArrayList<>();
+        this.waterDiary = new ArrayList<>();
 
-        // Create Nutritional Values HashMap
+        // Create Nutritional Values HashMap with initial values set to 0.0.
         this.nutritionalValues.put("Calories", 0.0F);
         this.nutritionalValues.put("Protein", 0.0F);
         this.nutritionalValues.put("Fat", 0.0F);
         this.nutritionalValues.put("Carbs", 0.0F);
     }
 
-    public Float getTotalCalories(){return this.nutritionalValues.get("Calories");}
+    /**
+     * Get the total calories consumed.
+     */
+    public Float getTotalCalories() {
+        return this.nutritionalValues.get("Calories");
+    }
 
-    public List<Float> getWaterDiary(){return this.waterDiary;}
+    /**
+     * Get the water diary.
+     */
+    public List<Float> getWaterDiary() {
+        return this.waterDiary;
+    }
 
-    public List<Food> getDiary(){
+    /**
+     * Get the food diary.
+     */
+    public List<Food> getDiary() {
         return this.foodDiary;
     }
 
-    public void updateFoodEntry(String updatedFoodEntry, Float newAmount){
+    /**
+     * Update the quantity of a specific food entry.
+     * If the food is not in the diary, add it.
+     */
+    public void updateFoodEntry(String updatedFoodEntry, Float newAmount) {
         Food food = new Food(updatedFoodEntry, newAmount);
-        if (this.foodDiary.contains(food)){
+        if (this.foodDiary.contains(food)) {
             int i = foodDiary.indexOf(food);
             foodDiary.get(i).updateQuantity(newAmount);
         }
     }
 
-    public void addWater(float quantity){
+    /**
+     * Add water to your water diary.
+     */
+    public void addWater(float quantity) {
         this.waterDiary.add(quantity);
     }
 
+    /**
+     * Get the total nutritional values.
+     */
     public HashMap<String, Float> getTotalNutrition() {
         return nutritionalValues;
     }
 
-    public void addFood(Food food){
+    /**
+     * Add a food entry to your food diary and update nutritional values.
+     */
+    public void addFood(Food food) {
         foodDiary.add(food);
         updateNutritionalValues(food);
     }
 
+    /**
+     * Update nutritional values based on the added food entry.
+     */
     private void updateNutritionalValues(Food food) {
-        // Updating Calories
-        float currentValueCal = nutritionalValues.get("Calories");
-        float newValueCal = currentValueCal + food.getCalories();
-        nutritionalValues.put("Calories", newValueCal);
-
-        float currentValueProtein = nutritionalValues.get("Protein");
-        float newValueProtein = currentValueProtein + food.getProtein();
-        nutritionalValues.put("Protein", newValueProtein);
-
-        float currentValueFat = nutritionalValues.get("Fat");
-        float newValueFat = currentValueFat + food.getFat();
-        nutritionalValues.put("Fat", newValueFat);
-
-        float currentValueCarbs = nutritionalValues.get("Carbs");
-        float newValueCarb = currentValueCarbs + food.getCarbs();
-        nutritionalValues.put("Carbs", newValueCarb);
+        // Updating Calories, Protein, Fat, and Carbs.
+        nutritionalValues.put("Calories", nutritionalValues.get("Calories") + food.getCalories());
+        nutritionalValues.put("Protein", nutritionalValues.get("Protein") + food.getProtein());
+        nutritionalValues.put("Fat", nutritionalValues.get("Fat") + food.getFat());
+        nutritionalValues.put("Carbs", nutritionalValues.get("Carbs") + food.getCarbs());
     }
 
-    public boolean isEmpty(){
+    /**
+     * Check if your food diary is empty.
+     */
+    public boolean isEmpty() {
         return this.foodDiary.isEmpty();
     }
-
 }

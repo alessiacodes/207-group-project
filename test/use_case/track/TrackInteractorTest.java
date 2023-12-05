@@ -14,8 +14,15 @@ import java.util.Optional;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
+/**
+ * Hey girl! 🌈 Welcome to the TrackInteractorTest class. Let's make sure your tracking logic is on point!
+ * Feel free to tweak and add more tests as needed. 💪
+ */
 public class TrackInteractorTest {
 
+    /**
+     * Test for a successful tracking scenario.
+     */
     @Test
     public void successTest() {
         // Create a tracker and food
@@ -39,6 +46,28 @@ public class TrackInteractorTest {
 
         // Validating that the tracker's food diary has the food
         assertTrue(tracker.getDiary().contains(food));
+    }
+
+    /**
+     * Additional tests for checking various getters in TrackInteractor.
+     */
+    @Test
+    public void gettersTest(){
+        // Create a tracker and food
+        Tracker tracker = new Tracker();
+        Food food = new Food("TestFood", 1);
+        TrackInputData inputData = new TrackInputData(food, tracker);
+
+        // Create a fake DAO, mock presenter, and interactor
+        FakeDAO dao = new FakeDAO();
+        MockTrackPresenter presenter = new MockTrackPresenter();
+        TrackInteractor interactor = new TrackInteractor(dao, presenter);
+
+        // Execute the interactor
+        interactor.execute(inputData);
+
+        // Validate the results
+        TrackOutputData outputData = presenter.getOutputData();
 
         // Validating the correct caloric content
         assertTrue(tracker.getTotalCalories()==300.0);
@@ -55,13 +84,13 @@ public class TrackInteractorTest {
         tracker.addWater(100);
         assertTrue(tracker.getWaterDiary().size() == 1);
 
-
-
     }
 }
 
+/**
+ * Mock presenter for testing purposes.
+ */
 class MockTrackPresenter implements TrackOutputBoundary {
-
     private TrackOutputData outputData;
 
     @Override
@@ -69,17 +98,18 @@ class MockTrackPresenter implements TrackOutputBoundary {
         System.out.println("Successfully tracked food: " + outputData.getFood().getName());
         this.outputData = outputData;
     }
-
     @Override
     public void prepareFailView(String error) {
         System.out.println("Error: " + error);
     }
-
     TrackOutputData getOutputData() {
         return outputData;
     }
 }
 
+/**
+ * Fake DAO class implementing various data access interfaces.
+ */
 class FakeDAO implements SignupDataAccessInterface, RecommendDataAccessInterface, FoodDataAccessInterface, TrackDataAccessInterface, LoginUserDataAccessInterface, RecipeDataAccessInterface {
 
     @Override
@@ -89,14 +119,13 @@ class FakeDAO implements SignupDataAccessInterface, RecommendDataAccessInterface
 
     @Override
     public void saveNewUser(User user) {
-        System.out.println("saved :)");
+        System.out.println("User saved.");
     }
 
     @Override
     public User get(String username) {
-        return new BasicUser("alessia", "ruberto", "Alessia Ruberto", null, null, 19, null, null);
+        return new BasicUser("Natalia", "Tabja", "Natalia Tabja", null, null, 21, null, null);
     }
-
     @Override
     public String getRecommendLink(Recommend identifier) {
         return null;
@@ -104,8 +133,8 @@ class FakeDAO implements SignupDataAccessInterface, RecommendDataAccessInterface
 
     @Override
     public HashMap<String, Float> getFoodNutritionalValues(String foodName, Float quantity) {
-        System.out.println("entered fake dao");
-        HashMap<String, Float> nutritionalValues = new HashMap<String, Float>();
+        System.out.println("Entered fake dao");
+        HashMap<String, Float> nutritionalValues = new HashMap<>();
         nutritionalValues.put("Carbs", 10.0f);
         nutritionalValues.put("Protein", 5.0f);
         nutritionalValues.put("Fat", 7.0f);
@@ -119,5 +148,3 @@ class FakeDAO implements SignupDataAccessInterface, RecommendDataAccessInterface
         return 300;
     }
 }
-
-
