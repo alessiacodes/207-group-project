@@ -69,7 +69,7 @@ public class Tracker {
         nutritionalValues.put("Carbs", newValueCarb);
     }
 
-    boolean isEmpty(){
+    public boolean isEmpty(){
         return this.foodDiary.isEmpty();
     }
 
