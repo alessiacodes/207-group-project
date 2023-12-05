@@ -13,6 +13,7 @@ import java.util.HashMap;
 import java.util.Optional;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 public class TrackTester {
 
@@ -59,12 +60,97 @@ public class TrackTester {
         // Invoke the interactor
         interactor.execute(inputData);
 
-        System.out.println(tracker.getTotalCalories());
+        // Checking if calories are correct
+        assertEquals(94.64, tracker.getTotalCalories(), 0.01);
 
         // Validate the output data using the mock presenter
         assertEquals("Apple", presenter.getOutputData().getFood().getName());
+    }
 
+    @Test
+    public void testInvalidInputs() {
+        // Create a mock data access object
+        Tracker tracker = new Tracker();
+        TrackDataAccessInterface dataAccessObject = new EdamamApiAccess();
 
+        // Create a mock presenter
+        MockTrackPresenter presenter = new MockTrackPresenter();
+
+        // Create the interactor
+        TrackInteractor interactor = new TrackInteractor(dataAccessObject, presenter);
+
+        // Testing invalid inputs
+        Food invalidFood = new Food("Wood", 2.0F);
+        TrackInputData invalidInput = new TrackInputData(invalidFood, tracker);
+        interactor.execute(invalidInput);
+
+        Food invalidFood2 = new Food("", 2.0F);
+        TrackInputData invalidInput2 = new TrackInputData(invalidFood2, tracker);
+        interactor.execute(invalidInput2);
+
+        Food invalidFood3 = new Food("svefverg", 2.0F);
+        TrackInputData invalidInput3 = new TrackInputData(invalidFood3, tracker);
+        interactor.execute(invalidInput3);
+    }
+
+    @Test
+    public void testMultipleInputs() {
+        // Create a mock data access object
+        Tracker tracker = new Tracker();
+        TrackDataAccessInterface dataAccessObject = new EdamamApiAccess();
+
+        // Create a mock presenter
+        MockTrackPresenter presenter = new MockTrackPresenter();
+
+        // Create the interactor
+        TrackInteractor interactor = new TrackInteractor(dataAccessObject, presenter);
+
+        // Testing invalid inputs
+        Food apple = new Food("Apple", 2.0F);
+        Food pear = new Food("Pear", 1.0F);
+
+        TrackInputData inputOne = new TrackInputData(apple, tracker);
+        TrackInputData inputTwo = new TrackInputData(pear, tracker);
+
+        interactor.execute(inputOne);
+        interactor.execute(inputTwo);
+
+        assertEquals("Apple", tracker.getDiary().get(0).getName());
+        assertEquals("Pear", tracker.getDiary().get(1).getName());
+    }
+
+    @Test
+    public void testUpdateFoodEntry(){
+        // Create a mock data access object
+        Tracker tracker = new Tracker();
+        TrackDataAccessInterface dataAccessObject = new EdamamApiAccess();
+
+        // Create a mock presenter
+        MockTrackPresenter presenter = new MockTrackPresenter();
+
+        // Create the interactor
+        TrackInteractor interactor = new TrackInteractor(dataAccessObject, presenter);
+
+        // Testing invalid inputs
+        Food apple = new Food("Apple", 2.0F);
+        Food pear = new Food("Pear", 1.0F);
+
+        TrackInputData inputOne = new TrackInputData(apple, tracker);
+        TrackInputData inputTwo = new TrackInputData(pear, tracker);
+
+        interactor.execute(inputOne);
+        interactor.execute(inputTwo);
+
+        tracker.updateFoodEntry("Apple", 2.0F);
+        System.out.println(tracker.getDiary().get(0).getQuantity());
+
+        assertEquals(2.0F, tracker.getDiary().get(0).getQuantity(),0.0F);
+    }
+
+    @Test
+    public void testEmptyTracker(){
+        Tracker tracker = new Tracker();
+        assertTrue(tracker.isEmpty());
     }
 
     // MockTrackPresenter for testing purposes
