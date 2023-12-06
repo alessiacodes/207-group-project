@@ -3,7 +3,7 @@
 ## Short description:
 We aim to create a program that tracks macro and micro nutrients of the user throughout the day. Additionally, users can find the nutritional value of the recipe of their choice or get reccomended meals based on their dietary restrictions and/or fitness goals.
 
-## Demo Video
+## Demo Video (sound on🔊)
 
 
 https://github.com/alessiacodes/MARVN-Your-Virtual-Fitness-Assistant/assets/128920588/f4e5794a-2b0e-4870-8e3e-7ddbcfcb036f
