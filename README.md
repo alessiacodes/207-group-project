@@ -2,14 +2,23 @@
 ## Project domain: fitness and lifestyle
 ## Short description:
 We aim to create a program that tracks macro and micro nutrients of the user throughout the day. Additionally, users can find the nutritional value of the recipe of their choice or get reccomended meals based on their dietary restrictions and/or fitness goals.
+
+## Demo Video
+
+
+https://github.com/alessiacodes/MARVN-Your-Virtual-Fitness-Assistant/assets/128920588/f4e5794a-2b0e-4870-8e3e-7ddbcfcb036f
+
+
+## Presentation (See for info on adherence to clean architecture and SOLID)
+https://docs.google.com/presentation/d/1I_k3f_NhivdE_RMpAat72wHyP0tS-efDuNh8maho8Zs/edit?usp=sharing
+
 ## API Information
 Edamam is an API with lots of food-related functionalities. For testing purposes, we are using their nutritional data API.  
 Documentation: https://developer.edamam.com/edamam-docs-nutrition-api
 
-## Hoppscotch Output
+### Hoppscotch Output
 ![image](https://github.com/alessiacodes/207-group-project/assets/128920588/13a42df6-4c56-4403-8b3c-b0592efb3193)
 
-## Java API Calls (Code and Results)
 ### Code
 ```java
 import okhttp3.*;
