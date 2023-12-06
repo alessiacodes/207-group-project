@@ -14,10 +14,7 @@ import java.util.Optional;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
-/**
- * Hey girl! 🌈 Welcome to the TrackInteractorTest class. Let's make sure your tracking logic is on point!
- * Feel free to tweak and add more tests as needed. 💪
- */
+
 public class TrackInteractorTest {
 
     /**
