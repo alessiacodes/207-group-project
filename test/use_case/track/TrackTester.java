@@ -4,8 +4,10 @@ import data_access.EdamamApiAccess;
 
 import entity.Food;
 import entity.Tracker;
-import entity.User;
+import org.jetbrains.annotations.NotNull;
 import org.junit.Test;
+import java.util.ArrayList;
+import java.util.List;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
@@ -159,7 +161,6 @@ public class TrackTester {
 
         tracker.updateFoodEntry("Apple", 2.0F);
 
-        // Printing the updated quantity for your curiosity 😉
         System.out.println(tracker.getDiary().get(0).getQuantity());
 
         assertEquals(2.0F, tracker.getDiary().get(0).getQuantity(), 0.0F);
@@ -193,5 +194,92 @@ public class TrackTester {
         TrackOutputData getOutputData() {
             return outputData;
         }
+    }
+
+    @Test
+    public void testFoodDiary() {
+        // Create a mock data access object
+        Tracker tracker = new Tracker();
+        TrackDataAccessInterface dataAccessObject = new EdamamApiAccess();
+
+        // Create a mock presenter
+        MockTrackPresenter presenter = new MockTrackPresenter();
+
+        // Create the interactor
+        TrackInteractor interactor = new TrackInteractor(dataAccessObject, presenter);
+
+        // Start with an empty tracker
+        assertTrue(tracker.isEmpty());
+        assertTrue(tracker.getDiary().isEmpty());
+
+        // Adding a bunch of foods to the tracker
+        List<Food> foods = getFoodList();
+
+        // setting the tracker's food diary to match external one
+        tracker.setFoodDiary(foods);
+
+        assertTrue(tracker.getDiary().get(5).getName() == "Bread");
+    }
+
+    @NotNull
+    private static List<Food> getFoodList() {
+        Food apple = new Food("Apple", 2.0F);
+        Food pear = new Food("Pear", 1.0F);
+        Food eggs = new Food("Eggs", 2.0F);
+        Food eggWhites = new Food("Egg Whites", 4.0F);
+        Food almonds = new Food("Almonds", 10.0F);
+        Food bread = new Food("Bread", 2.0F);
+
+        // Creating external food diary
+        List<Food> foods = new ArrayList<Food>();
+        foods.add(apple);
+        foods.add(pear);
+        foods.add(eggs);
+        foods.add(eggWhites);
+        foods.add(almonds);
+        foods.add(bread);
+        return foods;
+    }
+
+    @Test
+    public void testDietType() {
+        // Create a mock data access object
+        Tracker tracker = new Tracker();
+        TrackDataAccessInterface dataAccessObject = new EdamamApiAccess();
+
+        // Create a mock presenter
+        MockTrackPresenter presenter = new MockTrackPresenter();
+
+        // Create the interactor
+        TrackInteractor interactor = new TrackInteractor(dataAccessObject, presenter);
+
+        // Start with an empty tracker
+        assertTrue(tracker.isEmpty());
+        assertTrue(tracker.getDiary().isEmpty());
+
+        // Adding a bunch of foods to the tracker
+        Food apple = new Food("Apple", 2.0F);
+        Food pear = new Food("Pear", 1.0F);
+        Food eggs = new Food("Eggs", 2.0F);
+        Food eggWhites = new Food("Egg Whites", 4.0F);
+        Food salmon = new Food("Salmon", 1.0F);
+        Food chicken = new Food("Chicken Breast", 2.0F);
+
+        TrackInputData inputOne = new TrackInputData(apple, tracker);
+        TrackInputData inputTwo = new TrackInputData(pear, tracker);
+        TrackInputData inputThree = new TrackInputData(eggs, tracker);
+        TrackInputData inputFour = new TrackInputData(eggWhites, tracker);
+        TrackInputData inputFive = new TrackInputData(salmon, tracker);
+        TrackInputData inputSix = new TrackInputData(chicken, tracker);
+
+        interactor.execute(inputOne);
+        interactor.execute(inputTwo);
+        interactor.execute(inputThree);
+        interactor.execute(inputFour);
+        interactor.execute(inputFive);
+        interactor.execute(inputSix);
+
+        assertTrue(tracker.isHighProtein());
+        assertTrue(!tracker.isLowCarb());
     }
 }
