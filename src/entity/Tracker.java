@@ -96,9 +96,46 @@ public class Tracker {
     }
 
     /**
-     * Check if your food diary is empty.
+     * Check if the food diary is empty.
      */
     public boolean isEmpty() {
         return this.foodDiary.isEmpty();
     }
+
+    /**
+     * Clear contents of food diary
+     */
+    public void clear(){
+        this.nutritionalValues.clear();
+    }
+
+    /**
+     * Set the total nutritional values of the tracker's contents
+     */
+    public void setNutritionalValues(HashMap<String, Float> nutritionalValues) {
+        this.nutritionalValues = nutritionalValues;
+    }
+
+    /**
+     * Set the contents of the water diary
+     */
+    public void setWaterDiary(List<Float> waterDiary) {
+        this.waterDiary = waterDiary;
+    }
+
+    /**
+     * Set the contents of the food diary
+     */
+    public void setFoodDiary(List<Food> foodDiary) {
+        this.foodDiary = foodDiary;
+    }
+
+    public boolean isHighProtein(){return this.nutritionalValues.get("Protein") > 120.0F;
+    }
+
+    public boolean isLowCarb(){return this.nutritionalValues.get("Carbs") < 40.0F;
+    }
+
 }
+
+

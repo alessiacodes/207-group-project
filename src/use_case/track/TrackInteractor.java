@@ -26,11 +26,8 @@ public class TrackInteractor implements TrackInputBoundary {
         // Check if nutritionalValues is not null and none of the values are null
         if (nutritionalValues != null && !nutritionalValues.containsValue(null)) {
             food.setNutritionalValues(nutritionalValues);
-            System.out.println(nutritionalValues);
-            System.out.println(food.getNutritionalValues());
 
             tracker.addFood(food);
-            System.out.println(tracker.getTotalNutrition());
 
             TrackOutputData foodOutput = new TrackOutputData(food, tracker);
 
